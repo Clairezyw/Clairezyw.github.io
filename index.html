@@ -57,7 +57,11 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
+				<li><a href="/about">关于我</a></li>
+	        
+				<li><a href="/tags">标签</a></li>
+	        
+				<li><a href="/categories">分类</a></li>
 	        
 			</ul>
 		</nav>
@@ -113,6 +117,10 @@
 			
 				
 			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -126,12 +134,16 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 25%"><a href="/about">关于我</a></li>
+		        
+					<li style="width: 25%"><a href="/tags">标签</a></li>
+		        
+					<li style="width: 25%"><a href="/categories">分类</a></li>
 		        
 				</ul>
 			</nav>
@@ -148,27 +160,28 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-first" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-javascript闭包问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/04/first/">first</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/04/first/" class="archive-article-date">
-  	<time datetime="2017-12-03T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-04</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I am a p</p>
+        <h2 id="javascript闭包问题"><a href="#javascript闭包问题" class="headerlink" title="javascript闭包问题"></a>javascript闭包问题</h2><p>javascript支持闭包功能，函数可以引用作用域外的变量，但在使用闭包时存在一定的陷阱，就像下面的这个例子：<br><code>var arr = [];
+   for(var i = 0;i&lt;3;i++){
+    arr.push(i);
+   }
+   for (var j = 0;j&lt;arr.length;j++){
+   alert(arr[j]);}</code><br>   输出结果为：3 3 3<br>   并不是我们想要的结果：0 1 2<br>这个问题的原因是javascript虽然有局部变量，<strong>但局部变量只有函数的作用域没有块作用域，因此无论在哪个位置定义变量，变量的作用域都是整个函数。</strong><br>这段代码其实是这样的：<br><code>var arr[],i,j;
+  for(i = 0;i&lt;3;i++){
+  arr.push(i);
+  }
+  for (j = 0;j&lt;arr.length;j++){
+  alert(arr[j]);}//输出3 3 3</code><br>  <strong>因此在创建闭包时不要引入循环变量，如果一定要引入循环变量，此时需要再创建一个函数，将循环变量作为该函数的参数引入</strong><br>  <code>var arr = [];
+for (var i = 0; i &lt; 3; i++) {
+    var fun = function (i) {
+        arr.push(i);
+    };
+    fun(i);
+}//输出0 1 2</code></p>
 
       
 
@@ -177,33 +190,11 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">first</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/第一次提交//" class="article-tag-list-link color1">第一次提交</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/04/first/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/12/03/javascript闭包问题/">展开全文 >></a>
         </p>
       
 
