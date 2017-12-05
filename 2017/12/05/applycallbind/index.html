@@ -11,23 +11,23 @@
   <meta name="description" content="###javacript中apply、call和bind的用法总结  apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题： 继续往下看，单独调用a.fn还是可以的 这是怎么回事呢？原因还是在于b和a的this的环境不同，b的this指向的是全局，并没有指向a，所以会产生此类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Claire的小书房">
-<meta property="og:url" content="http://yoursite.com/2017/12/05/apply&&call&&bind/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/12/05/applycallbind/index.html">
 <meta property="og:site_name" content="Claire的小书房">
 <meta property="og:description" content="###javacript中apply、call和bind的用法总结  apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题： 继续往下看，单独调用a.fn还是可以的 这是怎么回事呢？原因还是在于b和a的this的环境不同，b的this指向的是全局，并没有指向a，所以会产生此类问题。当我们不得不将一个对象保存到另一个变量之中时，可以使用以下方法：1、cal">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/pic1.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/pic2.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/pic3.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/pic4.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/QQ20171205-212444@2x.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/QQ20171205-212557@2x.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/QQ20171205-213112@2x.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/QQ20171205-213224@2x.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/05/applycallbind/media/15124786407835/pic1.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/05/applycallbind/media/15124786407835/pic2.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/05/applycallbind/media/15124786407835/pic3.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/05/applycallbind/media/15124786407835/pic4.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/05/applycallbind/media/15124786407835/QQ20171205-212444@2x.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/05/applycallbind/media/15124786407835/QQ20171205-212557@2x.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/05/applycallbind/media/15124786407835/QQ20171205-213112@2x.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/05/applycallbind/media/15124786407835/QQ20171205-213224@2x.png">
 <meta property="og:updated_time" content="2017-12-05T13:34:46.805Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Claire的小书房">
 <meta name="twitter:description" content="###javacript中apply、call和bind的用法总结  apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题： 继续往下看，单独调用a.fn还是可以的 这是怎么回事呢？原因还是在于b和a的this的环境不同，b的this指向的是全局，并没有指向a，所以会产生此类问题。当我们不得不将一个对象保存到另一个变量之中时，可以使用以下方法：1、cal">
-<meta name="twitter:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/pic1.png">
+<meta name="twitter:image" content="http://yoursite.com/2017/12/05/applycallbind/media/15124786407835/pic1.png">
   
     <link rel="alternative" href="/atom.xml" title="Claire的小书房" type="application/atom+xml">
   
@@ -171,7 +171,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-apply&amp;&amp;call&amp;&amp;bind" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-applycallbind" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
@@ -265,7 +265,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/05/apply&&call&&bind/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/05/applycallbind/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -309,7 +309,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="apply&amp;&amp;call&amp;&amp;bind" data-title="" data-url="http://yoursite.com/2017/12/05/apply&amp;&amp;call&amp;&amp;bind/"></div>
+	<div class="ds-thread" data-thread-key="applycallbind" data-title="" data-url="http://yoursite.com/2017/12/05/applycallbind/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -331,7 +331,7 @@
   
 
   
-  <div id="SOHUCS" sid="apply&amp;&amp;call&amp;&amp;bind" ></div> 
+  <div id="SOHUCS" sid="applycallbind" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
