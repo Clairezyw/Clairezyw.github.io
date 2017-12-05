@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>tags | Claire的小书房</title>
+  <title>javascript闭包问题 | Claire的小书房</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+  <meta name="description" content="javascript闭包问题javascript支持闭包功能，函数可以引用作用域外的变量，但在使用闭包时存在一定的陷阱，就像下面的这个例子：  123456var arr = [];    for(var i = 0;i&amp;lt;3;i++)&amp;#123;    arr.push(i); &amp;#125">
+<meta name="keywords" content="闭包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript闭包问题">
+<meta property="og:url" content="http://yoursite.com/2017/12/05/javascript closure problem/index.html">
 <meta property="og:site_name" content="Claire的小书房">
+<meta property="og:description" content="javascript闭包问题javascript支持闭包功能，函数可以引用作用域外的变量，但在使用闭包时存在一定的陷阱，就像下面的这个例子：  123456var arr = [];    for(var i = 0;i&amp;lt;3;i++)&amp;#123;    arr.push(i); &amp;#125;for (var j = 0;j&amp;lt;arr.length;j++)&amp;#123;alert(arr[">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-03T16:07:08.300Z">
+<meta property="og:updated_time" content="2017-12-05T15:35:07.657Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="javascript闭包问题">
+<meta name="twitter:description" content="javascript闭包问题javascript支持闭包功能，函数可以引用作用域外的变量，但在使用闭包时存在一定的陷阱，就像下面的这个例子：  123456var arr = [];    for(var i = 0;i&amp;lt;3;i++)&amp;#123;    arr.push(i); &amp;#125;for (var j = 0;j&amp;lt;arr.length;j++)&amp;#123;alert(arr[">
   
     <link rel="alternative" href="/atom.xml" title="Claire的小书房" type="application/atom+xml">
   
@@ -159,27 +163,33 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-javascript closure problem" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      tags
+      javascript闭包问题
     </h1>
   
 
         
-        <a href="/tags/index.html" class="archive-article-date">
-  	<time datetime="2017-12-03T16:07:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-04</time>
+        <a href="/2017/12/05/javascript closure problem/" class="archive-article-date">
+  	<time datetime="2017-12-05T15:40:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="javascript闭包问题"><a href="#javascript闭包问题" class="headerlink" title="javascript闭包问题"></a>javascript闭包问题</h2><p>javascript支持闭包功能，函数可以引用作用域外的变量，但在使用闭包时存在一定的陷阱，就像下面的这个例子：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];    </span><br><span class="line">for(var i = 0;i&lt;3;i++)&#123;</span><br><span class="line">    arr.push(i); </span><br><span class="line">&#125;</span><br><span class="line">for (var j = 0;j&lt;arr.length;j++)&#123;</span><br><span class="line">alert(arr[j]);&#125;</span><br></pre></td></tr></table></figure>
+<p>   输出结果为：3 3 3<br>   并不是我们想要的结果：0 1 2<br>这个问题的原因是javascript虽然有局部变量，<br><strong>但局部变量只有函数的作用域没有块作用域，因此无论在哪个位置定义变量，变量的作用域都是整个函数。</strong><br>这段代码其实是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var arr[],i,j;</span><br><span class="line">  for(i = 0;i&lt;3;i++)&#123;</span><br><span class="line">  arr.push(i);</span><br><span class="line">  &#125;</span><br><span class="line">  for (j = 0;j&lt;arr.length;j++)&#123;</span><br><span class="line">  alert(arr[j]);&#125;//输出3 3 3</span><br></pre></td></tr></table></figure>
+<p>  <strong>因此在创建闭包时不要引入循环变量，如果一定要引入循环变量，此时需要再创建一个函数，将循环变量作为该函数的参数引入</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];</span><br><span class="line">for (var i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">    var fun = function (i) &#123;</span><br><span class="line">        arr.push(i);</span><br><span class="line">    &#125;;</span><br><span class="line">    fun(i);</span><br><span class="line">&#125;//输出0 1 2</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -208,7 +218,33 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">闭包</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/javascript//" class="article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/javascript/闭包//" class="article-tag-list-link color3">闭包</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -258,7 +294,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/tags/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/05/javascript closure problem/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -270,6 +306,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/05/applycallbind/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -292,7 +338,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="" data-title="tags" data-url="http://yoursite.com/tags/index.html"></div>
+	<div class="ds-thread" data-thread-key="javascript closure problem" data-title="javascript闭包问题" data-url="http://yoursite.com/2017/12/05/javascript closure problem/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -314,7 +360,7 @@
   
 
   
-  <div id="SOHUCS" sid="" ></div> 
+  <div id="SOHUCS" sid="javascript closure problem" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
@@ -350,7 +396,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
