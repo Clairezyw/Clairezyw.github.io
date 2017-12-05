@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>javacript中apply、call和bind的用法总结 | Claire的小书房</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="javacript中apply、call和bind的用法总结 apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题： 继续往下看，单独调用a.fn还是可以的 这是怎么回事呢？原因还是在于b和a的this的环境不同，b的this指向的是全局，并没有指向a，所以会产生此类问题。 ">
+  <meta name="description" content="apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题： 继续往下看，单独调用a.fn还是可以的 这是怎么回事呢？原因还是在于b和a的this的环境不同，b的this指向的是全局，并没有指向a，所以会产生此类问题。 当我们不得不将一个对象保存到另一个变量之中时，可以使用以下方法">
 <meta name="keywords" content="apply,call,bind">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javacript中apply、call和bind的用法总结">
 <meta property="og:url" content="http://yoursite.com/2017/12/05/applycallbind/index.html">
 <meta property="og:site_name" content="Claire的小书房">
-<meta property="og:description" content="javacript中apply、call和bind的用法总结 apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题： 继续往下看，单独调用a.fn还是可以的 这是怎么回事呢？原因还是在于b和a的this的环境不同，b的this指向的是全局，并没有指向a，所以会产生此类问题。 当我们不得不将一个对象保存到另一个变量之中时，可以使用以下方法： call（）">
+<meta property="og:description" content="apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题： 继续往下看，单独调用a.fn还是可以的 这是怎么回事呢？原因还是在于b和a的this的环境不同，b的this指向的是全局，并没有指向a，所以会产生此类问题。 当我们不得不将一个对象保存到另一个变量之中时，可以使用以下方法： call（） 运用call以后，b的this指向为a所在的环境中。call">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-510eba09eb6a31ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-c487f374778b5751.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -24,10 +24,10 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-e133e366a7ce0069.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-7e47d481ec8f5c10.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-51c62e085492eaf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-12-05T15:51:37.508Z">
+<meta property="og:updated_time" content="2017-12-05T15:53:30.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javacript中apply、call和bind的用法总结">
-<meta name="twitter:description" content="javacript中apply、call和bind的用法总结 apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题： 继续往下看，单独调用a.fn还是可以的 这是怎么回事呢？原因还是在于b和a的this的环境不同，b的this指向的是全局，并没有指向a，所以会产生此类问题。 当我们不得不将一个对象保存到另一个变量之中时，可以使用以下方法： call（）">
+<meta name="twitter:description" content="apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题： 继续往下看，单独调用a.fn还是可以的 这是怎么回事呢？原因还是在于b和a的this的环境不同，b的this指向的是全局，并没有指向a，所以会产生此类问题。 当我们不得不将一个对象保存到另一个变量之中时，可以使用以下方法： call（） 运用call以后，b的this指向为a所在的环境中。call">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/9381131-510eba09eb6a31ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Claire的小书房" type="application/atom+xml">
@@ -180,7 +180,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="javacript中apply、call和bind的用法总结"><a href="#javacript中apply、call和bind的用法总结" class="headerlink" title="javacript中apply、call和bind的用法总结"></a>javacript中apply、call和bind的用法总结</h2><p> apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题：<br><img src="http://upload-images.jianshu.io/upload_images/9381131-510eba09eb6a31ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="pi"><br> 继续往下看，单独调用a.fn还是可以的<br><img src="http://upload-images.jianshu.io/upload_images/9381131-c487f374778b5751.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="pi"><br> 这是怎么回事呢？原因还是在于b和a的this的环境不同，b的this指向的是全局，并没有指向a，所以会产生此类问题。<br> 当我们不得不将一个对象保存到另一个变量之中时，可以使用以下方法：<br> call（）</p>
+        <p> apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题：<br><img src="http://upload-images.jianshu.io/upload_images/9381131-510eba09eb6a31ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="pi"><br> 继续往下看，单独调用a.fn还是可以的<br><img src="http://upload-images.jianshu.io/upload_images/9381131-c487f374778b5751.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="pi"><br> 这是怎么回事呢？原因还是在于b和a的this的环境不同，b的this指向的是全局，并没有指向a，所以会产生此类问题。<br> 当我们不得不将一个对象保存到另一个变量之中时，可以使用以下方法：<br> call（）</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/9381131-fcf7c7617581046d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="pi"><br>运用call以后，b的this指向为a所在的环境中。<br><img src="http://upload-images.jianshu.io/upload_images/9381131-23ee7b731ee0df55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="pi"><br>call方法可以传入多个参数，第一个参数是指定b的所在环境，其余参数可以进行传参。<br>apply（）</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/9381131-2ee5977abc4862c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20171205-212444@2x"><br>与call方法相似，此时，b的this指向a所在的环境中。</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/9381131-e133e366a7ce0069.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20171205-212557@2x"><br>apply的第一个参数传入的也是所在环境，与call不同的是，传入的其余参数必须为数组；<br>//注意如果call和apply的第一个参数为null，那么this指向全局环境。<br>bind（）</p>
@@ -455,10 +455,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">apply</a>
               </li>
              
@@ -468,6 +464,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">bind</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
               </li>
             
             <div class="clearfix"></div>
