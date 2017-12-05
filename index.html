@@ -165,16 +165,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###javacript中apply、call和bind的用法总结</p>
-<ul>
-<li>apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题：<br><img src="media/15124786407835/pic1.png" alt="pi"></li>
-<li>继续往下看，单独调用a.fn还是可以的<br><img src="media/15124786407835/pic2.png" alt="pi"></li>
+        <h3 id="javacript中apply、call和bind的用法总结"><a href="#javacript中apply、call和bind的用法总结" class="headerlink" title="javacript中apply、call和bind的用法总结"></a>javacript中apply、call和bind的用法总结</h3><ul>
+<li>apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题：<br><img src="pic1.png" alt="pi"></li>
+<li>继续往下看，单独调用a.fn还是可以的<br><img src="pic2.png" alt="pi"></li>
 <li>这是怎么回事呢？原因还是在于b和a的this的环境不同，b的this指向的是全局，并没有指向a，所以会产生此类问题。<br>当我们不得不将一个对象保存到另一个变量之中时，可以使用以下方法：<br>1、call（）</li>
 </ul>
-<p><img src="media/15124786407835/pic3.png" alt="pi"><br>运用call以后，b的this指向为a所在的环境中。<br><img src="media/15124786407835/pic4.png" alt="pi"><br>call方法可以传入多个参数，第一个参数是指定b的所在环境，其余参数可以进行传参。<br>2、apply（）</p>
-<p><img src="media/15124786407835/QQ20171205-212444@2x.png" alt="QQ20171205-212444@2x"><br>与call方法相似，此时，b的this指向a所在的环境中。</p>
-<p><img src="media/15124786407835/QQ20171205-212557@2x.png" alt="QQ20171205-212557@2x"><br>apply的第一个参数传入的也是所在环境，与call不同的是，传入的其余参数必须为数组；<br>//注意如果call和apply的第一个参数为null，那么this指向全局环境。<br>3、bind（）</p>
-<p><img src="media/15124786407835/QQ20171205-213112@2x.png" alt="QQ20171205-213112@2x"><br>bind方法返回的是修改后的函数。与call和apply方法类似，同样第一个参数传入的是指定当前变量所在的环境。<br><img src="media/15124786407835/QQ20171205-213224@2x.png" alt="QQ20171205-213224@2x"><br>传入参数按照形参传入的顺序执行</p>
+<p><img src="pic3.png" alt="pi"><br>运用call以后，b的this指向为a所在的环境中。<br><img src="pic4.png" alt="pi"><br>call方法可以传入多个参数，第一个参数是指定b的所在环境，其余参数可以进行传参。<br>2、apply（）</p>
+<p><img src="QQ20171205-212444@2x.png" alt="QQ20171205-212444@2x"><br>与call方法相似，此时，b的this指向a所在的环境中。</p>
+<p><img src="QQ20171205-212557@2x.png" alt="QQ20171205-212557@2x"><br>apply的第一个参数传入的也是所在环境，与call不同的是，传入的其余参数必须为数组；<br>//注意如果call和apply的第一个参数为null，那么this指向全局环境。<br>3、bind（）</p>
+<p><img src="QQ20171205-213112@2x.png" alt="QQ20171205-213112@2x"><br>bind方法返回的是修改后的函数。与call和apply方法类似，同样第一个参数传入的是指定当前变量所在的环境。<br><img src="QQ20171205-213224@2x.png" alt="QQ20171205-213224@2x"><br>传入参数按照形参传入的顺序执行</p>
 
       
 
