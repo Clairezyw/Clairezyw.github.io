@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>javascript闭包问题 | Claire的小书房</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="javascript闭包问题javascript支持闭包功能，函数可以引用作用域外的变量，但在使用闭包时存在一定的陷阱，就像下面的这个例子：  123456var arr = [];    for(var i = 0;i&amp;lt;3;i++)&amp;#123;    arr.push(i); &amp;#125">
+  <meta name="description" content="javascript支持闭包功能，函数可以引用作用域外的变量，但在使用闭包时存在一定的陷阱，就像下面的这个例子：  123456var arr = [];    for(var i = 0;i&amp;lt;3;i++)&amp;#123;    arr.push(i); &amp;#125;for (var j = ">
 <meta name="keywords" content="闭包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript闭包问题">
 <meta property="og:url" content="http://yoursite.com/2017/12/05/javascript closure problem/index.html">
 <meta property="og:site_name" content="Claire的小书房">
-<meta property="og:description" content="javascript闭包问题javascript支持闭包功能，函数可以引用作用域外的变量，但在使用闭包时存在一定的陷阱，就像下面的这个例子：  123456var arr = [];    for(var i = 0;i&amp;lt;3;i++)&amp;#123;    arr.push(i); &amp;#125;for (var j = 0;j&amp;lt;arr.length;j++)&amp;#123;alert(arr[">
+<meta property="og:description" content="javascript支持闭包功能，函数可以引用作用域外的变量，但在使用闭包时存在一定的陷阱，就像下面的这个例子：  123456var arr = [];    for(var i = 0;i&amp;lt;3;i++)&amp;#123;    arr.push(i); &amp;#125;for (var j = 0;j&amp;lt;arr.length;j++)&amp;#123;alert(arr[j]);&amp;#125;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-05T15:47:57.809Z">
+<meta property="og:updated_time" content="2017-12-05T15:50:58.369Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript闭包问题">
-<meta name="twitter:description" content="javascript闭包问题javascript支持闭包功能，函数可以引用作用域外的变量，但在使用闭包时存在一定的陷阱，就像下面的这个例子：  123456var arr = [];    for(var i = 0;i&amp;lt;3;i++)&amp;#123;    arr.push(i); &amp;#125;for (var j = 0;j&amp;lt;arr.length;j++)&amp;#123;alert(arr[">
+<meta name="twitter:description" content="javascript支持闭包功能，函数可以引用作用域外的变量，但在使用闭包时存在一定的陷阱，就像下面的这个例子：  123456var arr = [];    for(var i = 0;i&amp;lt;3;i++)&amp;#123;    arr.push(i); &amp;#125;for (var j = 0;j&amp;lt;arr.length;j++)&amp;#123;alert(arr[j]);&amp;#125;">
   
     <link rel="alternative" href="/atom.xml" title="Claire的小书房" type="application/atom+xml">
   
@@ -164,14 +164,14 @@
 
         
         <a href="/2017/12/05/javascript closure problem/" class="archive-article-date">
-  	<time datetime="2017-12-05T15:40:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
+  	<time datetime="2017-12-05T01:40:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="javascript闭包问题"><a href="#javascript闭包问题" class="headerlink" title="javascript闭包问题"></a>javascript闭包问题</h2><p>javascript支持闭包功能，函数可以引用作用域外的变量，但在使用闭包时存在一定的陷阱，就像下面的这个例子：</p>
+        <p>javascript支持闭包功能，函数可以引用作用域外的变量，但在使用闭包时存在一定的陷阱，就像下面的这个例子：</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];    </span><br><span class="line">for(var i = 0;i&lt;3;i++)&#123;</span><br><span class="line">    arr.push(i); </span><br><span class="line">&#125;</span><br><span class="line">for (var j = 0;j&lt;arr.length;j++)&#123;</span><br><span class="line">alert(arr[j]);&#125;</span><br></pre></td></tr></table></figure>
 <p>   输出结果为：3 3 3<br>   并不是我们想要的结果：0 1 2<br>这个问题的原因是javascript虽然有局部变量，<br><strong>但局部变量只有函数的作用域没有块作用域，因此无论在哪个位置定义变量，变量的作用域都是整个函数。</strong><br>这段代码其实是这样的：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var arr[],i,j;</span><br><span class="line">  for(i = 0;i&lt;3;i++)&#123;</span><br><span class="line">  arr.push(i);</span><br><span class="line">  &#125;</span><br><span class="line">  for (j = 0;j&lt;arr.length;j++)&#123;</span><br><span class="line">  alert(arr[j]);&#125;//输出3 3 3</span><br></pre></td></tr></table></figure>
@@ -281,11 +281,15 @@
   
 <nav id="article-nav">
   
-  
-    <a href="/2017/12/05/applycallbind/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
-      <i class="icon-circle-right"></i>
+    <a href="/2017/12/05/applycallbind/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          javacript中apply、call和bind的用法总结
+        
+      </div>
     </a>
+  
   
 </nav>
 
@@ -437,6 +441,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">apply</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">call</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">bind</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">闭包</a>
