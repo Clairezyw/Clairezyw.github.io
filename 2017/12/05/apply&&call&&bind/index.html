@@ -6,15 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Claire的小书房</title>
+  <title>Claire的小书房</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="###javacript中apply、call和bind的用法总结  apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题： 继续往下看，单独调用a.fn还是可以的 这是怎么回事呢？原因还是在于b和a的this的环境不同，b的this指向的是全局，并没有指向a，所以会产生此类">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Claire的小书房">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/12/05/apply&&call&&bind/index.html">
 <meta property="og:site_name" content="Claire的小书房">
+<meta property="og:description" content="###javacript中apply、call和bind的用法总结  apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题： 继续往下看，单独调用a.fn还是可以的 这是怎么回事呢？原因还是在于b和a的this的环境不同，b的this指向的是全局，并没有指向a，所以会产生此类问题。当我们不得不将一个对象保存到另一个变量之中时，可以使用以下方法：1、cal">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/pic1.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/pic2.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/pic3.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/pic4.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/QQ20171205-212444@2x.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/QQ20171205-212557@2x.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/QQ20171205-213112@2x.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/QQ20171205-213224@2x.png">
+<meta property="og:updated_time" content="2017-12-05T13:34:46.805Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Claire的小书房">
+<meta name="twitter:description" content="###javacript中apply、call和bind的用法总结  apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题： 继续往下看，单独调用a.fn还是可以的 这是怎么回事呢？原因还是在于b和a的this的环境不同，b的this指向的是全局，并没有指向a，所以会产生此类问题。当我们不得不将一个对象保存到另一个变量之中时，可以使用以下方法：1、cal">
+<meta name="twitter:image" content="http://yoursite.com/2017/12/05/apply&&call&&bind/media/15124786407835/pic1.png">
   
     <link rel="alternative" href="/atom.xml" title="Claire的小书房" type="application/atom+xml">
   
@@ -158,64 +171,180 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-apply&amp;&amp;call&amp;&amp;bind" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###javacript中apply、call和bind的用法总结</p>
+<ul>
+<li>apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题：<br><img src="media/15124786407835/pic1.png" alt="pi"></li>
+<li>继续往下看，单独调用a.fn还是可以的<br><img src="media/15124786407835/pic2.png" alt="pi"></li>
+<li>这是怎么回事呢？原因还是在于b和a的this的环境不同，b的this指向的是全局，并没有指向a，所以会产生此类问题。<br>当我们不得不将一个对象保存到另一个变量之中时，可以使用以下方法：<br>1、call（）</li>
+</ul>
+<p><img src="media/15124786407835/pic3.png" alt="pi"><br>运用call以后，b的this指向为a所在的环境中。<br><img src="media/15124786407835/pic4.png" alt="pi"><br>call方法可以传入多个参数，第一个参数是指定b的所在环境，其余参数可以进行传参。<br>2、apply（）</p>
+<p><img src="media/15124786407835/QQ20171205-212444@2x.png" alt="QQ20171205-212444@2x"><br>与call方法相似，此时，b的this指向a所在的环境中。</p>
+<p><img src="media/15124786407835/QQ20171205-212557@2x.png" alt="QQ20171205-212557@2x"><br>apply的第一个参数传入的也是所在环境，与call不同的是，传入的其余参数必须为数组；<br>//注意如果call和apply的第一个参数为null，那么this指向全局环境。<br>3、bind（）</p>
+<p><img src="media/15124786407835/QQ20171205-213112@2x.png" alt="QQ20171205-213112@2x"><br>bind方法返回的是修改后的函数。与call和apply方法类似，同样第一个参数传入的是指定当前变量所在的环境。<br><img src="media/15124786407835/QQ20171205-213224@2x.png" alt="QQ20171205-213224@2x"><br>传入参数按照形参传入的顺序执行</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/05/apply&&call&&bind/" class="archive-article-date">
-  	<time datetime="2017-12-05T12:57:20.786Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/05/apply&&call&&bind/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/03/javascript closure problem/" class="archive-article-date">
-  	<time datetime="2017-12-03T15:56:10.693Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-03</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/03/javascript closure problem/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="apply&amp;&amp;call&amp;&amp;bind" data-title="" data-url="http://yoursite.com/2017/12/05/apply&amp;&amp;call&amp;&amp;bind/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
   
-    </div></section>
   
 
-    
+  
+  <div id="SOHUCS" sid="apply&amp;&amp;call&amp;&amp;bind" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -238,8 +367,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
