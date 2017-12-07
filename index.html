@@ -136,6 +136,106 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-classList" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/classList/">classList属性</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/07/classList/" class="archive-article-date">
+  	<time datetime="2017-12-07T13:41:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在操作类名时，需要通过className进行添加、修改、删除操作，由于classnName是字符串，所以即使修改一部分类名，也要重新设置className的值，看下面的例子👇</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span> =<span class="string">"user bd time"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//删除user类</span></span><br><span class="line"><span class="comment">//首先获取div类名，然后按空格分割成数组</span></span><br><span class="line"><span class="keyword">var</span> arr = div.className.split(<span class="string">"\+s"</span>);</span><br><span class="line"><span class="keyword">var</span> pos = <span class="number">0</span>,i,len;</span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>,len= arr.length;i&lt;len;i++)&#123;</span><br><span class="line">   <span class="keyword">if</span> (arr[i]==<span class="string">"user"</span>)&#123;</span><br><span class="line">   <span class="comment">//保存user的位置</span></span><br><span class="line">        pos = i;</span><br><span class="line">        <span class="keyword">break</span>;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//删除user</span></span><br><span class="line">arr.splice(pos,<span class="number">1</span>);</span><br><span class="line"><span class="comment">//将剩下的类名拼接起来</span></span><br><span class="line">div.className = arr.join(<span class="string">" "</span>);</span><br></pre></td></tr></table></figure>
+<p>html5新增了操作类的属性：</p>
+<ul>
+<li>add（value）：将给定的字符串添加到列表中，若存在则不添加</li>
+<li>contains（value）：判断是否包含给定的值，若包含返回true否则返回false。</li>
+<li>remove（value）：将给定的字符串从列表中删除</li>
+<li>toggle（value）：如果列表中存在给定的字符串则删除它，否则添加它；<br>因此，上述代码就可以简化为</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div.classList.remove(<span class="string">"user"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加类名temp</span></span><br><span class="line">div.classList.add(<span class="string">"temp"</span>);</span><br><span class="line"><span class="comment">//判断是否包含bd类</span></span><br><span class="line">div.classList.contain(<span class="string">"bd"</span>);<span class="comment">//true</span></span><br><span class="line"><span class="comment">//切换user类</span></span><br><span class="line">div.classList.toggle(<span class="string">"user"</span>);</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">classList</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/javascript//" class="article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/javascript/classList//" class="article-tag-list-link color5">classList</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/07/classList/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-applycallbind" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -403,6 +503,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">bind</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">classList</a>
               </li>
              
               <li class="article-tag-list-item">
