@@ -136,6 +136,103 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iterator" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/08/iterator/">DOM节点遍历</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/08/iterator/" class="archive-article-date">
+  	<time datetime="2017-12-08T12:48:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>DOM2级对于dom节点的遍历提供了两种深度优先遍历的类型：NodeIterator和TreeWalker,下面来介绍这两种类型的使用。<br>1、NodeIterator<br>该类型通过document.createNodeIterator()方法创建新实例，该方法接受四个参数：<br><em>root：表示开始遍历的起点
+</em>whatToShow：表示访问哪些节点的数字代码，以常量的形式作为参数。<br>常见的参数有：<br>NodeFilter.SHOW_ALL:显示所有类型的节点<br>NodeFilter.SHOW_ELEMNT:显示元素节点<br>NodeFilter.SHOW_ATTRIBUTE：显示属性节点<br>NodeFilter.SHOW_TEXT：显示文本节点<br><em>filter:表示应该接受某个特定节点还是应该拒绝某个特定节点的函数
+</em>entityRefernceExpasion:布尔值，表示是否要扩展实体，在html中不起作用，因此为false<br>下面来看一下如何使用：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//以一段html片段为例,访问该片段中的所有元素节点</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div1"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">b</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">b</span>&gt;</span>world!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>item1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span>item2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span>item3/li&gt;</span><br><span class="line">     <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取div</span></span><br><span class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">"div1"</span>);</span><br><span class="line"><span class="comment">//创建NodeIterator实例</span></span><br><span class="line"><span class="keyword">var</span> iterator = <span class="built_in">document</span>.createNodeIterator(div,NodeFilter.SHOW_ELEMNT,<span class="literal">null</span>,<span class="literal">false</span>);</span><br><span class="line"><span class="keyword">var</span> node = iterator.nextNode();</span><br><span class="line"><span class="keyword">while</span>(node!=<span class="literal">null</span>)&#123;</span><br><span class="line">  alert(node.tagName);</span><br><span class="line">  node = iterator.nextNode();</span><br><span class="line">&#125;<span class="comment">//DIV P B UL LI LI LI</span></span><br></pre></td></tr></table></figure>
+<p>此外，也可以通过filter来遍历特定的节点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//遍历li元素</span></span><br><span class="line"><span class="comment">// 定义filter函数</span></span><br><span class="line"><span class="keyword">var</span> filter = <span class="function"><span class="keyword">function</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(node.tagName.toLowerCase()==<span class="string">"li"</span>)&#123;</span><br><span class="line">  NodeFilter.FILTER_ACCEPT;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    NodeFilter.FILTER_SKIP;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">"div1"</span>);</span><br><span class="line"><span class="keyword">var</span> iterator = <span class="built_in">document</span>.createNodeIterator(div,NodeFilter.SHOW_ELEMNT,filter,<span class="literal">false</span>);</span><br><span class="line"><span class="keyword">var</span> node = iterator.nextNode();</span><br><span class="line"><span class="keyword">while</span>(node!=<span class="literal">null</span>)&#123;</span><br><span class="line">  alert(node.tagName);</span><br><span class="line">  node = iterator.nextNode();</span><br><span class="line">&#125;<span class="comment">// LI LI LI</span></span><br></pre></td></tr></table></figure>
+<p>2、TreeWalker<br>与NodeIterator相似，TreeWalker通过document.createTreeWalker()方法创建实例，四个参数与NodeIterator相同，用法也相同，但与NodeIterator不同的是，TreeWalker提供更高级的方法：<br>parentNode()：遍历到当前节点的父节点<br>firstChild()：遍历到当前节点的第一个孩子节点<br>lastChild()：遍历到当前节点的最后一个孩子节点<br>nextSibling()：遍历到当前节点的下一个兄弟节点<br>perviousSibling()：遍历到当前节点的上一个兄弟节点<br>因此，遍历li节点就可以简化为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">"div1"</span>);</span><br><span class="line"><span class="keyword">var</span> treeWalker = <span class="built_in">document</span>.createTreeWalker(div,NodeFilter.SHOW_ELEMENT,<span class="literal">null</span>,<span class="literal">false</span>);</span><br><span class="line">treeWalker.firstChird();<span class="comment">//遍历到p节点</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">NodeIterator</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/javascript//" class="article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/javascript/NodeIterator//" class="article-tag-list-link color3">NodeIterator</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/08/iterator/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-classList" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -494,6 +591,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">classList</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">NodeIterator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">apply</a>
               </li>
              
@@ -503,10 +608,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">bind</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">classList</a>
               </li>
              
               <li class="article-tag-list-item">
