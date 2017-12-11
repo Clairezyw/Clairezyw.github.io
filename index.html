@@ -136,6 +136,106 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-let" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/11/let/">let命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/11/let/" class="archive-article-date">
+  	<time datetime="2017-12-11T12:30:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="1、let声明："><a href="#1、let声明：" class="headerlink" title="1、let声明："></a>1、let声明：</h5><p>let命令在声明时，只在let所在的代码块中有效，看下面例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;  <span class="keyword">var</span> a =<span class="number">100</span>;</span><br><span class="line">   <span class="keyword">let</span> b =<span class="number">200</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//100</span></span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<h5 id="2、不存在变量提升"><a href="#2、不存在变量提升" class="headerlink" title="2、不存在变量提升"></a>2、不存在变量提升</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a =[];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">  <span class="keyword">var</span> c =i;</span><br><span class="line">  a[i]=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(c);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">a[<span class="number">5</span>]();<span class="comment">//输出结果为9</span></span><br></pre></td></tr></table></figure>
+<p>这是因为i在for循环内部进行递增，当for循环体的外部调用i时，i必须递增完成后才能调用。所以输出9</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//运用let</span></span><br><span class="line"><span class="keyword">var</span> a=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i =<span class="number">0</span>; i&lt;<span class="number">10</span>; i++)&#123;</span><br><span class="line">  <span class="keyword">let</span> c =i;</span><br><span class="line">  a[i]=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">a[<span class="number">5</span>]();<span class="comment">//输出结果为5</span></span><br></pre></td></tr></table></figure>
+<p> 从上面的例子可以看出let有点类似于java中的局部变量。</p>
+<h5 id="3、暂时性死区"><a href="#3、暂时性死区" class="headerlink" title="3、暂时性死区"></a>3、暂时性死区</h5><p>所谓的暂时性死区就是在变量声明之前调用他，结果会返回undefined，不仅let有这个特性，var也有</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">let</span> a =<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="4、不可重复声明"><a href="#4、不可重复声明" class="headerlink" title="4、不可重复声明"></a>4、不可重复声明</h5><p>   与java语言类似，使用let定义变量时，变量名不可重复</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="keyword">var</span> a =<span class="number">100</span>;</span><br><span class="line">  <span class="keyword">var</span> a =<span class="number">200</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//200 var声明变量时，最新声明的a的值会覆盖之前声明的a的值，所以不会报错</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">var</span> b =<span class="number">100</span>;</span><br><span class="line">  <span class="keyword">let</span> b = <span class="number">200</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//error 重复声明</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> c = <span class="number">100</span>;</span><br><span class="line">  <span class="keyword">let</span> c =<span class="number">200</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(c);<span class="comment">//error 重复声明</span></span><br></pre></td></tr></table></figure>
+<p>但在不同的代码块中，可以重复声明</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a =<span class="number">100</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">b</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">let</span> a = b;</span><br><span class="line">&#125;<span class="comment">//不会报错</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">let</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ECMAScript//" class="article-tag-list-link color1">ECMAScript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ECMAScript/let//" class="article-tag-list-link color4">let</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/11/let/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-iterator" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -206,107 +306,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/12/08/iterator/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-let" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/08/let/">let命令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/08/let/" class="archive-article-date">
-  	<time datetime="2017-12-08T12:30:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>####let命令</p>
-<p>#####1、let声明：<br>let命令在声明时，只在let所在的代码块中有效，看下面例子：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;  <span class="keyword">var</span> a =<span class="number">100</span>;</span><br><span class="line">   <span class="keyword">let</span> b =<span class="number">200</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//100</span></span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
-<p>#####2、不存在变量提升<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a =[];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">  <span class="keyword">var</span> c =i;</span><br><span class="line">  a[i]=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(c);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">a[<span class="number">5</span>]();<span class="comment">//输出结果为9</span></span><br></pre></td></tr></table></figure></p>
-<p>这是因为i在for循环内部进行递增，当for循环体的外部调用i时，i必须递增完成后才能调用。所以输出9</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//运用let</span></span><br><span class="line"><span class="keyword">var</span> a=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i =<span class="number">0</span>; i&lt;<span class="number">10</span>; i++)&#123;</span><br><span class="line">  <span class="keyword">let</span> c =i;</span><br><span class="line">  a[i]=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">a[<span class="number">5</span>]();<span class="comment">//输出结果为5</span></span><br></pre></td></tr></table></figure>
-<p> 从上面的例子可以看出let有点类似于java中的局部变量。</p>
-<p>#####3、暂时性死区<br>所谓的暂时性死区就是在变量声明之前调用他，结果会返回undefined，不仅let有这个特性，var也有</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">let</span> a =<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>#####4、不可重复声明<br>   与java语言类似，使用let定义变量时，变量名不可重复</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="keyword">var</span> a =<span class="number">100</span>;</span><br><span class="line">  <span class="keyword">var</span> a =<span class="number">200</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//200 var声明变量时，最新声明的a的值会覆盖之前声明的a的值，所以不会报错</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">var</span> b =<span class="number">100</span>;</span><br><span class="line">  <span class="keyword">let</span> b = <span class="number">200</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//error 重复声明</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> c = <span class="number">100</span>;</span><br><span class="line">  <span class="keyword">let</span> c =<span class="number">200</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(c);<span class="comment">//error 重复声明</span></span><br></pre></td></tr></table></figure>
-<p>但在不同的代码块中，可以重复声明</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a =<span class="number">100</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">b</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">let</span> a = b;</span><br><span class="line">&#125;<span class="comment">//不会报错</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">let</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ECMAScript//" class="article-tag-list-link color1">ECMAScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ECMAScript/let//" class="article-tag-list-link color4">let</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/08/let/">展开全文 >></a>
         </p>
       
 
@@ -694,6 +693,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">NodeIterator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">classList</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">let</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">apply</a>
               </li>
              
@@ -703,22 +718,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">bind</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">classList</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">NodeIterator</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">let</a>
               </li>
             
             <div class="clearfix"></div>
