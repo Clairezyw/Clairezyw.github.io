@@ -136,6 +136,105 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-title: promise" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/13/title: promise/">promise</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/13/title: promise/" class="archive-article-date">
+  	<time datetime="2017-12-13T08:30:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h4><p>promise的作用就是异步处理，目的就是解决es5异步函数结构复杂、不清晰的问题。看下面简单的例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建用户类</span></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"> <span class="keyword">constructor</span>(name,password)&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.password = password;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//检测用户名是否正确</span></span><br><span class="line">  testName(cb)&#123;</span><br><span class="line">  <span class="keyword">let</span> name =<span class="keyword">this</span>.name;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (name === <span class="string">'stalary'</span>)&#123;</span><br><span class="line">         resolve(<span class="string">'success'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">          <span class="keyword">else</span>&#123;</span><br><span class="line">            reject(<span class="string">'error'</span>);</span><br><span class="line">       &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//检测密码是否正确</span></span><br><span class="line">testPassword(cb)&#123;</span><br><span class="line">   <span class="keyword">let</span> password =<span class="keyword">this</span>.password;</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(password===<span class="string">'123'</span>)&#123;</span><br><span class="line">        resolve(<span class="string">'success'</span>);</span><br><span class="line">   &#125;   <span class="keyword">else</span>&#123;</span><br><span class="line">             reject(<span class="string">'error'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"> &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> user =<span class="keyword">new</span> User(<span class="string">'stalary'</span>,<span class="string">'123'</span>);</span><br><span class="line">user.testName()</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> user.testPassword;</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'验证成功！'</span>)；</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'验证失败！'</span>)；</span><br><span class="line">    &#125;)；</span><br></pre></td></tr></table></figure>
+<p>1、在上述例题中，testName()方法中返回了一个promise对象，这个对象只有一个function参数，并且函数中包含两个参数，resolve和reject，当函数正常执行时，执行resolve的操作。当出现异常时，执行reject操作。<br>2、then（）方法<br>在创建user实例时，调用testName()方法，这时我们会发现代码中有then（）方法，该方法是promise的方法，用于正常返回一个promise对象时执行的操作，在这里当用户名为stalary时，成功返回了一个promise对象，然后在控制台输出验证成功<br>3、catch（）方法用于捕获异常，当用户名不正确或者密码不正确时，会输出验证失败</p>
+<h4 id="promise的异常处理"><a href="#promise的异常处理" class="headerlink" title="promise的异常处理"></a>promise的异常处理</h4><p>还是上述例子，我们来看一下不同情况下的异常处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建用户类</span></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"> <span class="keyword">constructor</span>(name,password)&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.password = password;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//检测用户名是否正确</span></span><br><span class="line">  testName(cb)&#123;</span><br><span class="line">  <span class="keyword">let</span> name =<span class="keyword">this</span>.name;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (name === <span class="string">'stalary'</span>)&#123;</span><br><span class="line">         resolve(<span class="string">'success'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">          <span class="keyword">else</span>&#123;</span><br><span class="line">            reject(<span class="string">'error'</span>);</span><br><span class="line">       &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//检测密码是否正确</span></span><br><span class="line">testPassword(cb)&#123;</span><br><span class="line">   <span class="keyword">let</span> password =<span class="keyword">this</span>.password;</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(password===<span class="string">'123'</span>)&#123;</span><br><span class="line">        resolve(<span class="string">'success'</span>);</span><br><span class="line">   &#125;   <span class="keyword">else</span>&#123;</span><br><span class="line">             reject(<span class="string">'error'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"> &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> user =<span class="keyword">new</span> User(<span class="string">'claire'</span>,<span class="string">'123'</span>);</span><br><span class="line">user.testName()</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//第一种异常处理</span></span><br><span class="line">    <span class="keyword">throw</span> <span class="built_in">Error</span>(<span class="string">'first error'</span>);</span><br><span class="line">       <span class="keyword">return</span> user.testPassword;</span><br><span class="line">    &#125;<span class="comment">//第二种异常处理</span></span><br><span class="line">    ,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'second error'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    )</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'验证成功！'</span>)；</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">//第三种异常处理</span></span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'验证失败！'</span>)；</span><br><span class="line">    &#125;)；</span><br></pre></td></tr></table></figure>
+<p>如果我们把用户名改成claire，想一想会报出哪种错误呢？<br>先说一下第二种异常处理，我们上面讲到promise对象的函数里面有两个参数，当正常执行时，执行的是resolve，当抛出异常时执行的时reject，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">then（<span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">            ...</span><br><span class="line">&#125;,<span class="function"><span class="keyword">function</span> <span class="title">fun2</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">            ...</span><br><span class="line">   &#125;</span><br><span class="line">）</span><br></pre></td></tr></table></figure>
+<p>当正常执行时与之相对应的是then方法中的第一个函数，抛出异常时对应第二个函数，这时候就有疑问了，catch也是捕获异常的方法，当第二个函数和catch同时存在时，会执行fun2，不会执行catch，如果没有第二个函数，那么会执行catch进行异常处理。<br>这个问题最终的结果是会输出second error，原因是因为我们把用户名更改以后，用户名是错误的，相应的会执行reject的操作，就是对应的fun2的操作。</p>
+<h4 id="promise的方法"><a href="#promise的方法" class="headerlink" title="promise的方法"></a>promise的方法</h4><p>如果我们要验证多个用户时，重复输入是件很麻烦的事，promise中的all（）方法解决了这个问题，该方法将所有的promise结果放在一个数组中，并返回一个promise对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user =<span class="built_in">Promise</span>.all([<span class="keyword">new</span> User(<span class="string">'stalary'</span>,<span class="string">'123'</span>)],[<span class="keyword">new</span> User(<span class="string">'claire'</span>,<span class="string">'123'</span>)]);</span><br><span class="line">user.then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res);<span class="comment">//[ User &#123; name: 'stalary', password: '123' &#125; ]</span></span><br><span class="line"> <span class="comment">// 验证失败</span></span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>对于stalary用户来说验证成功，并输出用户的信息，对于其他用户来说验证失败<br>除此之外，还有race（）方法，该方法和all（）方法类似，只不过返回的不是所有的结果，而是最先完成后的一个结果</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">promise</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ECMAScript//" class="article-tag-list-link color1">ECMAScript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ECMAScript/promise//" class="article-tag-list-link color3">promise</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/13/title: promise/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-let" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -306,105 +405,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/12/08/iterator/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-title: promise" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/08/title: promise/">promise</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/08/title: promise/" class="archive-article-date">
-  	<time datetime="2017-12-08T12:30:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h4><p>promise的作用就是异步处理，目的就是解决es5异步函数结构复杂、不清晰的问题。看下面简单的例子</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建用户类</span></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"> <span class="keyword">constructor</span>(name,password)&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.password = password;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//检测用户名是否正确</span></span><br><span class="line">  testName(cb)&#123;</span><br><span class="line">  <span class="keyword">let</span> name =<span class="keyword">this</span>.name;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (name === <span class="string">'stalary'</span>)&#123;</span><br><span class="line">         resolve(<span class="string">'success'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">          <span class="keyword">else</span>&#123;</span><br><span class="line">            reject(<span class="string">'error'</span>);</span><br><span class="line">       &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//检测密码是否正确</span></span><br><span class="line">testPassword(cb)&#123;</span><br><span class="line">   <span class="keyword">let</span> password =<span class="keyword">this</span>.password;</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(password===<span class="string">'123'</span>)&#123;</span><br><span class="line">        resolve(<span class="string">'success'</span>);</span><br><span class="line">   &#125;   <span class="keyword">else</span>&#123;</span><br><span class="line">             reject(<span class="string">'error'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"> &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> user =<span class="keyword">new</span> User(<span class="string">'stalary'</span>,<span class="string">'123'</span>);</span><br><span class="line">user.testName()</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> user.testPassword;</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'验证成功！'</span>)；</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'验证失败！'</span>)；</span><br><span class="line">    &#125;)；</span><br></pre></td></tr></table></figure>
-<p>1、在上述例题中，testName()方法中返回了一个promise对象，这个对象只有一个function参数，并且函数中包含两个参数，resolve和reject，当函数正常执行时，执行resolve的操作。当出现异常时，执行reject操作。<br>2、then（）方法<br>在创建user实例时，调用testName()方法，这时我们会发现代码中有then（）方法，该方法是promise的方法，用于正常返回一个promise对象时执行的操作，在这里当用户名为stalary时，成功返回了一个promise对象，然后在控制台输出验证成功<br>3、catch（）方法用于捕获异常，当用户名不正确或者密码不正确时，会输出验证失败</p>
-<h4 id="promise的异常处理"><a href="#promise的异常处理" class="headerlink" title="promise的异常处理"></a>promise的异常处理</h4><p>还是上述例子，我们来看一下不同情况下的异常处理</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建用户类</span></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"> <span class="keyword">constructor</span>(name,password)&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.password = password;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//检测用户名是否正确</span></span><br><span class="line">  testName(cb)&#123;</span><br><span class="line">  <span class="keyword">let</span> name =<span class="keyword">this</span>.name;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (name === <span class="string">'stalary'</span>)&#123;</span><br><span class="line">         resolve(<span class="string">'success'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">          <span class="keyword">else</span>&#123;</span><br><span class="line">            reject(<span class="string">'error'</span>);</span><br><span class="line">       &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//检测密码是否正确</span></span><br><span class="line">testPassword(cb)&#123;</span><br><span class="line">   <span class="keyword">let</span> password =<span class="keyword">this</span>.password;</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(password===<span class="string">'123'</span>)&#123;</span><br><span class="line">        resolve(<span class="string">'success'</span>);</span><br><span class="line">   &#125;   <span class="keyword">else</span>&#123;</span><br><span class="line">             reject(<span class="string">'error'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"> &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> user =<span class="keyword">new</span> User(<span class="string">'claire'</span>,<span class="string">'123'</span>);</span><br><span class="line">user.testName()</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//第一种异常处理</span></span><br><span class="line">    <span class="keyword">throw</span> <span class="built_in">Error</span>(<span class="string">'first error'</span>);</span><br><span class="line">       <span class="keyword">return</span> user.testPassword;</span><br><span class="line">    &#125;<span class="comment">//第二种异常处理</span></span><br><span class="line">    ,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'second error'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    )</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'验证成功！'</span>)；</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">//第三种异常处理</span></span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'验证失败！'</span>)；</span><br><span class="line">    &#125;)；</span><br></pre></td></tr></table></figure>
-<p>如果我们把用户名改成claire，想一想会报出哪种错误呢？<br>先说一下第二种异常处理，我们上面讲到promise对象的函数里面有两个参数，当正常执行时，执行的是resolve，当抛出异常时执行的时reject，</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">then（<span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">            ...</span><br><span class="line">&#125;,<span class="function"><span class="keyword">function</span> <span class="title">fun2</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">            ...</span><br><span class="line">   &#125;</span><br><span class="line">）</span><br></pre></td></tr></table></figure>
-<p>当正常执行时与之相对应的是then方法中的第一个函数，抛出异常时对应第二个函数，这时候就有疑问了，catch也是捕获异常的方法，当第二个函数和catch同时存在时，会执行fun2，不会执行catch，如果没有第二个函数，那么会执行catch进行异常处理。<br>这个问题最终的结果是会输出second error，原因是因为我们把用户名更改以后，用户名是错误的，相应的会执行reject的操作，就是对应的fun2的操作。</p>
-<h4 id="promise的方法"><a href="#promise的方法" class="headerlink" title="promise的方法"></a>promise的方法</h4><p>如果我们要验证多个用户时，重复输入是件很麻烦的事，promise中的all（）方法解决了这个问题，该方法将所有的promise结果放在一个数组中，并返回一个promise对象</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user =<span class="built_in">Promise</span>.all([<span class="keyword">new</span> User(<span class="string">'stalary'</span>,<span class="string">'123'</span>)],[<span class="keyword">new</span> User(<span class="string">'claire'</span>,<span class="string">'123'</span>)]);</span><br><span class="line">user.then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res);<span class="comment">//[ User &#123; name: 'stalary', password: '123' &#125; ]</span></span><br><span class="line"> <span class="comment">// 验证失败</span></span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>对于stalary用户来说验证成功，并输出用户的信息，对于其他用户来说验证失败<br>除此之外，还有race（）方法，该方法和all（）方法类似，只不过返回的不是所有的结果，而是最先完成后的一个结果</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">promise</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ECMAScript//" class="article-tag-list-link color1">ECMAScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ECMAScript/promise//" class="article-tag-list-link color3">promise</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/08/title: promise/">展开全文 >></a>
         </p>
       
 
@@ -804,14 +804,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">classList</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">NodeIterator</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">闭包</a>
               </li>
              
@@ -821,6 +813,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">NodeIterator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">classList</a>
               </li>
             
             <div class="clearfix"></div>
