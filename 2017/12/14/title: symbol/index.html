@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/12 | Claire的小书房</title>
+  <title>Claire的小书房</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="title: symbolauthor: clairedate: 2017-12-08 20:30:41comments: truetags: [symbol]categories: [ECMAScript, symbol] symbol在es6中symbol是被引入的一种新的原始数据类型，表示独一无二的值，在上述例子">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Claire的小书房">
-<meta property="og:url" content="http://yoursite.com/archives/2017/12/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/12/14/title: symbol/index.html">
 <meta property="og:site_name" content="Claire的小书房">
+<meta property="og:description" content="title: symbolauthor: clairedate: 2017-12-08 20:30:41comments: truetags: [symbol]categories: [ECMAScript, symbol] symbol在es6中symbol是被引入的一种新的原始数据类型，表示独一无二的值，在上述例子中symbol只是对当前symbol值的描述，即使上述例子中symbol的参数相">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-14T09:04:52.001Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Claire的小书房">
+<meta name="twitter:description" content="title: symbolauthor: clairedate: 2017-12-08 20:30:41comments: truetags: [symbol]categories: [ECMAScript, symbol] symbol在es6中symbol是被引入的一种新的原始数据类型，表示独一无二的值，在上述例子中symbol只是对当前symbol值的描述，即使上述例子中symbol的参数相">
   
     <link rel="alternative" href="/atom.xml" title="Claire的小书房" type="application/atom+xml">
   
@@ -134,339 +138,186 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-title: symbol" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: symbol<br>author: claire<br>date: 2017-12-08 20:30:41<br>comments: true<br>tags: [symbol]<br>categories: [ECMAScript, symbol]</p>
+<h5 id="symbol"><a href="#symbol" class="headerlink" title="symbol"></a>symbol</h5><p>在es6中symbol是被引入的一种新的原始数据类型，表示独一无二的值，在上述例子中symbol只是对当前symbol值的描述，即使上述例子中symbol的参数相同，symbol 的值也不相同。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name =<span class="built_in">Symbol</span>(<span class="string">'name'</span>);</span><br><span class="line"><span class="keyword">let</span> name1 =<span class="built_in">Symbol</span>(<span class="string">'name'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(name==name1);<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>symbol常用来模拟私有属性，看下面的例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> getName = <span class="built_in">Symbol</span>(<span class="string">'getName'</span>);</span><br><span class="line"> <span class="built_in">module</span>.exports=<span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">     [getName]()&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="string">'stalary'</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       print()&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="keyword">this</span>[getName]);&#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>在另一个页面中我们调用一下user的方法</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">const</span> User =<span class="built_in">require</span>(<span class="string">'./User'</span>);<span class="comment">//引入User类</span></span><br><span class="line"><span class="keyword">let</span> getName = <span class="built_in">Symbol</span>(<span class="string">'getName'</span>);</span><br><span class="line"><span class="keyword">let</span> user =<span class="keyword">new</span> User();</span><br><span class="line">user.print();<span class="comment">//调用print方法，输出stalary</span></span><br><span class="line">user[getName]();<span class="comment">//调用user的getame方法输出is not a function</span></span><br></pre></td></tr></table></figure>
+<p> 上述例题说明symbol定义的属性类似于私有属性，不能被其他类调用，此外需要注意的是使用symbol定义的方法时不可以使用点连接只能使用中括号。</p>
+<p>#####属性名的遍历<br>先看一个例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name =<span class="built_in">Symbol</span>(<span class="string">'name'</span>);</span><br><span class="line"> <span class="keyword">var</span> obj =&#123;</span><br><span class="line">   age:<span class="number">22</span>;</span><br><span class="line">   [name]:<span class="string">'claire'</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//第一种使用Object.keys方法遍历obj属性</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(obj));<span class="comment">//age</span></span><br><span class="line"> <span class="comment">//第二种方法</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyNames)<span class="comment">//'age'</span></span><br><span class="line"> <span class="comment">//第三种方法使用for in遍历</span></span><br><span class="line"> <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> obj)&#123;</span><br><span class="line"> <span class="built_in">console</span>.log(i);</span><br><span class="line"> &#125;<span class="comment">//age</span></span><br><span class="line"> <span class="comment">//第四种方法</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertySymbols(obj));<span class="comment">// 输出Symbol(name) </span></span><br><span class="line"><span class="comment">//第五种方法</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Reflect</span>.ownKeys(obj));<span class="comment">//'age', Symbol(name)</span></span><br></pre></td></tr></table></figure>
+<p>我们可以看出前三种普遍使用的遍历属性的方法都无法遍历到symbol定义的属性，而第四种方法，只能遍历symbol属性，第五种是新引入的api既可以遍历到常规属性也可以遍历到symbol属性<br>下面我们来看一下symbol和遍历器的使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr =[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> iterator =arr[<span class="built_in">Symbol</span>.iterator]();</span><br><span class="line"><span class="built_in">console</span>.log(iterator.next());</span><br><span class="line"><span class="built_in">console</span>.log(iterator.next());</span><br><span class="line"><span class="built_in">console</span>.log(iterator.next());</span><br><span class="line"><span class="built_in">console</span>.log(iterator.next());</span><br><span class="line"><span class="comment">/*输出</span></span><br><span class="line"><span class="comment">&#123; value: 1, done: false &#125;</span></span><br><span class="line"><span class="comment">&#123; value: 2, done: false &#125;</span></span><br><span class="line"><span class="comment">&#123; value: 2,3done: false &#125;</span></span><br><span class="line"><span class="comment">&#123; value: undefined, done: true &#125;</span></span><br><span class="line"><span class="comment">done表示是否遍历完成，若遍历完成显示true，否则为false</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>通过上面的例题，我们再来深入了解一下symbol的遍历</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">   <span class="keyword">constructor</span>(users)&#123;</span><br><span class="line">      <span class="keyword">this</span>.users = users;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//iterator</span></span><br><span class="line">    [<span class="built_in">Symbol</span>.iterator]()&#123;</span><br><span class="line">      <span class="keyword">let</span> i =<span class="number">0</span>;</span><br><span class="line">      <span class="keyword">let</span> self =<span class="keyword">this</span>;</span><br><span class="line">      <span class="keyword">const</span> names = <span class="built_in">Object</span>.keys(<span class="keyword">this</span>.users);</span><br><span class="line">      <span class="keyword">const</span> len =names.length;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">         next:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">let</span> name =names[i++];</span><br><span class="line">            <span class="keyword">let</span> age = self.users[name];</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">             value:&#123;<span class="attr">name</span>:name,age&#125;,<span class="attr">done</span> :i&gt;len</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">let</span> user = <span class="keyword">new</span> User(<span class="string">'stalary'</span>:<span class="number">21</span>,<span class="string">'claire'</span>:<span class="number">20</span>);</span><br><span class="line"> <span class="keyword">let</span> iterator = user[<span class="built_in">Symbol</span>.iterator]();</span><br><span class="line"><span class="built_in">console</span>.log(iterator.next());</span><br><span class="line"><span class="built_in">console</span>.log(iterator.next());</span><br><span class="line"><span class="built_in">console</span>.log(iterator.next());</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&#123; value: &#123; name: 'stalary', age: 21 &#125;, done: false &#125;</span></span><br><span class="line"><span class="comment">&#123; value: &#123; name: 'claire', age:20 &#125;, done: false &#125;</span></span><br><span class="line"><span class="comment">&#123; value: &#123; name: undefined, age: undefined &#125;, done: true &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>也可以使用以下方法遍历属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;<span class="string">'stalaty'</span>:<span class="number">21</span>,<span class="string">'claire'</span>:<span class="number">20</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> fun =<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">const</span> names = <span class="built_in">Object</span>.keys(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">const</span> len = names.length;</span><br><span class="line">    <span class="keyword">let</span> self = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        next: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">let</span> name = names[i++];</span><br><span class="line">            <span class="keyword">let</span> age = self[name];</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="attr">value</span>: &#123;name, age&#125;, <span class="attr">done</span>: i &gt; len&#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">obj[<span class="built_in">Symbol</span>.iterator] = fun;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> obj)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/14/title: symbol/" class="archive-article-date">
-  	<time datetime="2017-12-14T08:03:11.777Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-14</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/14/title: symbol/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/13/title: promise/" class="archive-article-date">
-  	<time datetime="2017-12-13T08:30:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-13</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/13/title: promise/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">promise</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/13/title: promise/">promise</a>
-    </h1>
-  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="title: symbol" data-title="" data-url="http://yoursite.com/2017/12/14/title: symbol/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">promise</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ECMAScript//" class="article-tag-list-link color1">ECMAScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ECMAScript/promise//" class="article-tag-list-link color3">promise</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/11/let/" class="archive-article-date">
-  	<time datetime="2017-12-11T12:30:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/11/let/">let命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">let</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ECMAScript//" class="article-tag-list-link color1">ECMAScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ECMAScript/let//" class="article-tag-list-link color4">let</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/08/iterator/" class="archive-article-date">
-  	<time datetime="2017-12-08T12:48:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/08/iterator/">DOM节点遍历</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">NodeIterator</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/javascript//" class="article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/javascript/NodeIterator//" class="article-tag-list-link color3">NodeIterator</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/07/classList/" class="archive-article-date">
-  	<time datetime="2017-12-07T13:41:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/07/classList/">classList属性</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">classList</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/javascript//" class="article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/javascript/classList//" class="article-tag-list-link color5">classList</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/05/applycallbind/" class="archive-article-date">
-  	<time datetime="2017-12-05T15:40:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/05/applycallbind/">javacript中apply、call和bind的用法总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">apply</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">call</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">bind</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/05/javascript closure problem/" class="archive-article-date">
-  	<time datetime="2017-12-05T01:40:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/05/javascript closure problem/">javascript闭包问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">闭包</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+  <div id="SOHUCS" sid="title: symbol" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytm5aV8D",
+        conf: "a35f4a532875c49fe1eb8c8282e7fc16"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -489,8 +340,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
