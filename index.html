@@ -139,10 +139,24 @@
     <article id="post-title: symbol" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/14/title: symbol/">symbol</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/14/title: symbol/" class="archive-article-date">
+  	<time datetime="2017-12-14T08:30:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-14</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>title: symbol<br>author: claire<br>date: 2017-12-08 20:30:41<br>comments: true<br>tags: [symbol]<br>categories: [ECMAScript, symbol]</p>
-<h5 id="symbol"><a href="#symbol" class="headerlink" title="symbol"></a>symbol</h5><p>在es6中symbol是被引入的一种新的原始数据类型，表示独一无二的值，在上述例子中symbol只是对当前symbol值的描述，即使上述例子中symbol的参数相同，symbol 的值也不相同。</p>
+        <h5 id="symbol"><a href="#symbol" class="headerlink" title="symbol"></a>symbol</h5><p>在es6中symbol是被引入的一种新的原始数据类型，表示独一无二的值，在上述例子中symbol只是对当前symbol值的描述，即使上述例子中symbol的参数相同，symbol 的值也不相同。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name =<span class="built_in">Symbol</span>(<span class="string">'name'</span>);</span><br><span class="line"><span class="keyword">let</span> name1 =<span class="built_in">Symbol</span>(<span class="string">'name'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(name==name1);<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
 <p>symbol常用来模拟私有属性，看下面的例子</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> getName = <span class="built_in">Symbol</span>(<span class="string">'getName'</span>);</span><br><span class="line"> <span class="built_in">module</span>.exports=<span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">     [getName]()&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="string">'stalary'</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       print()&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="keyword">this</span>[getName]);&#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
@@ -165,7 +179,33 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">symbol</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ECMAScript//" class="article-tag-list-link color1">ECMAScript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ECMAScript/symbol//" class="article-tag-list-link color2">symbol</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
@@ -855,18 +895,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">apply</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">call</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">bind</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">classList</a>
               </li>
              
@@ -884,6 +912,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">symbol</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">apply</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">call</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">bind</a>
               </li>
             
             <div class="clearfix"></div>
