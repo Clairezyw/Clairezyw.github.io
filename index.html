@@ -156,14 +156,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="symbol"><a href="#symbol" class="headerlink" title="symbol"></a>symbol</h5><p>在es6中symbol是被引入的一种新的原始数据类型，表示独一无二的值，在上述例子中symbol只是对当前symbol值的描述，即使上述例子中symbol的参数相同，symbol 的值也不相同。</p>
+        <h5 id="symbol"><a href="#symbol" class="headerlink" title="symbol"></a>symbol</h5><p>在es6中symbol是被引入的一种新的原始数据类型，表示独一无二的值，在下面的例子中symbol只是对当前symbol值的描述，即使symbol的参数相同，symbol 的值也不相同。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name =<span class="built_in">Symbol</span>(<span class="string">'name'</span>);</span><br><span class="line"><span class="keyword">let</span> name1 =<span class="built_in">Symbol</span>(<span class="string">'name'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(name==name1);<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
 <p>symbol常用来模拟私有属性，看下面的例子</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> getName = <span class="built_in">Symbol</span>(<span class="string">'getName'</span>);</span><br><span class="line"> <span class="built_in">module</span>.exports=<span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">     [getName]()&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="string">'stalary'</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       print()&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="keyword">this</span>[getName]);&#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <p>在另一个页面中我们调用一下user的方法</p>
  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">const</span> User =<span class="built_in">require</span>(<span class="string">'./User'</span>);<span class="comment">//引入User类</span></span><br><span class="line"><span class="keyword">let</span> getName = <span class="built_in">Symbol</span>(<span class="string">'getName'</span>);</span><br><span class="line"><span class="keyword">let</span> user =<span class="keyword">new</span> User();</span><br><span class="line">user.print();<span class="comment">//调用print方法，输出stalary</span></span><br><span class="line">user[getName]();<span class="comment">//调用user的getame方法输出is not a function</span></span><br></pre></td></tr></table></figure>
 <p> 上述例题说明symbol定义的属性类似于私有属性，不能被其他类调用，此外需要注意的是使用symbol定义的方法时不可以使用点连接只能使用中括号。</p>
-<p>#####属性名的遍历<br>先看一个例子</p>
+<h5 id="属性名的遍历"><a href="#属性名的遍历" class="headerlink" title="属性名的遍历"></a>属性名的遍历</h5><p>先看一个例子</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name =<span class="built_in">Symbol</span>(<span class="string">'name'</span>);</span><br><span class="line"> <span class="keyword">var</span> obj =&#123;</span><br><span class="line">   age:<span class="number">22</span>;</span><br><span class="line">   [name]:<span class="string">'claire'</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//第一种使用Object.keys方法遍历obj属性</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(obj));<span class="comment">//age</span></span><br><span class="line"> <span class="comment">//第二种方法</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyNames)<span class="comment">//'age'</span></span><br><span class="line"> <span class="comment">//第三种方法使用for in遍历</span></span><br><span class="line"> <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> obj)&#123;</span><br><span class="line"> <span class="built_in">console</span>.log(i);</span><br><span class="line"> &#125;<span class="comment">//age</span></span><br><span class="line"> <span class="comment">//第四种方法</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertySymbols(obj));<span class="comment">// 输出Symbol(name) </span></span><br><span class="line"><span class="comment">//第五种方法</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Reflect</span>.ownKeys(obj));<span class="comment">//'age', Symbol(name)</span></span><br></pre></td></tr></table></figure>
 <p>我们可以看出前三种普遍使用的遍历属性的方法都无法遍历到symbol定义的属性，而第四种方法，只能遍历symbol属性，第五种是新引入的api既可以遍历到常规属性也可以遍历到symbol属性<br>下面我们来看一下symbol和遍历器的使用</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr =[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> iterator =arr[<span class="built_in">Symbol</span>.iterator]();</span><br><span class="line"><span class="built_in">console</span>.log(iterator.next());</span><br><span class="line"><span class="built_in">console</span>.log(iterator.next());</span><br><span class="line"><span class="built_in">console</span>.log(iterator.next());</span><br><span class="line"><span class="built_in">console</span>.log(iterator.next());</span><br><span class="line"><span class="comment">/*输出</span></span><br><span class="line"><span class="comment">&#123; value: 1, done: false &#125;</span></span><br><span class="line"><span class="comment">&#123; value: 2, done: false &#125;</span></span><br><span class="line"><span class="comment">&#123; value: 2,3done: false &#125;</span></span><br><span class="line"><span class="comment">&#123; value: undefined, done: true &#125;</span></span><br><span class="line"><span class="comment">done表示是否遍历完成，若遍历完成显示true，否则为false</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
@@ -895,6 +895,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">NodeIterator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">classList</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">apply</a>
               </li>
              
@@ -907,19 +915,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">classList</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">NodeIterator</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">闭包</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">let</a>
+                <a href="javascript:void(0)" class="js-tag color2">symbol</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -927,7 +927,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">symbol</a>
+                <a href="javascript:void(0)" class="js-tag color4">let</a>
               </li>
             
             <div class="clearfix"></div>
