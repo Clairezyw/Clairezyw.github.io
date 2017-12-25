@@ -136,6 +136,104 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-title: set与map" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/19/title: set与map/">set与map</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/19/title: set与map/" class="archive-article-date">
+  	<time datetime="2017-12-19T08:30:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#####set<br>es6提供了新的数据结构set，该结构有点类似于数组，但其值是不可重复的。<br>下面来看一下常用的方法：<br>1、add（） 添加一个元素<br>2、delete（）删除一个元素<br>3、has（） 判断是否包含某个元素<br>4、clear（）清空所有的元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'name:claire'</span>,<span class="string">'age:18'</span>,<span class="string">'age:18'</span>];</span><br><span class="line"><span class="keyword">let</span> st  = <span class="keyword">new</span> <span class="built_in">Set</span>(arr);</span><br><span class="line"><span class="comment">//age：18　重复，只保留一个age</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.from(st));<span class="comment">//name:claire age:18</span></span><br><span class="line"><span class="comment">//has方法</span></span><br><span class="line"><span class="built_in">console</span>.log(st.has(<span class="string">'name:claire'</span>));<span class="comment">//true</span></span><br><span class="line">　<span class="comment">//delete</span></span><br><span class="line">st.delete(<span class="string">"age:18"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(st);<span class="comment">//name:claire</span></span><br><span class="line">st.add(<span class="number">22</span>);</span><br><span class="line"><span class="built_in">console</span>.log(st)<span class="comment">//name:claire age:18 22</span></span><br><span class="line"><span class="comment">//clear()</span></span><br><span class="line">st.clear();<span class="comment">//st为空</span></span><br></pre></td></tr></table></figure>
+<p>除此之外，set还有一些常用的遍历方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//keys</span></span><br><span class="line"><span class="keyword">let</span> items = st.keys();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> items)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;<span class="comment">//name:claire age:18</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> values = st.values();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> values)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;<span class="comment">//name:claire age:18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//key和value的值一样所以结果显示两遍</span></span><br><span class="line"> <span class="keyword">let</span> entry = st.entries();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> entry)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;<span class="comment">// ['name:claire', 'name:claire' ] [ 'age:18', 'age:18' ]</span></span><br></pre></td></tr></table></figure>
+<p>小结：set的特点是不允许有重复的值，并且还有增删、判断是否存在、清空的方法。可通过keys、values和entries进行遍历</p>
+<p>#####map<br> 与set类似，但map存储的是键值对，其中键可以为任意类型</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化map</span></span><br><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="string">'name'</span>,<span class="string">'claire'</span>]]);</span><br><span class="line">map.has(name)<span class="comment">//true</span></span><br><span class="line">map.get(name)<span class="comment">//claire</span></span><br></pre></td></tr></table></figure>
+<p> map的方法：<br>1、set（key，value） 添加一个元素<br>2、delete（key）删除一个元素<br>3、has（key） 判断是否包含某个元素<br>4、clear（）清空所有的元素<br>5、get（key）获取键值</p>
+<p>遍历map的方法：<br>1、Object.keys()<br>2、values<br>3、entries<br>4、forEach<br>用法与map类似<br>下面来介绍一下map之间的转换</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">set&&map</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ECMAScript//" class="article-tag-list-link color1">ECMAScript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ECMAScript/set-map//" class="article-tag-list-link color4">set&&map</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/19/title: set与map/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-title: symbol" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -915,15 +1013,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">NodeIterator</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">闭包</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">NodeIterator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">let</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">set&&map</a>
               </li>
              
               <li class="article-tag-list-item">

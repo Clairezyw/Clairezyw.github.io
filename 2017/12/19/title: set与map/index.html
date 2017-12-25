@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Category: javascript | Claire的小书房</title>
+  <title>set与map | Claire的小书房</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Claire的小书房">
-<meta property="og:url" content="http://yoursite.com/categories/javascript/index.html">
+  <meta name="description" content="#####setes6提供了新的数据结构set，该结构有点类似于数组，但其值是不可重复的。下面来看一下常用的方法：1、add（） 添加一个元素2、delete（）删除一个元素3、has（） 判断是否包含某个元素4、clear（）清空所有的元素 12345678910111213let arr = [&apos;name">
+<meta name="keywords" content="set&amp;&amp;map">
+<meta property="og:type" content="article">
+<meta property="og:title" content="set与map">
+<meta property="og:url" content="http://yoursite.com/2017/12/19/title: set与map/index.html">
 <meta property="og:site_name" content="Claire的小书房">
+<meta property="og:description" content="#####setes6提供了新的数据结构set，该结构有点类似于数组，但其值是不可重复的。下面来看一下常用的方法：1、add（） 添加一个元素2、delete（）删除一个元素3、has（） 判断是否包含某个元素4、clear（）清空所有的元素 12345678910111213let arr = [&apos;name:claire&apos;,&apos;age:18&apos;,&apos;age:18&apos;];let st  = new Set">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-25T12:00:07.214Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Claire的小书房">
+<meta name="twitter:title" content="set与map">
+<meta name="twitter:description" content="#####setes6提供了新的数据结构set，该结构有点类似于数组，但其值是不可重复的。下面来看一下常用的方法：1、add（） 添加一个元素2、delete（）删除一个元素3、has（） 判断是否包含某个元素4、clear（）清空所有的元素 12345678910111213let arr = [&apos;name:claire&apos;,&apos;age:18&apos;,&apos;age:18&apos;];let st  = new Set">
   
     <link rel="alternative" href="/atom.xml" title="Claire的小书房" type="application/atom+xml">
   
@@ -134,128 +139,221 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-title: set与map" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/08/iterator/" class="archive-article-date">
-  	<time datetime="2017-12-08T12:48:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/08/iterator/">DOM节点遍历</a>
+    <h1 class="article-title" itemprop="name">
+      set与map
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/12/19/title: set与map/" class="archive-article-date">
+  	<time datetime="2017-12-19T08:30:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#####set<br>es6提供了新的数据结构set，该结构有点类似于数组，但其值是不可重复的。<br>下面来看一下常用的方法：<br>1、add（） 添加一个元素<br>2、delete（）删除一个元素<br>3、has（） 判断是否包含某个元素<br>4、clear（）清空所有的元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'name:claire'</span>,<span class="string">'age:18'</span>,<span class="string">'age:18'</span>];</span><br><span class="line"><span class="keyword">let</span> st  = <span class="keyword">new</span> <span class="built_in">Set</span>(arr);</span><br><span class="line"><span class="comment">//age：18　重复，只保留一个age</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.from(st));<span class="comment">//name:claire age:18</span></span><br><span class="line"><span class="comment">//has方法</span></span><br><span class="line"><span class="built_in">console</span>.log(st.has(<span class="string">'name:claire'</span>));<span class="comment">//true</span></span><br><span class="line">　<span class="comment">//delete</span></span><br><span class="line">st.delete(<span class="string">"age:18"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(st);<span class="comment">//name:claire</span></span><br><span class="line">st.add(<span class="number">22</span>);</span><br><span class="line"><span class="built_in">console</span>.log(st)<span class="comment">//name:claire age:18 22</span></span><br><span class="line"><span class="comment">//clear()</span></span><br><span class="line">st.clear();<span class="comment">//st为空</span></span><br></pre></td></tr></table></figure>
+<p>除此之外，set还有一些常用的遍历方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//keys</span></span><br><span class="line"><span class="keyword">let</span> items = st.keys();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> items)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;<span class="comment">//name:claire age:18</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> values = st.values();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> values)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;<span class="comment">//name:claire age:18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//key和value的值一样所以结果显示两遍</span></span><br><span class="line"> <span class="keyword">let</span> entry = st.entries();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> entry)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;<span class="comment">// ['name:claire', 'name:claire' ] [ 'age:18', 'age:18' ]</span></span><br></pre></td></tr></table></figure>
+<p>小结：set的特点是不允许有重复的值，并且还有增删、判断是否存在、清空的方法。可通过keys、values和entries进行遍历</p>
+<p>#####map<br> 与set类似，但map存储的是键值对，其中键可以为任意类型</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化map</span></span><br><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="string">'name'</span>,<span class="string">'claire'</span>]]);</span><br><span class="line">map.has(name)<span class="comment">//true</span></span><br><span class="line">map.get(name)<span class="comment">//claire</span></span><br></pre></td></tr></table></figure>
+<p> map的方法：<br>1、set（key，value） 添加一个元素<br>2、delete（key）删除一个元素<br>3、has（key） 判断是否包含某个元素<br>4、clear（）清空所有的元素<br>5、get（key）获取键值</p>
+<p>遍历map的方法：<br>1、Object.keys()<br>2、values<br>3、entries<br>4、forEach<br>用法与map类似<br>下面来介绍一下map之间的转换</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">NodeIterator</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">set&&map</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/javascript//" class="article-tag-list-link color1">javascript</a>
+        			<a href="/categories/ECMAScript//" class="article-tag-list-link color1">ECMAScript</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/javascript/NodeIterator//" class="article-tag-list-link color3">NodeIterator</a>
+        			<a href="/categories/ECMAScript/set-map//" class="article-tag-list-link color4">set&&map</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/19/title: set与map/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/07/classList/" class="archive-article-date">
-  	<time datetime="2017-12-07T13:41:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/14/title: symbol/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">symbol</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/07/classList/">classList属性</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">classList</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/javascript//" class="article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/javascript/classList//" class="article-tag-list-link color5">classList</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="title: set与map" data-title="set与map" data-url="http://yoursite.com/2017/12/19/title: set与map/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
   
-    </div></section>
   
 
-    
+  
+  <div id="SOHUCS" sid="title: set与map" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytm5aV8D",
+        conf: "a35f4a532875c49fe1eb8c8282e7fc16"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -282,10 +380,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
