@@ -6,20 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>promise | Claire的小书房</title>
+  <title>Tag: vue生命周期 | Claire的小书房</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="promisepromise的作用就是异步处理，目的就是解决es5异步函数结构复杂、不清晰的问题。看下面简单的例子 1234567891011121314151617181920212223242526272829303132333435363738394041//创建用户类 class User&amp;#123; ">
-<meta name="keywords" content="promise">
-<meta property="og:type" content="article">
-<meta property="og:title" content="promise">
-<meta property="og:url" content="http://yoursite.com/2017/12/13/title: promise/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Claire的小书房">
+<meta property="og:url" content="http://yoursite.com/tags/vue生命周期/index.html">
 <meta property="og:site_name" content="Claire的小书房">
-<meta property="og:description" content="promisepromise的作用就是异步处理，目的就是解决es5异步函数结构复杂、不清晰的问题。看下面简单的例子 1234567891011121314151617181920212223242526272829303132333435363738394041//创建用户类 class User&amp;#123; constructor(name,password)&amp;#123;    this.nam">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-13T08:57:58.797Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="promise">
-<meta name="twitter:description" content="promisepromise的作用就是异步处理，目的就是解决es5异步函数结构复杂、不清晰的问题。看下面简单的例子 1234567891011121314151617181920212223242526272829303132333435363738394041//创建用户类 class User&amp;#123; constructor(name,password)&amp;#123;    this.nam">
+<meta name="twitter:title" content="Claire的小书房">
   
     <link rel="alternative" href="/atom.xml" title="Claire的小书房" type="application/atom+xml">
   
@@ -139,231 +134,75 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-title: promise" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      promise
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/12/25/title: vue的生命周期/" class="archive-article-date">
+  	<time datetime="2017-12-25T10:41:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-25</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/12/25/title: vue的生命周期/">vue的生命周期</a>
     </h1>
   
 
-        
-        <a href="/2017/12/13/title: promise/" class="archive-article-date">
-  	<time datetime="2017-12-13T08:30:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h4><p>promise的作用就是异步处理，目的就是解决es5异步函数结构复杂、不清晰的问题。看下面简单的例子</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建用户类</span></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"> <span class="keyword">constructor</span>(name,password)&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.password = password;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//检测用户名是否正确</span></span><br><span class="line">  testName(cb)&#123;</span><br><span class="line">  <span class="keyword">let</span> name =<span class="keyword">this</span>.name;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (name === <span class="string">'stalary'</span>)&#123;</span><br><span class="line">         resolve(<span class="string">'success'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">          <span class="keyword">else</span>&#123;</span><br><span class="line">            reject(<span class="string">'error'</span>);</span><br><span class="line">       &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//检测密码是否正确</span></span><br><span class="line">testPassword(cb)&#123;</span><br><span class="line">   <span class="keyword">let</span> password =<span class="keyword">this</span>.password;</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(password===<span class="string">'123'</span>)&#123;</span><br><span class="line">        resolve(<span class="string">'success'</span>);</span><br><span class="line">   &#125;   <span class="keyword">else</span>&#123;</span><br><span class="line">             reject(<span class="string">'error'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"> &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> user =<span class="keyword">new</span> User(<span class="string">'stalary'</span>,<span class="string">'123'</span>);</span><br><span class="line">user.testName()</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> user.testPassword;</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'验证成功！'</span>)；</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'验证失败！'</span>)；</span><br><span class="line">    &#125;)；</span><br></pre></td></tr></table></figure>
-<p>1、在上述例题中，testName()方法中返回了一个promise对象，这个对象只有一个function参数，并且函数中包含两个参数，resolve和reject，当函数正常执行时，执行resolve的操作。当出现异常时，执行reject操作。<br>2、then（）方法<br>在创建user实例时，调用testName()方法，这时我们会发现代码中有then（）方法，该方法是promise的方法，用于正常返回一个promise对象时执行的操作，在这里当用户名为stalary时，成功返回了一个promise对象，然后在控制台输出验证成功<br>3、catch（）方法用于捕获异常，当用户名不正确或者密码不正确时，会输出验证失败</p>
-<h4 id="promise的异常处理"><a href="#promise的异常处理" class="headerlink" title="promise的异常处理"></a>promise的异常处理</h4><p>还是上述例子，我们来看一下不同情况下的异常处理</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建用户类</span></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"> <span class="keyword">constructor</span>(name,password)&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.password = password;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//检测用户名是否正确</span></span><br><span class="line">  testName(cb)&#123;</span><br><span class="line">  <span class="keyword">let</span> name =<span class="keyword">this</span>.name;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (name === <span class="string">'stalary'</span>)&#123;</span><br><span class="line">         resolve(<span class="string">'success'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">          <span class="keyword">else</span>&#123;</span><br><span class="line">            reject(<span class="string">'error'</span>);</span><br><span class="line">       &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//检测密码是否正确</span></span><br><span class="line">testPassword(cb)&#123;</span><br><span class="line">   <span class="keyword">let</span> password =<span class="keyword">this</span>.password;</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(password===<span class="string">'123'</span>)&#123;</span><br><span class="line">        resolve(<span class="string">'success'</span>);</span><br><span class="line">   &#125;   <span class="keyword">else</span>&#123;</span><br><span class="line">             reject(<span class="string">'error'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"> &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> user =<span class="keyword">new</span> User(<span class="string">'claire'</span>,<span class="string">'123'</span>);</span><br><span class="line">user.testName()</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//第一种异常处理</span></span><br><span class="line">    <span class="keyword">throw</span> <span class="built_in">Error</span>(<span class="string">'first error'</span>);</span><br><span class="line">       <span class="keyword">return</span> user.testPassword;</span><br><span class="line">    &#125;<span class="comment">//第二种异常处理</span></span><br><span class="line">    ,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'second error'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    )</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'验证成功！'</span>)；</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">//第三种异常处理</span></span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'验证失败！'</span>)；</span><br><span class="line">    &#125;)；</span><br></pre></td></tr></table></figure>
-<p>如果我们把用户名改成claire，想一想会报出哪种错误呢？<br>先说一下第二种异常处理，我们上面讲到promise对象的函数里面有两个参数，当正常执行时，执行的是resolve，当抛出异常时执行的时reject，</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">then（<span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">            ...</span><br><span class="line">&#125;,<span class="function"><span class="keyword">function</span> <span class="title">fun2</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">            ...</span><br><span class="line">   &#125;</span><br><span class="line">）</span><br></pre></td></tr></table></figure>
-<p>当正常执行时与之相对应的是then方法中的第一个函数，抛出异常时对应第二个函数，这时候就有疑问了，catch也是捕获异常的方法，当第二个函数和catch同时存在时，会执行fun2，不会执行catch，如果没有第二个函数，那么会执行catch进行异常处理。<br>这个问题最终的结果是会输出second error，原因是因为我们把用户名更改以后，用户名是错误的，相应的会执行reject的操作，就是对应的fun2的操作。</p>
-<h4 id="promise的方法"><a href="#promise的方法" class="headerlink" title="promise的方法"></a>promise的方法</h4><p>如果我们要验证多个用户时，重复输入是件很麻烦的事，promise中的all（）方法解决了这个问题，该方法将所有的promise结果放在一个数组中，并返回一个promise对象</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user =<span class="built_in">Promise</span>.all([<span class="keyword">new</span> User(<span class="string">'stalary'</span>,<span class="string">'123'</span>)],[<span class="keyword">new</span> User(<span class="string">'claire'</span>,<span class="string">'123'</span>)]);</span><br><span class="line">user.then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res);<span class="comment">//[ User &#123; name: 'stalary', password: '123' &#125; ]</span></span><br><span class="line"> <span class="comment">// 验证失败</span></span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>对于stalary用户来说验证成功，并输出用户的信息，对于其他用户来说验证失败<br>除此之外，还有race（）方法，该方法和all（）方法类似，只不过返回的不是所有的结果，而是最先完成后的一个结果</p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">promise</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">vue生命周期</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/ECMAScript//" class="article-tag-list-link color1">ECMAScript</a>
+        			<a href="/categories/vue//" class="article-tag-list-link color4">vue</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/ECMAScript/promise//" class="article-tag-list-link color3">promise</a>
+        			<a href="/categories/vue/生命周期//" class="article-tag-list-link color5">生命周期</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/13/title: promise/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/12/14/title: symbol/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          symbol
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/12/11/let/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">let命令</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="title: promise" data-title="promise" data-url="http://yoursite.com/2017/12/13/title: promise/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-  
-  
+    </div></section>
   
 
-  
-  <div id="SOHUCS" sid="title: promise" ></div> 
-<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
-<script type="text/javascript">
-    window.changyan.api.config({
-        appid: "cytm5aV8D",
-        conf: "a35f4a532875c49fe1eb8c8282e7fc16"
-    });
-</script>
-</script>
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -390,9 +229,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
