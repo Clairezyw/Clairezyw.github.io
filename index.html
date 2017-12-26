@@ -136,6 +136,99 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post- title: 301和302的区别-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/26/ title: 301和302的区别-1/">301和302的区别</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/26/ title: 301和302的区别-1/" class="archive-article-date">
+  	<time datetime="2017-12-26T12:46:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="301-Moved-Permanently-永久性转移"><a href="#301-Moved-Permanently-永久性转移" class="headerlink" title="301 Moved Permanently 永久性转移"></a>301 Moved Permanently 永久性转移</h5><p>当用户或者搜索引擎向网站的服务器发出请求时，服务器返回的http数据流中的头信息的状态码的一种，表示当前网页永久的转移到另一个地址</p>
+<h5 id="302-Found-暂时性转移"><a href="#302-Found-暂时性转移" class="headerlink" title="302 Found 暂时性转移"></a>302 Found 暂时性转移</h5><p>一条对网站浏览器的指令来显示浏览器要求被显示的不同的URL。当一个网页经历短期的URL变化时使用。</p>
+<h5 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h5><p>301和302都表示重定向，当浏览器访问某个网页时，接受到网站的状态码，会自动跳转到一个新的URL地址，该地址都是在location首部取出。</p>
+<h5 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h5><p>1、301表示永久性重定向，搜索引擎在抓取新的内容的同时会将原来的地址替换掉<br>2、302表示暂时性重定向，搜索引擎会抓取新的内容同时也保留原来的地址，因为在此状态下，新的地址对搜索引擎来说是暂时的。</p>
+<h5 id="302重定向与网络劫持现象"><a href="#302重定向与网络劫持现象" class="headerlink" title="302重定向与网络劫持现象"></a>302重定向与网络劫持现象</h5><p>1、从一个网址a做一个302重定向到网址b，主机服务器的意思是a随时可能改变主意，重定向到其他网址，网址b对于网址a来说只是暂时性的转移目标。在没有其他网址的前提下，网址a的重定向目标就是网址b，网址b就是目标网址。但有的时候搜索引擎不能总是捕获到网址b也就出现了网络劫持现象。<br>2、再举个例子，有一个画风简约大气的网站a和一个广告推销带有冗长的URL地址的网站b，很显然网站a的用户体验感更佳。如果有人对网址a做了302重定向到网址b，那么谷歌浏览器很有可能将地址显示为网址a而页面内容却显示为网址b，就出现了网络劫持现象</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络基础</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/301和302区别//" class="article-tag-list-link color5">301和302区别</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/301和302区别/网络基础//" class="article-tag-list-link color5">网络基础</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/26/ title: 301和302的区别-1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-title: vue的生命周期" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1087,6 +1180,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络基础</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">apply</a>
