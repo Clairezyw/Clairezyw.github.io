@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>javascript闭包问题 | Claire的小书房</title>
+  <title>事件委托或事件代理 | Claire的小书房</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="javascript支持闭包功能，函数可以引用作用域外的变量，但在使用闭包时存在一定的陷阱，就像下面的这个例子：  123456var arr = [];    for(var i = 0;i&amp;lt;3;i++)&amp;#123;    arr.push(i); &amp;#125;for (var j = ">
-<meta name="keywords" content="闭包">
+  <meta name="description" content="事件委托所谓事件委托就是利用事件冒泡，指定事件的某一处理程序就可以管理某一类型的所有事件有一个经典的例子来解释事件委托原理：有三个同事预计在同一天会收到快递，有两种取快递的办法，一种是三个同事同时下楼在门口等快递，另一种是委托给前台人员，帮忙代领快递，自己来取的时候只需要报自己的姓名既可，即使公司来了新同事，前台人员也">
+<meta name="keywords" content="事件委托">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javascript闭包问题">
-<meta property="og:url" content="http://yoursite.com/2017/12/05/javascript closure problem/index.html">
+<meta property="og:title" content="事件委托或事件代理">
+<meta property="og:url" content="http://yoursite.com/2017/01/08/title: 事件委托或事件代理/index.html">
 <meta property="og:site_name" content="Claire的小书房">
-<meta property="og:description" content="javascript支持闭包功能，函数可以引用作用域外的变量，但在使用闭包时存在一定的陷阱，就像下面的这个例子：  123456var arr = [];    for(var i = 0;i&amp;lt;3;i++)&amp;#123;    arr.push(i); &amp;#125;for (var j = 0;j&amp;lt;arr.length;j++)&amp;#123;alert(arr[j]);&amp;#125;">
+<meta property="og:description" content="事件委托所谓事件委托就是利用事件冒泡，指定事件的某一处理程序就可以管理某一类型的所有事件有一个经典的例子来解释事件委托原理：有三个同事预计在同一天会收到快递，有两种取快递的办法，一种是三个同事同时下楼在门口等快递，另一种是委托给前台人员，帮忙代领快递，自己来取的时候只需要报自己的姓名既可，即使公司来了新同事，前台人员也会对快递进行核实然后帮其代领。这段例子中包含两层含义：第一：委托给前台人员的快递">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-07T14:09:25.503Z">
+<meta property="og:updated_time" content="2018-01-08T03:34:35.137Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javascript闭包问题">
-<meta name="twitter:description" content="javascript支持闭包功能，函数可以引用作用域外的变量，但在使用闭包时存在一定的陷阱，就像下面的这个例子：  123456var arr = [];    for(var i = 0;i&amp;lt;3;i++)&amp;#123;    arr.push(i); &amp;#125;for (var j = 0;j&amp;lt;arr.length;j++)&amp;#123;alert(arr[j]);&amp;#125;">
+<meta name="twitter:title" content="事件委托或事件代理">
+<meta name="twitter:description" content="事件委托所谓事件委托就是利用事件冒泡，指定事件的某一处理程序就可以管理某一类型的所有事件有一个经典的例子来解释事件委托原理：有三个同事预计在同一天会收到快递，有两种取快递的办法，一种是三个同事同时下楼在门口等快递，另一种是委托给前台人员，帮忙代领快递，自己来取的时候只需要报自己的姓名既可，即使公司来了新同事，前台人员也会对快递进行核实然后帮其代领。这段例子中包含两层含义：第一：委托给前台人员的快递">
   
     <link rel="alternative" href="/atom.xml" title="Claire的小书房" type="application/atom+xml">
   
@@ -139,32 +139,41 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-javascript closure problem" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-title: 事件委托或事件代理" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      javascript闭包问题
+      事件委托或事件代理
     </h1>
   
 
         
-        <a href="/2017/12/05/javascript closure problem/" class="archive-article-date">
-  	<time datetime="2017-12-05T01:40:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
+        <a href="/2017/01/08/title: 事件委托或事件代理/" class="archive-article-date">
+  	<time datetime="2017-01-08T02:50:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>javascript支持闭包功能，函数可以引用作用域外的变量，但在使用闭包时存在一定的陷阱，就像下面的这个例子：</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [];    </span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">    arr.push(i); </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>;j&lt;arr.length;j++)&#123;</span><br><span class="line">alert(arr[j]);&#125;</span><br></pre></td></tr></table></figure>
-<p>   输出结果为：3 3 3<br>   并不是我们想要的结果：0 1 2<br>这个问题的原因是javascript虽然有局部变量，<br><strong>但局部变量只有函数的作用域没有块作用域，因此无论在哪个位置定义变量，变量的作用域都是整个函数。</strong><br>这段代码其实是这样的：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr[],i,j;</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">  arr.push(i);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (j = <span class="number">0</span>;j&lt;arr.length;j++)&#123;</span><br><span class="line">  alert(arr[j]);&#125;<span class="comment">//输出3 3 3</span></span><br></pre></td></tr></table></figure>
-<p>  <strong>因此在创建闭包时不要引入循环变量，如果一定要引入循环变量，此时需要再创建一个函数，将循环变量作为该函数的参数引入</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">var</span> fun = <span class="function"><span class="keyword">function</span> (<span class="params">i</span>) </span>&#123;</span><br><span class="line">        arr.push(i);</span><br><span class="line">    &#125;;</span><br><span class="line">    fun(i);</span><br><span class="line">&#125;<span class="comment">//输出0 1 2</span></span><br></pre></td></tr></table></figure>
+        <h5 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h5><p>所谓事件委托就是利用事件冒泡，指定事件的某一处理程序就可以管理某一类型的所有事件<br>有一个经典的例子来解释事件委托原理：<br>有三个同事预计在同一天会收到快递，有两种取快递的办法，一种是三个同事同时下楼在门口等快递，另一种是委托给前台人员，帮忙代领快递，自己来取的时候只需要报自己的姓名既可，即使公司来了新同事，前台人员也会对快递进行核实然后帮其代领。<br>这段例子中包含两层含义：<br>第一：委托给前台人员的快递是可以代收的，即dom节点是有事件的<br>第二：新同事的快递也可以被前台人员代收，即新添加的dom节点也是有事件的</p>
+<h5 id="使用事件委托的目的"><a href="#使用事件委托的目的" class="headerlink" title="使用事件委托的目的"></a>使用事件委托的目的</h5><p>如果我们有100个li，每个li都有点击事件，用for循环给每个li添加事件会影响页面的整个性能，这是因为需要不断的dom节点进行交互，当节点的访问次数增加时，引起浏览器的重绘和重排的次数增加，就会延长浏览器的就绪和交互时间</p>
+<h5 id="事件委托的原理"><a href="#事件委托的原理" class="headerlink" title="事件委托的原理"></a>事件委托的原理</h5><p>事件委托是由事件冒泡实现的，就是从底层节点开始，逐级向上传播。例如在一个无序列表ul中嵌套多个li，并且每个li都有个超链接，点击li，事件的执行顺序为a&gt;li&gt;ul，事件都会冒泡到最外层ul，给最外层设置事件，即委托给父级代其执行事件</p>
+<h5 id="事件委托的实现"><a href="#事件委托的实现" class="headerlink" title="事件委托的实现"></a>事件委托的实现</h5><p>下面我们来看一个简单的例子</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">'list'</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>a<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>b<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>c<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>d<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 每次点击li都会弹出hello world</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> list = <span class="built_in">document</span>.getElementById(<span class="string">"list"</span>);</span><br><span class="line"><span class="keyword">var</span> li = list.getElementByTagName(<span class="string">"li"</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;li.length; i++)&#123;</span><br><span class="line">li[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="string">"hello world"</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 上述的例子非常简单，利用for循环给每个li添加点击事件，如果用事件委托该怎么处理呢？</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> <span class="keyword">var</span> list = <span class="built_in">document</span>.getElementById(<span class="string">"list"</span>);</span><br><span class="line"> list.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> alert(<span class="string">"hello world"</span>);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 这里用ul做事件处理，当li被点击时，会冒泡到ul上，由于ul有点击事件，所以会被触发。<br> 如果我们想让事件代理的效果和直接给节点加事件的效果一样怎么办？<br>Event对象提供了解决方案，该对象提供了target属性可以返回事件的目标节点，也就意味着target就是当前目标节点。但这里又存在着兼容性问题，标准浏览器使用event.target,ie使用event.srcElement,下面来看改进之后的效果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">var</span> list = <span class="built_in">document</span>.getElementById(<span class="string">"list"</span>);</span><br><span class="line">list.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> event = event||<span class="built_in">window</span>.event;</span><br><span class="line"> <span class="keyword">var</span> target = event.target|| event.srcElement;</span><br><span class="line"> <span class="keyword">if</span> (target.nodeName.toLowerCase==<span class="string">"li"</span>)&#123;</span><br><span class="line">  alert(<span class="string">"hello world"</span>);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果每个组件添加的事件不一样，该怎么办呢？<br>看下面例子</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"btn-group"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"add"</span> <span class="attr">value</span>=<span class="string">"添加"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"delete"</span> <span class="attr">value</span>=<span class="string">"删除"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"update"</span> <span class="attr">value</span>=<span class="string">"修改"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"query"</span> <span class="attr">value</span>=<span class="string">"查询"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">       <span class="keyword">var</span> box = <span class="built_in">document</span>.getElementById(<span class="string">"btn-group"</span>);</span><br><span class="line">       box.onclick = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">           <span class="keyword">var</span> event = event||<span class="built_in">window</span>.event;</span><br><span class="line">           <span class="keyword">var</span> target = event.target||event.srcElement;</span><br><span class="line">           <span class="keyword">if</span> (target.nodeName.toLowerCase()===<span class="string">"input"</span>)&#123;</span><br><span class="line">               <span class="keyword">switch</span> (target.id)&#123;</span><br><span class="line">                   <span class="keyword">case</span> <span class="string">'add'</span>:</span><br><span class="line">                       alert(<span class="string">"添加"</span>);</span><br><span class="line">                       <span class="keyword">break</span>;</span><br><span class="line">                   <span class="keyword">case</span> <span class="string">'delete'</span>:</span><br><span class="line">                       alert(<span class="string">"删除"</span>);</span><br><span class="line">                       <span class="keyword">break</span>;</span><br><span class="line">                   <span class="keyword">case</span> <span class="string">'update'</span>:</span><br><span class="line">                       alert(<span class="string">"修改"</span>);</span><br><span class="line">                       <span class="keyword">break</span>;</span><br><span class="line">                   <span class="keyword">case</span> <span class="string">'query'</span>:</span><br><span class="line">                       alert(<span class="string">"查询"</span>);</span><br><span class="line">                       <span class="keyword">break</span>;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>这样就可以实现利用事件委托添加不同的事件了。</p>
 
       
 
@@ -199,13 +208,28 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">闭包</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">事件委托</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/javascript//" class="article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/javascript/事件委托//" class="article-tag-list-link color5">事件委托</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -255,7 +279,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/05/javascript closure problem/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/01/08/title: 事件委托或事件代理/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -269,20 +293,15 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/12/05/applycallbind/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/12/05/javascript closure problem/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          javacript中apply、call和bind的用法总结
+          javascript闭包问题
         
       </div>
     </a>
   
-  
-    <a href="/2017/01/08/title: 事件委托或事件代理/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">事件委托或事件代理</div>
-      <i class="icon-circle-right"></i>
-    </a>
   
 </nav>
 
@@ -307,7 +326,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#事件委托"><span class="toc-number">1.</span> <span class="toc-text">事件委托</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用事件委托的目的"><span class="toc-number">2.</span> <span class="toc-text">使用事件委托的目的</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#事件委托的原理"><span class="toc-number">3.</span> <span class="toc-text">事件委托的原理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#事件委托的实现"><span class="toc-number">4.</span> <span class="toc-text">事件委托的实现</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -321,7 +340,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="javascript closure problem" data-title="javascript闭包问题" data-url="http://yoursite.com/2017/12/05/javascript closure problem/"></div>
+	<div class="ds-thread" data-thread-key="title: 事件委托或事件代理" data-title="事件委托或事件代理" data-url="http://yoursite.com/2017/01/08/title: 事件委托或事件代理/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -344,8 +363,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://yoursite.com/2017/12/05/javascript closure problem/", 
-    sourceId: "javascript closure problem",
+    url: "http://yoursite.com/2017/01/08/title: 事件委托或事件代理/", 
+    sourceId: "title: 事件委托或事件代理",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
@@ -354,7 +373,7 @@
   
 
   
-  <div id="SOHUCS" sid="javascript closure problem" ></div> 
+  <div id="SOHUCS" sid="title: 事件委托或事件代理" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
