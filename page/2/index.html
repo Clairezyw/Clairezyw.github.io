@@ -136,6 +136,92 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-applycallbind" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/05/applycallbind/">javacript中apply、call和bind的用法总结</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/05/applycallbind/" class="archive-article-date">
+  	<time datetime="2017-12-05T15:40:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> apply,call和bind一般用于指定this的环境，在学习这些方法之前，经常会遇见下面问题：<br><img src="http://upload-images.jianshu.io/upload_images/9381131-510eba09eb6a31ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="pi"><br> 继续往下看，单独调用a.fn还是可以的<br><img src="http://upload-images.jianshu.io/upload_images/9381131-c487f374778b5751.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="pi"><br> 这是怎么回事呢？原因还是在于b和a的this的环境不同，b的this指向的是全局，并没有指向a，所以会产生此类问题。<br> 当我们不得不将一个对象保存到另一个变量之中时，可以使用以下方法：<br> call（）</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/9381131-fcf7c7617581046d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="pi"><br>运用call以后，b的this指向为a所在的环境中。<br><img src="http://upload-images.jianshu.io/upload_images/9381131-23ee7b731ee0df55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="pi"><br>call方法可以传入多个参数，第一个参数是指定b的所在环境，其余参数可以进行传参。<br>apply（）</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/9381131-2ee5977abc4862c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20171205-212444@2x"><br>与call方法相似，此时，b的this指向a所在的环境中。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/9381131-e133e366a7ce0069.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20171205-212557@2x"><br>apply的第一个参数传入的也是所在环境，与call不同的是，传入的其余参数必须为数组；<br>//注意如果call和apply的第一个参数为null，那么this指向全局环境。<br>bind（）</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/9381131-7e47d481ec8f5c10.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20171205-213112@2x"><br>bind方法返回的是修改后的函数。与call和apply方法类似，同样第一个参数传入的是指定当前变量所在的环境。<br><img src="http://upload-images.jianshu.io/upload_images/9381131-51c62e085492eaf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>传入参数按照形参传入的顺序执行</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">apply</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">call</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">bind</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/05/applycallbind/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-javascript closure problem" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -316,10 +402,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">apply</a>
               </li>
              
@@ -344,6 +426,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">let</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">promise</a>
               </li>
              
@@ -352,19 +442,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">set&&map</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">let</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">vue生命周期</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">set&&map</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">事件委托</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">项目总结</a>
               </li>
             
             <div class="clearfix"></div>
