@@ -136,6 +136,123 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-title: react的生命周期" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/26/title: react的生命周期/">react的生命周期</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/26/title: react的生命周期/" class="archive-article-date">
+  	<time datetime="2018-02-26T15:28:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="生命周期的介绍"><a href="#生命周期的介绍" class="headerlink" title="生命周期的介绍"></a>生命周期的介绍</h3><p>react生命周期分为三个阶段：初始化阶段、运行阶段和销毁阶段。这三个阶段中分别运行不同的函数，下面我们来详细看一下包含的函数</p>
+<h4 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h4><ul>
+<li>getDefaultProps：只调用一次，用于实例之间共享内存，注意该方法在React.createclass之后接着调用，也就是说调用该方法时实例尚未初始化。</li>
+<li>getInitialState：初始化每个实例特有的状态</li>
+<li>componentWillMount：render之前最后一次修改状态的机会</li>
+<li>render: 只能访问this.props和this.state，只要一个顶层组件，且不允许修改状态和dom的输出 </li>
+<li>componentDidMount：render成功之后渲染真实的dom之后触发，此时可以修改真实的dom</li>
+</ul>
+<h5 id="例子🌰"><a href="#例子🌰" class="headerlink" title="例子🌰"></a>例子🌰</h5><p>首先我们来看第一个例子，该例子能够查看上述函数的调用顺序</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> style = &#123;</span><br><span class="line">           color: <span class="string">"red"</span>,</span><br><span class="line">           border: <span class="string">"1px solid  black"</span></span><br><span class="line">       &#125;;</span><br><span class="line">       <span class="keyword">var</span> Hello = React.createClass(&#123;</span><br><span class="line">           getDefaultProps:<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               <span class="built_in">console</span>.log(<span class="string">'getDefaultProp'</span>)</span><br><span class="line">           &#125;,</span><br><span class="line">           getInitialState : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               <span class="built_in">console</span>.log(<span class="string">' getInitialState'</span>)</span><br><span class="line">               <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">               <span class="comment">//getInitialState函数必须返回null或者返回一个对象</span></span><br><span class="line">           &#125;,</span><br><span class="line">           componentWillMount: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               <span class="built_in">console</span>.log(<span class="string">'componentWillMount'</span>)</span><br><span class="line">           &#125;,</span><br><span class="line">           render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello world<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">           &#125;,</span><br><span class="line">           componentDidMount()&#123;</span><br><span class="line">               <span class="built_in">console</span>.log(<span class="string">'componentDidMount'</span>)</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;)</span><br><span class="line">       ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&#123;style&#125;</span>&gt;</span><span class="tag">&lt;<span class="name">Hello</span>/&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>, <span class="built_in">document</span>.body)</span><br></pre></td></tr></table></figure>
+<p>在控制台上我们可以看到输出结果<br><img src="http://upload-images.jianshu.io/upload_images/9381131-afa720ba26011f9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="img"></p>
+<p>下面我们具体来看这些函数如何使用<br>我们首先引入jquery，方便操作节点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(</span><br><span class="line">         <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">             <span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line">             <span class="keyword">var</span> style = &#123;</span><br><span class="line">                 color: <span class="string">"red"</span>,</span><br><span class="line">                 border: <span class="string">"1px #000 solid"</span>,</span><br><span class="line">             &#125;;</span><br><span class="line">             <span class="keyword">var</span> HelloWorld = React.createClass(&#123;</span><br><span class="line">                 getDefaultProps: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                     <span class="built_in">console</span>.log(<span class="string">"getDefaultProps"</span>);</span><br><span class="line">                     <span class="keyword">return</span> &#123;<span class="attr">name</span>: <span class="string">"claire"</span>&#125;;</span><br><span class="line">                 &#125;,</span><br><span class="line">                 getInitialState: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                     <span class="built_in">console</span>.log(<span class="string">"getInitialState"</span>);</span><br><span class="line">                     <span class="keyword">return</span> &#123;<span class="attr">myCount</span>: count++,</span><br><span class="line">                         ready: <span class="literal">false</span>&#125;;</span><br><span class="line">                 &#125;,</span><br><span class="line">                 componentWillMount: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                     <span class="built_in">console</span>.log(<span class="string">"componentWillMount"</span>);</span><br><span class="line">                     <span class="keyword">this</span>.setState(&#123;<span class="attr">ready</span>: <span class="literal">true</span>&#125;);</span><br><span class="line">                 &#125;,</span><br><span class="line">                 render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                     <span class="built_in">console</span>.log(<span class="string">"render"</span>);</span><br><span class="line">                     <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello, &#123;this.props.name ? this.props.name : "World"&#125;<span class="tag">&lt;<span class="name">br</span>/&gt;</span>&#123;"" + this.state.ready&#125; &#123;this.state.myCount&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span>;</span><br><span class="line">                 &#125;,</span><br><span class="line">                 componentDidMount: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                     <span class="built_in">console</span>.log(<span class="string">"componentDidMount"</span>);</span><br><span class="line">                     $(ReactDOM.findDOMNode(<span class="keyword">this</span>)).append(<span class="string">"hi"</span>);</span><br><span class="line">                 &#125;,</span><br><span class="line">             &#125;);</span><br><span class="line">             ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&#123;style&#125;</span>&gt;</span><span class="tag">&lt;<span class="name">HelloWorld</span>&gt;</span><span class="tag">&lt;/<span class="name">HelloWorld</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span><span class="tag">&lt;<span class="name">HelloWorld</span>&gt;</span><span class="tag">&lt;/<span class="name">HelloWorld</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>, <span class="built_in">document</span>.body);</span><br><span class="line">         &#125;</span><br><span class="line">     );</span><br></pre></td></tr></table></figure>
+<p>看一下控制台的结果<br><img src="http://upload-images.jianshu.io/upload_images/9381131-0142d71d6a691d2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="img2"></p>
+<h4 id="运行阶段"><a href="#运行阶段" class="headerlink" title="运行阶段"></a>运行阶段</h4><ul>
+<li>componentWillReceiveProps: 父组件修改属性触发，可以修改新属性</li>
+<li>shouldComponentUpdate:是否更新，若返回false则会阻止render的调用</li>
+<li>componentWillUpdate：不能修改属性和方法</li>
+<li>render：和初始化阶段相同</li>
+<li>componentDidUpdate：此阶段可修改dom</li>
+</ul>
+<h5 id="例子🌰-1"><a href="#例子🌰-1" class="headerlink" title="例子🌰"></a>例子🌰</h5><p>首先还是先查看函数的调用顺序，在运行过程中需要父组件触发子组件，因此新增了一个父组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> style = &#123;</span><br><span class="line">                   color: <span class="string">"red"</span>,</span><br><span class="line">                   border: <span class="string">"1px #000 solid"</span>&#125;</span><br><span class="line"></span><br><span class="line">               <span class="keyword">var</span> HelloWorld = React.createClass(&#123;</span><br><span class="line">                   componentWillReceiveProps: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                       <span class="built_in">console</span>.log(<span class="string">"componentWillReceiveProps"</span>);</span><br><span class="line">                   &#125;,</span><br><span class="line">                   shouldComponentUpdate: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                       <span class="built_in">console</span>.log(<span class="string">"shouldComponentUpdate"</span>);</span><br><span class="line">                       <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">                   &#125;,</span><br><span class="line">                   componentWillUpdate: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                       <span class="built_in">console</span>.log(<span class="string">"componentWillUpdate"</span>);</span><br><span class="line">                   &#125;,</span><br><span class="line">                   render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                       <span class="built_in">console</span>.log(<span class="string">"render"</span>);</span><br><span class="line">                       <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">ref</span>=<span class="string">"childp"</span>&gt;</span>Hello, &#123;this.props.name ? this.props.name : "World"&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span>;</span><br><span class="line">                   &#125;,</span><br><span class="line">                   componentDidUpdate: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                       <span class="built_in">console</span>.log(<span class="string">"componentDidUpdate"</span>);</span><br><span class="line">                   &#125;,</span><br><span class="line">               &#125;);</span><br><span class="line">               <span class="keyword">var</span> HelloUniverse = React.createClass(&#123;</span><br><span class="line">                   getInitialState: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                       <span class="keyword">return</span> &#123;<span class="attr">name</span>: <span class="string">''</span>&#125;</span><br><span class="line">                   &#125;,</span><br><span class="line">                   Change:<span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">                      <span class="keyword">this</span>.setState(&#123;<span class="attr">name</span>: event.target.value&#125;)</span><br><span class="line">                   &#125;,</span><br><span class="line">                   render:<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                       <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">                           <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">HelloWorld</span> <span class="attr">name</span>=<span class="string">&#123;this.state.name&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">HelloWorld</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">                           &lt;input type="text" onChange=&#123;this.Change&#125;/&gt;</span><br><span class="line"><span class="xml">                       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">                   &#125;</span></span><br><span class="line"><span class="xml">               &#125;)</span></span><br><span class="line"><span class="xml">               ReactDOM.render(<span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&#123;style&#125;</span>&gt;</span><span class="tag">&lt;<span class="name">HelloUniverse</span>/&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>, document.body);</span></span><br></pre></td></tr></table></figure>
+<p>控制台结果：<br><img src="http://upload-images.jianshu.io/upload_images/9381131-bb28159de07e861a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="img3"><br><img src="http://upload-images.jianshu.io/upload_images/9381131-350ab568f8a58fa6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="img4"></p>
+<h4 id="销毁阶段"><a href="#销毁阶段" class="headerlink" title="销毁阶段"></a>销毁阶段</h4><ul>
+<li>componenWillUnmount：销毁之前调用<h5 id="例子🌰-2"><a href="#例子🌰-2" class="headerlink" title="例子🌰"></a>例子🌰</h5></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> style = &#123;</span><br><span class="line">           color: <span class="string">"red"</span>,</span><br><span class="line">           border: <span class="string">"1px #000 solid"</span>,</span><br><span class="line">       &#125;;</span><br><span class="line">       <span class="keyword">var</span> HelloWorld = React.createClass(&#123;</span><br><span class="line">           render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; </span><br><span class="line">               <span class="built_in">console</span>.log(<span class="string">"render 4"</span>);</span><br><span class="line">               <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello, &#123;this.props.name ? this.props.name : "World"&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span>;</span><br><span class="line">           &#125;,</span><br><span class="line">           componentWillUnmount: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">               <span class="built_in">console</span>.log(<span class="string">"BOOOOOOOOOOOOOOOOOM!"</span>);</span><br><span class="line">           &#125;,</span><br><span class="line">       &#125;);</span><br><span class="line">       <span class="keyword">var</span> HelloUniverse = React.createClass(&#123;</span><br><span class="line">           getInitialState: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               <span class="keyword">return</span> &#123;<span class="attr">name</span>: <span class="string">''</span>&#125;;</span><br><span class="line">           &#125;,</span><br><span class="line">           handleChange: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;                </span><br><span class="line">               <span class="keyword">if</span> (event.target.value == <span class="string">"123"</span>) &#123;</span><br><span class="line">                   React.unmountComponentAtNode(<span class="built_in">document</span>.getElementsByTagName(<span class="string">"body"</span>)[<span class="number">0</span>]);</span><br><span class="line">                   <span class="keyword">return</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">this</span>.setState(&#123;<span class="attr">name</span>: event.target.value&#125;);</span><br><span class="line">           &#125;,</span><br><span class="line">           render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">               <span class="tag">&lt;<span class="name">HelloWorld</span> <span class="attr">name</span>=<span class="string">&#123;this.state.name&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">HelloWorld</span>&gt;</span></span></span><br><span class="line"><span class="xml">               <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line">               &lt;input type="text" onChange=&#123;this.handleChange&#125; /&gt;</span><br><span class="line"><span class="xml">               <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">           &#125;,</span></span><br><span class="line"><span class="xml">       &#125;);</span></span><br><span class="line"><span class="xml">       React.render(<span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&#123;style&#125;</span>&gt;</span><span class="tag">&lt;<span class="name">HelloUniverse</span>&gt;</span><span class="tag">&lt;/<span class="name">HelloUniverse</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>, document.body);</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/9381131-933eaa361958d637.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="img5"><br><img src="" alt="img6"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/react//" class="article-tag-list-link color1">react</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/react/生命周期//" class="article-tag-list-link color5">生命周期</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/26/title: react的生命周期/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-title: vuex的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1054,105 +1171,6 @@
 
 
   
-    <article id="post-iterator" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/08/iterator/">DOM节点遍历</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/08/iterator/" class="archive-article-date">
-  	<time datetime="2017-12-08T12:48:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>DOM2级对于dom节点的遍历提供了两种深度优先遍历的类型：NodeIterator和TreeWalker,下面来介绍这两种类型的使用。<br>1、NodeIterator<br>该类型通过document.createNodeIterator()方法创建新实例，该方法接受四个参数：</p>
-<p><1>root：表示开始遍历的起点</1></p>
-<p><2>whatToShow：表示访问哪些节点的数字代码，以常量的形式作为参数。<br>常见的参数有：<br>NodeFilter.SHOW_ALL:显示所有类型的节点<br>NodeFilter.SHOW_ELEMNT:显示元素节点<br>NodeFilter.SHOW_ATTRIBUTE：显示属性节点<br>NodeFilter.SHOW_TEXT：显示文本节点</2></p>
-<p><3>filter:表示应该接受某个特定节点还是应该拒绝某个特定节点的函数</3></p>
-<p><4>entityRefernceExpasion:布尔值，表示是否要扩展实体，在html中不起作用，因此为false<br>下面来看一下如何使用：</4></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//以一段html片段为例,访问该片段中的所有元素节点</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div1"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">b</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">b</span>&gt;</span>world!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span>item1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span>item2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span>item3/li&gt;</span><br><span class="line">     <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取div</span></span><br><span class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">"div1"</span>);</span><br><span class="line"><span class="comment">//创建NodeIterator实例</span></span><br><span class="line"><span class="keyword">var</span> iterator = <span class="built_in">document</span>.createNodeIterator(div,NodeFilter.SHOW_ELEMNT,<span class="literal">null</span>,<span class="literal">false</span>);</span><br><span class="line"><span class="keyword">var</span> node = iterator.nextNode();</span><br><span class="line"><span class="keyword">while</span>(node!=<span class="literal">null</span>)&#123;</span><br><span class="line">  alert(node.tagName);</span><br><span class="line">  node = iterator.nextNode();</span><br><span class="line">&#125;<span class="comment">//DIV P B UL LI LI LI</span></span><br></pre></td></tr></table></figure>
-<p>此外，也可以通过filter来遍历特定的节点</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//遍历li元素</span></span><br><span class="line"><span class="comment">// 定义filter函数</span></span><br><span class="line"><span class="keyword">var</span> filter = <span class="function"><span class="keyword">function</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(node.tagName.toLowerCase()==<span class="string">"li"</span>)&#123;</span><br><span class="line">  NodeFilter.FILTER_ACCEPT;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    NodeFilter.FILTER_SKIP;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">"div1"</span>);</span><br><span class="line"><span class="keyword">var</span> iterator = <span class="built_in">document</span>.createNodeIterator(div,NodeFilter.SHOW_ELEMNT,filter,<span class="literal">false</span>);</span><br><span class="line"><span class="keyword">var</span> node = iterator.nextNode();</span><br><span class="line"><span class="keyword">while</span>(node!=<span class="literal">null</span>)&#123;</span><br><span class="line">  alert(node.tagName);</span><br><span class="line">  node = iterator.nextNode();</span><br><span class="line">&#125;<span class="comment">// LI LI LI</span></span><br></pre></td></tr></table></figure>
-<p>2、TreeWalker<br>与NodeIterator相似，TreeWalker通过document.createTreeWalker()方法创建实例，四个参数与NodeIterator相同，用法也相同，但与NodeIterator不同的是，TreeWalker提供更高级的方法：<br>parentNode()：遍历到当前节点的父节点<br>firstChild()：遍历到当前节点的第一个孩子节点<br>lastChild()：遍历到当前节点的最后一个孩子节点<br>nextSibling()：遍历到当前节点的下一个兄弟节点<br>perviousSibling()：遍历到当前节点的上一个兄弟节点<br>因此，遍历li节点就可以简化为</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">"div1"</span>);</span><br><span class="line"><span class="keyword">var</span> treeWalker = <span class="built_in">document</span>.createTreeWalker(div,NodeFilter.SHOW_ELEMENT,<span class="literal">null</span>,<span class="literal">false</span>);</span><br><span class="line">treeWalker.firstChird();<span class="comment">//遍历到p节点</span></span><br><span class="line">treeWalker.nextSibling();<span class="comment">//遍历到ul节点</span></span><br><span class="line"><span class="keyword">var</span> node = treeWalker.firstChild();<span class="comment">//遍历到第一个li</span></span><br><span class="line"><span class="keyword">while</span>(node!=<span class="literal">null</span>)&#123;</span><br><span class="line">  alert(node.tagName);</span><br><span class="line">  node = iterator.nextNode();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">NodeIterator</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/javascript//" class="article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/javascript/NodeIterator//" class="article-tag-list-link color3">NodeIterator</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/08/iterator/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1254,10 +1272,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">apply</a>
               </li>
              
@@ -1270,7 +1284,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">classList</a>
+                <a href="javascript:void(0)" class="js-tag color5">网络基础</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1278,7 +1292,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
+                <a href="javascript:void(0)" class="js-tag color5">classList</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1286,15 +1300,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">promise</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">set&&map</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">symbol</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">set&&map</a>
               </li>
              
               <li class="article-tag-list-item">
