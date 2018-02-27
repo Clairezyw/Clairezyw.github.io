@@ -21,7 +21,8 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-bb28159de07e861a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-350ab568f8a58fa6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-933eaa361958d637.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-02-27T05:09:19.465Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-34ef8ff76fb87cb8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-02-27T05:13:47.776Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react的生命周期">
 <meta name="twitter:description" content="生命周期的介绍react生命周期分为三个阶段：初始化阶段、运行阶段和销毁阶段。这三个阶段中分别运行不同的函数，下面我们来详细看一下包含的函数 初始化阶段 getDefaultProps：只调用一次，用于实例之间共享内存，注意该方法在React.createclass之后接着调用，也就是说调用该方法时实例尚未初始化。 getInitialState：初始化每个实例特有的状态 componentWil">
@@ -193,7 +194,7 @@
 <li>componenWillUnmount：销毁之前调用<h5 id="例子🌰-2"><a href="#例子🌰-2" class="headerlink" title="例子🌰"></a>例子🌰</h5></li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> style = &#123;</span><br><span class="line">           color: <span class="string">"red"</span>,</span><br><span class="line">           border: <span class="string">"1px #000 solid"</span>,</span><br><span class="line">       &#125;;</span><br><span class="line">       <span class="keyword">var</span> HelloWorld = React.createClass(&#123;</span><br><span class="line">           render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; </span><br><span class="line">               <span class="built_in">console</span>.log(<span class="string">"render 4"</span>);</span><br><span class="line">               <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello, &#123;this.props.name ? this.props.name : "World"&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span>;</span><br><span class="line">           &#125;,</span><br><span class="line">           componentWillUnmount: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">               <span class="built_in">console</span>.log(<span class="string">"BOOOOOOOOOOOOOOOOOM!"</span>);</span><br><span class="line">           &#125;,</span><br><span class="line">       &#125;);</span><br><span class="line">       <span class="keyword">var</span> HelloUniverse = React.createClass(&#123;</span><br><span class="line">           getInitialState: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               <span class="keyword">return</span> &#123;<span class="attr">name</span>: <span class="string">''</span>&#125;;</span><br><span class="line">           &#125;,</span><br><span class="line">           handleChange: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;                </span><br><span class="line">               <span class="keyword">if</span> (event.target.value == <span class="string">"123"</span>) &#123;</span><br><span class="line">                   React.unmountComponentAtNode(<span class="built_in">document</span>.getElementsByTagName(<span class="string">"body"</span>)[<span class="number">0</span>]);</span><br><span class="line">                   <span class="keyword">return</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">this</span>.setState(&#123;<span class="attr">name</span>: event.target.value&#125;);</span><br><span class="line">           &#125;,</span><br><span class="line">           render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">               <span class="tag">&lt;<span class="name">HelloWorld</span> <span class="attr">name</span>=<span class="string">&#123;this.state.name&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">HelloWorld</span>&gt;</span></span></span><br><span class="line"><span class="xml">               <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line">               &lt;input type="text" onChange=&#123;this.handleChange&#125; /&gt;</span><br><span class="line"><span class="xml">               <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">           &#125;,</span></span><br><span class="line"><span class="xml">       &#125;);</span></span><br><span class="line"><span class="xml">       React.render(<span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&#123;style&#125;</span>&gt;</span><span class="tag">&lt;<span class="name">HelloUniverse</span>&gt;</span><span class="tag">&lt;/<span class="name">HelloUniverse</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>, document.body);</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://upload-images.jianshu.io/upload_images/9381131-933eaa361958d637.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="img5"><br><img src="" alt="img6"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/9381131-933eaa361958d637.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="img5"><br><img src="http://upload-images.jianshu.io/upload_images/9381131-34ef8ff76fb87cb8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="img6"><br>当在输入框中输入123就会调用子组件中的销毁操作</p>
 
       
 
@@ -503,6 +504,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">classList</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">apply</a>
               </li>
              
@@ -515,23 +520,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">classList</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">NodeIterator</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">let</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">promise</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,6 +549,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">项目总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">let</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">promise</a>
               </li>
             
             <div class="clearfix"></div>
