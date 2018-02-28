@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Claire的小书房">
 <meta property="og:description" content="setes6提供了新的数据结构set，该结构有点类似于数组，但其值是不可重复的。下面来看一下常用的方法：1、add（） 添加一个元素2、delete（）删除一个元素3、has（） 判断是否包含某个元素4、clear（）清空所有的元素 12345678910111213let arr = [&apos;name:claire&apos;,&apos;age:18&apos;,&apos;age:18&apos;];let st  = new Set(arr)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-25T12:02:42.402Z">
+<meta property="og:updated_time" content="2018-02-28T13:37:36.646Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="set与map">
 <meta name="twitter:description" content="setes6提供了新的数据结构set，该结构有点类似于数组，但其值是不可重复的。下面来看一下常用的方法：1、add（） 添加一个元素2、delete（）删除一个元素3、has（） 判断是否包含某个元素4、clear（）清空所有的元素 12345678910111213let arr = [&apos;name:claire&apos;,&apos;age:18&apos;,&apos;age:18&apos;];let st  = new Set(arr)">
@@ -161,6 +161,7 @@
       
         <h5 id="set"><a href="#set" class="headerlink" title="set"></a>set</h5><p>es6提供了新的数据结构set，该结构有点类似于数组，但其值是不可重复的。<br>下面来看一下常用的方法：<br>1、add（） 添加一个元素<br>2、delete（）删除一个元素<br>3、has（） 判断是否包含某个元素<br>4、clear（）清空所有的元素</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'name:claire'</span>,<span class="string">'age:18'</span>,<span class="string">'age:18'</span>];</span><br><span class="line"><span class="keyword">let</span> st  = <span class="keyword">new</span> <span class="built_in">Set</span>(arr);</span><br><span class="line"><span class="comment">//age：18　重复，只保留一个age</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.from(st));<span class="comment">//name:claire age:18</span></span><br><span class="line"><span class="comment">//has方法</span></span><br><span class="line"><span class="built_in">console</span>.log(st.has(<span class="string">'name:claire'</span>));<span class="comment">//true</span></span><br><span class="line">　<span class="comment">//delete</span></span><br><span class="line">st.delete(<span class="string">"age:18"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(st);<span class="comment">//name:claire</span></span><br><span class="line">st.add(<span class="number">22</span>);</span><br><span class="line"><span class="built_in">console</span>.log(st)<span class="comment">//name:claire age:18 22</span></span><br><span class="line"><span class="comment">//clear()</span></span><br><span class="line">st.clear();<span class="comment">//st为空</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>除此之外，set还有一些常用的遍历方法</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//keys</span></span><br><span class="line"><span class="keyword">let</span> items = st.keys();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> items)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;<span class="comment">//name:claire age:18</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> values = st.values();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> values)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;<span class="comment">//name:claire age:18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//key和value的值一样所以结果显示两遍</span></span><br><span class="line"> <span class="keyword">let</span> entry = st.entries();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> entry)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;<span class="comment">// ['name:claire', 'name:claire' ] [ 'age:18', 'age:18' ]</span></span><br></pre></td></tr></table></figure>
 <p>小结：set的特点是不允许有重复的值，并且还有增删、判断是否存在、清空的方法。可通过keys、values和entries进行遍历</p>
@@ -499,15 +500,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">classList</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">NodeIterator</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,15 +508,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">promise</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">set&&map</a>
+                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -531,11 +516,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">classList</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">vuex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">vue生命周期</a>
+                <a href="javascript:void(0)" class="js-tag color4">set&&map</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,6 +541,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">项目总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">vue生命周期</a>
               </li>
             
             <div class="clearfix"></div>

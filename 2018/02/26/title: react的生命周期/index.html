@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-350ab568f8a58fa6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-933eaa361958d637.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-34ef8ff76fb87cb8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-02-27T05:13:47.776Z">
+<meta property="og:updated_time" content="2018-02-28T13:33:08.241Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react的生命周期">
 <meta name="twitter:description" content="生命周期的介绍react生命周期分为三个阶段：初始化阶段、运行阶段和销毁阶段。这三个阶段中分别运行不同的函数，下面我们来详细看一下包含的函数 初始化阶段 getDefaultProps：只调用一次，用于实例之间共享内存，注意该方法在React.createclass之后接着调用，也就是说调用该方法时实例尚未初始化。 getInitialState：初始化每个实例特有的状态 componentWil">
@@ -174,6 +174,7 @@
 <li>render: 只能访问this.props和this.state，只要一个顶层组件，且不允许修改状态和dom的输出 </li>
 <li>componentDidMount：render成功之后渲染真实的dom之后触发，此时可以修改真实的dom</li>
 </ul>
+<a id="more"></a>
 <h5 id="例子🌰"><a href="#例子🌰" class="headerlink" title="例子🌰"></a>例子🌰</h5><p>首先我们来看第一个例子，该例子能够查看上述函数的调用顺序</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> style = &#123;</span><br><span class="line">           color: <span class="string">"red"</span>,</span><br><span class="line">           border: <span class="string">"1px solid  black"</span></span><br><span class="line">       &#125;;</span><br><span class="line">       <span class="keyword">var</span> Hello = React.createClass(&#123;</span><br><span class="line">           getDefaultProps:<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               <span class="built_in">console</span>.log(<span class="string">'getDefaultProp'</span>)</span><br><span class="line">           &#125;,</span><br><span class="line">           getInitialState : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               <span class="built_in">console</span>.log(<span class="string">' getInitialState'</span>)</span><br><span class="line">               <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">               <span class="comment">//getInitialState函数必须返回null或者返回一个对象</span></span><br><span class="line">           &#125;,</span><br><span class="line">           componentWillMount: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               <span class="built_in">console</span>.log(<span class="string">'componentWillMount'</span>)</span><br><span class="line">           &#125;,</span><br><span class="line">           render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello world<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">           &#125;,</span><br><span class="line">           componentDidMount()&#123;</span><br><span class="line">               <span class="built_in">console</span>.log(<span class="string">'componentDidMount'</span>)</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;)</span><br><span class="line">       ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&#123;style&#125;</span>&gt;</span><span class="tag">&lt;<span class="name">Hello</span>/&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>, <span class="built_in">document</span>.body)</span><br></pre></td></tr></table></figure>
 <p>在控制台上我们可以看到输出结果<br><img src="http://upload-images.jianshu.io/upload_images/9381131-afa720ba26011f9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="img"></p>
@@ -516,15 +517,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">classList</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">NodeIterator</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,15 +525,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">promise</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">set&&map</a>
+                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,11 +533,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">classList</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">vuex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">vue生命周期</a>
+                <a href="javascript:void(0)" class="js-tag color4">set&&map</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,6 +558,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">项目总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">vue生命周期</a>
               </li>
             
             <div class="clearfix"></div>

@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Claire的小书房">
 <meta property="og:description" content="1、let声明：let命令在声明时，只在let所在的代码块中有效，看下面例子： 12345&amp;#123;  var a =100;   let b =200;&amp;#125;console.log(a);//100console.log(b);//undefined 2、不存在变量提升12345678var a =[];for (var i=0; i&amp;lt;10;i++)&amp;#123;  var c =i">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-11T13:03:20.496Z">
+<meta property="og:updated_time" content="2018-02-28T13:36:54.654Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="let命令">
 <meta name="twitter:description" content="1、let声明：let命令在声明时，只在let所在的代码块中有效，看下面例子： 12345&amp;#123;  var a =100;   let b =200;&amp;#125;console.log(a);//100console.log(b);//undefined 2、不存在变量提升12345678var a =[];for (var i=0; i&amp;lt;10;i++)&amp;#123;  var c =i">
@@ -162,6 +162,7 @@
         <h5 id="1、let声明："><a href="#1、let声明：" class="headerlink" title="1、let声明："></a>1、let声明：</h5><p>let命令在声明时，只在let所在的代码块中有效，看下面例子：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;  <span class="keyword">var</span> a =<span class="number">100</span>;</span><br><span class="line">   <span class="keyword">let</span> b =<span class="number">200</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//100</span></span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
 <h5 id="2、不存在变量提升"><a href="#2、不存在变量提升" class="headerlink" title="2、不存在变量提升"></a>2、不存在变量提升</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a =[];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">  <span class="keyword">var</span> c =i;</span><br><span class="line">  a[i]=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(c);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">a[<span class="number">5</span>]();<span class="comment">//输出结果为9</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>这是因为i在for循环内部进行递增，当for循环体的外部调用i时，i必须递增完成后才能调用。所以输出9</p>
  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//运用let</span></span><br><span class="line"><span class="keyword">var</span> a=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i =<span class="number">0</span>; i&lt;<span class="number">10</span>; i++)&#123;</span><br><span class="line">  <span class="keyword">let</span> c =i;</span><br><span class="line">  a[i]=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">a[<span class="number">5</span>]();<span class="comment">//输出结果为5</span></span><br></pre></td></tr></table></figure>
 <p> 从上面的例子可以看出let有点类似于java中的局部变量。</p>
@@ -501,15 +502,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">classList</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">NodeIterator</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,15 +510,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">promise</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">set&&map</a>
+                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,11 +518,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">classList</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">vuex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">vue生命周期</a>
+                <a href="javascript:void(0)" class="js-tag color4">set&&map</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,6 +543,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">项目总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">vue生命周期</a>
               </li>
             
             <div class="clearfix"></div>

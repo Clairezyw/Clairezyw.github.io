@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Claire的小书房">
 <meta property="og:description" content="symbol在es6中symbol是被引入的一种新的原始数据类型，表示独一无二的值，在下面的例子中symbol只是对当前symbol值的描述，即使symbol的参数相同，symbol 的值也不相同。 123let name =Symbol(&apos;name&apos;);let name1 =Symbol(&apos;name&apos;);console.log(name==name1);//false symbol常用来模拟私有">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-14T10:55:39.946Z">
+<meta property="og:updated_time" content="2018-02-28T13:37:51.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="symbol">
 <meta name="twitter:description" content="symbol在es6中symbol是被引入的一种新的原始数据类型，表示独一无二的值，在下面的例子中symbol只是对当前symbol值的描述，即使symbol的参数相同，symbol 的值也不相同。 123let name =Symbol(&apos;name&apos;);let name1 =Symbol(&apos;name&apos;);console.log(name==name1);//false symbol常用来模拟私有">
@@ -163,6 +163,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name =<span class="built_in">Symbol</span>(<span class="string">'name'</span>);</span><br><span class="line"><span class="keyword">let</span> name1 =<span class="built_in">Symbol</span>(<span class="string">'name'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(name==name1);<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
 <p>symbol常用来模拟私有属性，看下面的例子</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> getName = <span class="built_in">Symbol</span>(<span class="string">'getName'</span>);</span><br><span class="line"> <span class="built_in">module</span>.exports=<span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">     [getName]()&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="string">'stalary'</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       print()&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="keyword">this</span>[getName]);&#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>在另一个页面中我们调用一下user的方法</p>
  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">const</span> User =<span class="built_in">require</span>(<span class="string">'./User'</span>);<span class="comment">//引入User类</span></span><br><span class="line"><span class="keyword">let</span> getName = <span class="built_in">Symbol</span>(<span class="string">'getName'</span>);</span><br><span class="line"><span class="keyword">let</span> user =<span class="keyword">new</span> User();</span><br><span class="line">user.print();<span class="comment">//调用print方法，输出stalary</span></span><br><span class="line">user[getName]();<span class="comment">//调用user的getame方法输出is not a function</span></span><br></pre></td></tr></table></figure>
 <p> 上述例题说明symbol定义的属性类似于私有属性，不能被其他类调用，此外需要注意的是使用symbol定义的方法时不可以使用点连接只能使用中括号。</p>
@@ -504,15 +505,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">classList</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">NodeIterator</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -520,15 +513,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">promise</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">set&&map</a>
+                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,11 +521,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">classList</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">vuex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">vue生命周期</a>
+                <a href="javascript:void(0)" class="js-tag color4">set&&map</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,6 +546,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">项目总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">vue生命周期</a>
               </li>
             
             <div class="clearfix"></div>

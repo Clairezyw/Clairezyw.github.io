@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Claire的小书房">
 <meta property="og:description" content="事件委托所谓事件委托就是利用事件冒泡，指定事件的某一处理程序就可以管理某一类型的所有事件有一个经典的例子来解释事件委托原理：有三个同事预计在同一天会收到快递，有两种取快递的办法，一种是三个同事同时下楼在门口等快递，另一种是委托给前台人员，帮忙代领快递，自己来取的时候只需要报自己的姓名既可，即使公司来了新同事，前台人员也会对快递进行核实然后帮其代领。这段例子中包含两层含义：第一：委托给前台人员的快递">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-08T03:37:23.150Z">
+<meta property="og:updated_time" content="2018-02-28T13:34:10.503Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="事件委托或事件代理">
 <meta name="twitter:description" content="事件委托所谓事件委托就是利用事件冒泡，指定事件的某一处理程序就可以管理某一类型的所有事件有一个经典的例子来解释事件委托原理：有三个同事预计在同一天会收到快递，有两种取快递的办法，一种是三个同事同时下楼在门口等快递，另一种是委托给前台人员，帮忙代领快递，自己来取的时候只需要报自己的姓名既可，即使公司来了新同事，前台人员也会对快递进行核实然后帮其代领。这段例子中包含两层含义：第一：委托给前台人员的快递">
@@ -160,6 +160,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h5 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h5><p>所谓事件委托就是利用事件冒泡，指定事件的某一处理程序就可以管理某一类型的所有事件<br>有一个经典的例子来解释事件委托原理：<br>有三个同事预计在同一天会收到快递，有两种取快递的办法，一种是三个同事同时下楼在门口等快递，另一种是委托给前台人员，帮忙代领快递，自己来取的时候只需要报自己的姓名既可，即使公司来了新同事，前台人员也会对快递进行核实然后帮其代领。<br>这段例子中包含两层含义：<br>第一：委托给前台人员的快递是可以代收的，即dom节点是有事件的<br>第二：新同事的快递也可以被前台人员代收，即新添加的dom节点也是有事件的</p>
+<a id="more"></a>
 <h5 id="使用事件委托的目的"><a href="#使用事件委托的目的" class="headerlink" title="使用事件委托的目的"></a>使用事件委托的目的</h5><p>如果我们有100个li，每个li都有点击事件，用for循环给每个li添加事件会影响页面的整个性能，这是因为需要不断的dom节点进行交互，当节点的访问次数增加时，引起浏览器的重绘和重排的次数增加，就会延长浏览器的就绪和交互时间</p>
 <h5 id="事件委托的原理"><a href="#事件委托的原理" class="headerlink" title="事件委托的原理"></a>事件委托的原理</h5><p>事件委托是由事件冒泡实现的，就是从底层节点开始，逐级向上传播。例如在一个无序列表ul中嵌套多个li，并且每个li都有个超链接，点击li，事件的执行顺序为a&gt;li&gt;ul，事件都会冒泡到最外层ul，给最外层设置事件，即委托给父级代其执行事件</p>
 <h5 id="事件委托的实现"><a href="#事件委托的实现" class="headerlink" title="事件委托的实现"></a>事件委托的实现</h5><p>下面我们来看一个简单的例子</p>
@@ -504,15 +505,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">classList</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">NodeIterator</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -520,15 +513,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">promise</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">set&&map</a>
+                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,11 +521,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">classList</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">vuex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">vue生命周期</a>
+                <a href="javascript:void(0)" class="js-tag color4">set&&map</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,6 +546,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">项目总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">vue生命周期</a>
               </li>
             
             <div class="clearfix"></div>
