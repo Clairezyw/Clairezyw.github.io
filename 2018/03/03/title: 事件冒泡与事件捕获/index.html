@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Claire的小书房">
 <meta property="og:description" content="事件冒泡与事件捕获的原理事件阶段一共可分为三个过程，捕获阶段、目标阶段和冒泡阶段。捕获阶段通俗来讲就是从根节点流向到子节点的过程；当到达目标阶段时，事件在目标阶段上被触发然后进入冒泡阶段，冒泡节点也就是子节点向上冒泡到根节点的过程。 例题">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-03T16:05:37.319Z">
+<meta property="og:updated_time" content="2018-03-03T16:11:36.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="事件冒泡与事件捕获">
 <meta name="twitter:description" content="事件冒泡与事件捕获的原理事件阶段一共可分为三个过程，捕获阶段、目标阶段和冒泡阶段。捕获阶段通俗来讲就是从根节点流向到子节点的过程；当到达目标阶段时，事件在目标阶段上被触发然后进入冒泡阶段，冒泡节点也就是子节点向上冒泡到根节点的过程。 例题">
@@ -169,7 +169,7 @@
 <li>并且打印的顺序不受js代码顺序的影响</li>
 <li>此时进行事件冒泡</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> genCssSelector = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="comment">/*window.onclick = function()&#123;</span></span><br><span class="line"><span class="comment">                console.log("window"); // 顶级</span></span><br><span class="line"><span class="comment">            &#125;;</span></span><br><span class="line"><span class="comment">            document.onclick = function()&#123;</span></span><br><span class="line"><span class="comment">               console.log("document"); // 次顶级</span></span><br><span class="line"><span class="comment">            &#125;;*/</span></span><br><span class="line">            <span class="built_in">document</span>.documentElement.addEventListener(<span class="string">'click'</span>,() =&gt; &#123;<span class="built_in">console</span>.log(<span class="string">'html'</span>)&#125;, <span class="literal">true</span>)</span><br><span class="line">            <span class="built_in">document</span>.body.addEventListener(<span class="string">'click'</span>, ()=&gt;&#123;<span class="built_in">console</span>.log(<span class="string">'body'</span>)&#125;, <span class="literal">true</span>)</span><br><span class="line">            <span class="built_in">document</span>.getElementById(<span class="string">"page"</span>).addEventListener(<span class="string">'click'</span>,()=&gt;&#123;<span class="built_in">console</span>.log(<span class="string">'#page'</span>)&#125;, <span class="literal">true</span>)</span><br><span class="line">            <span class="built_in">document</span>.getElementsByClassName(<span class="string">"content"</span>)[<span class="number">0</span>].addEventListener(<span class="string">'click'</span>,()=&gt;&#123;<span class="built_in">console</span>.log(<span class="string">'.content.main'</span>)&#125;,<span class="literal">true</span>)</span><br><span class="line">            <span class="built_in">document</span>.getElementsByClassName(<span class="string">'refer'</span>)[<span class="number">0</span>].addEventListener(<span class="string">'click'</span>,()=&gt;&#123;<span class="built_in">console</span>.log(<span class="string">'.refer'</span>)&#125;, <span class="literal">true</span>)</span><br><span class="line">            <span class="built_in">document</span>.getElementsByTagName(<span class="string">'ul'</span>)[<span class="number">0</span>].addEventListener(<span class="string">'click'</span>,()=&gt;&#123;<span class="built_in">console</span>.log(<span class="string">'ul'</span>)&#125;,<span class="literal">true</span>)</span><br><span class="line">            <span class="keyword">var</span> list =  <span class="built_in">document</span>.getElementsByTagName(<span class="string">'li'</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;list.length; i++)&#123;</span><br><span class="line">                list[i].addEventListener(<span class="string">'click'</span>,()=&gt;&#123;<span class="built_in">console</span>.log(<span class="string">'li'</span>)&#125;, <span class="literal">true</span>)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">genCssSelector();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> genCssSelector = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="comment">/*window.onclick = function()&#123;</span></span><br><span class="line"><span class="comment">                console.log("window"); // 顶级</span></span><br><span class="line"><span class="comment">            &#125;;</span></span><br><span class="line"><span class="comment">            document.onclick = function()&#123;</span></span><br><span class="line"><span class="comment">               console.log("document"); // 次顶级</span></span><br><span class="line"><span class="comment">            &#125;;*/</span></span><br><span class="line">            <span class="built_in">document</span>.documentElement.addEventListener(<span class="string">'click'</span>,</span><br><span class="line">            () =&gt; &#123;<span class="built_in">console</span>.log(<span class="string">'html'</span>)&#125;, <span class="literal">true</span>)</span><br><span class="line">            <span class="built_in">document</span>.body.addEventListener(<span class="string">'click'</span>, </span><br><span class="line">            ()=&gt;&#123;<span class="built_in">console</span>.log(<span class="string">'body'</span>)&#125;, <span class="literal">true</span>)</span><br><span class="line">            <span class="built_in">document</span>.getElementById(<span class="string">"page"</span>).addEventListener(<span class="string">'click'</span>,</span><br><span class="line">            ()=&gt;&#123;<span class="built_in">console</span>.log(<span class="string">'#page'</span>)&#125;, <span class="literal">true</span>)</span><br><span class="line">            <span class="built_in">document</span>.getElementsByClassName(<span class="string">"content"</span>)[<span class="number">0</span>].addEventListener(<span class="string">'click'</span>,</span><br><span class="line">            ()=&gt;&#123;<span class="built_in">console</span>.log(<span class="string">'.content.main'</span>)&#125;,<span class="literal">true</span>)</span><br><span class="line">            <span class="built_in">document</span>.getElementsByClassName(<span class="string">'refer'</span>)[<span class="number">0</span>].addEventListener(<span class="string">'click'</span>,</span><br><span class="line">            ()=&gt;&#123;<span class="built_in">console</span>.log(<span class="string">'.refer'</span>)&#125;, <span class="literal">true</span>)</span><br><span class="line">            <span class="built_in">document</span>.getElementsByTagName(<span class="string">'ul'</span>)[<span class="number">0</span>].addEventListener(<span class="string">'click'</span>,</span><br><span class="line">            ()=&gt;&#123;<span class="built_in">console</span>.log(<span class="string">'ul'</span>)&#125;,<span class="literal">true</span>)</span><br><span class="line">            <span class="keyword">var</span> list =  <span class="built_in">document</span>.getElementsByTagName(<span class="string">'li'</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;list.length; i++)&#123;</span><br><span class="line">                list[i].addEventListener(<span class="string">'click'</span>,</span><br><span class="line">                ()=&gt;&#123;<span class="built_in">console</span>.log(<span class="string">'li'</span>)&#125;, <span class="literal">true</span>)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">genCssSelector();</span><br></pre></td></tr></table></figure>
 <ul>
 <li>Chrome浏览器支持事件冒泡，在进行事件捕捉时需要将addEventListener的第三个参数设置为true</li>
 <li>执行的顺序不受js代码顺序的影响</li>
@@ -479,6 +479,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">classList</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">NodeIterator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">网络基础</a>
               </li>
              
@@ -495,23 +503,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">classList</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">NodeIterator</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">闭包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">let</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -519,7 +511,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">set&&map</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -527,11 +519,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">vuex</a>
+                <a href="javascript:void(0)" class="js-tag color4">set&&map</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">vue生命周期</a>
+                <a href="javascript:void(0)" class="js-tag color5">vuex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,7 +535,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">vue生命周期</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">项目总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">let</a>
               </li>
             
             <div class="clearfix"></div>
