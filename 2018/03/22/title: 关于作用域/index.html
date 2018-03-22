@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>关于作用域 | Claire的小书房</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="理解作用域 1、作用域其实就是一套规则，用于确定何处以及如何查找变量，如果要对变量赋值，就会执行LHS查找。如果是查找变量的值就会执行RHS查找。（RHS是指变量在右侧，LHS是指变量在左侧）。2、LHS和RHS查找都会在当前作用域内进行查找，如果当前作用域没有目标变量他们就会向上级作用域内进行查找，最后抵达全局作用域">
+  <meta name="description" content="理解作用域1、作用域其实就是一套规则，用于确定何处以及如何查找变量，如果要对变量赋值，就会执行LHS查找。如果是查找变量的值就会执行RHS查找。（RHS是指变量在右侧，LHS是指变量在左侧）。2、LHS和RHS查找都会在当前作用域内进行查找，如果当前作用域没有目标变量他们就会向上级作用域内进行查找，最后抵达全局作用域，">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于作用域">
 <meta property="og:url" content="http://yoursite.com/2018/03/22/title: 关于作用域/index.html">
 <meta property="og:site_name" content="Claire的小书房">
-<meta property="og:description" content="理解作用域 1、作用域其实就是一套规则，用于确定何处以及如何查找变量，如果要对变量赋值，就会执行LHS查找。如果是查找变量的值就会执行RHS查找。（RHS是指变量在右侧，LHS是指变量在左侧）。2、LHS和RHS查找都会在当前作用域内进行查找，如果当前作用域没有目标变量他们就会向上级作用域内进行查找，最后抵达全局作用域，无论有没有找到都会停止。3、如果RHS查找一个未声明的变量就会抛出一个Refe">
+<meta property="og:description" content="理解作用域1、作用域其实就是一套规则，用于确定何处以及如何查找变量，如果要对变量赋值，就会执行LHS查找。如果是查找变量的值就会执行RHS查找。（RHS是指变量在右侧，LHS是指变量在左侧）。2、LHS和RHS查找都会在当前作用域内进行查找，如果当前作用域没有目标变量他们就会向上级作用域内进行查找，最后抵达全局作用域，无论有没有找到都会停止。3、如果RHS查找一个未声明的变量就会抛出一个Refer">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-22T14:04:58.122Z">
+<meta property="og:updated_time" content="2018-03-22T14:16:48.661Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于作用域">
-<meta name="twitter:description" content="理解作用域 1、作用域其实就是一套规则，用于确定何处以及如何查找变量，如果要对变量赋值，就会执行LHS查找。如果是查找变量的值就会执行RHS查找。（RHS是指变量在右侧，LHS是指变量在左侧）。2、LHS和RHS查找都会在当前作用域内进行查找，如果当前作用域没有目标变量他们就会向上级作用域内进行查找，最后抵达全局作用域，无论有没有找到都会停止。3、如果RHS查找一个未声明的变量就会抛出一个Refe">
+<meta name="twitter:description" content="理解作用域1、作用域其实就是一套规则，用于确定何处以及如何查找变量，如果要对变量赋值，就会执行LHS查找。如果是查找变量的值就会执行RHS查找。（RHS是指变量在右侧，LHS是指变量在左侧）。2、LHS和RHS查找都会在当前作用域内进行查找，如果当前作用域没有目标变量他们就会向上级作用域内进行查找，最后抵达全局作用域，无论有没有找到都会停止。3、如果RHS查找一个未声明的变量就会抛出一个Refer">
   
     <link rel="alternative" href="/atom.xml" title="Claire的小书房" type="application/atom+xml">
   
@@ -159,40 +159,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="理解作用域"><a href="#理解作用域" class="headerlink" title="理解作用域"></a>理解作用域</h3><blockquote>
-<p>1、作用域其实就是一套规则，用于确定何处以及如何查找变量，如果要对变量赋值，就会执行LHS查找。如果是查找变量的值就会执行RHS查找。（RHS是指变量在右侧，LHS是指变量在左侧）。<br>2、LHS和RHS查找都会在当前作用域内进行查找，如果当前作用域没有目标变量他们就会向上级作用域内进行查找，最后抵达全局作用域，无论有没有找到都会停止。<br>3、如果RHS查找一个未声明的变量就会抛出一个ReferenceError的异常，但是在非严格模式下LHS查询则会创建一个全局变量，严格模式下也会抛出一个ReferenError的异常</p>
+        <h3 id="理解作用域"><a href="#理解作用域" class="headerlink" title="理解作用域"></a>理解作用域</h3><p>1、作用域其实就是一套规则，用于确定何处以及如何查找变量，如果要对变量赋值，就会执行LHS查找。如果是查找变量的值就会执行RHS查找。（RHS是指变量在右侧，LHS是指变量在左侧）。<br>2、LHS和RHS查找都会在当前作用域内进行查找，如果当前作用域没有目标变量他们就会向上级作用域内进行查找，最后抵达全局作用域，无论有没有找到都会停止。<br>3、如果RHS查找一个未声明的变量就会抛出一个ReferenceError的异常，但是在非严格模式下LHS查询则会创建一个全局变量，严格模式下也会抛出一个ReferenError的异常</p>
 <a id="more"></a>
-</blockquote>
-<h3 id="词法的作用域"><a href="#词法的作用域" class="headerlink" title="词法的作用域"></a>词法的作用域</h3><blockquote>
-<p>词法的作用域由所写函数的声明的位置决定的，eval（）和with{}可以欺骗词法作用域，当js引擎遇到这两个机制时，无法确定具体执行的代码块就会导致页面的性能下降，因此不推荐使用这两种机制</p>
-</blockquote>
-<h3 id="函数的作用域和块作用域"><a href="#函数的作用域和块作用域" class="headerlink" title="函数的作用域和块作用域"></a>函数的作用域和块作用域</h3><blockquote>
-<p>函数的作用域就是指属于函数的变量都可以在整个函数的范围内使用。<br>JavaScript本身没有块级作用域的功能，但是trycatch中的catch、es6中的let、const和with中存在块级作用域</p>
-</blockquote>
+<h3 id="词法的作用域"><a href="#词法的作用域" class="headerlink" title="词法的作用域"></a>词法的作用域</h3><p>词法的作用域由所写函数的声明的位置决定的，eval（）和with{}可以欺骗词法作用域，当js引擎遇到这两个机制时，无法确定具体执行的代码块就会导致页面的性能下降，因此不推荐使用这两种机制</p>
+<h3 id="函数的作用域和块作用域"><a href="#函数的作用域和块作用域" class="headerlink" title="函数的作用域和块作用域"></a>函数的作用域和块作用域</h3><p>函数的作用域就是指属于函数的变量都可以在整个函数的范围内使用。<br>JavaScript本身没有块级作用域的功能，但是trycatch中的catch、es6中的let、const和with中存在块级作用域</p>
 <h3 id="函数和变量的提升"><a href="#函数和变量的提升" class="headerlink" title="函数和变量的提升"></a>函数和变量的提升</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-<blockquote>
 <p>上述两段代码的结果分别是2和undefined。乍一看感觉非常奇怪，这其实是由于编译器在执行过程中会将声明和赋值分成两个部分，先声明再赋值。对于第一段代码编译器其实是这样处理的</p>
-</blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;<span class="comment">//由于编译器会先声明变量因此声明提前</span></span><br><span class="line">a = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure>
-<blockquote>
 <p>第二段代码是这样的</p>
-</blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//undefined</span></span><br><span class="line">a=<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-<blockquote>
 <p>此外函数声明可以提升，函数表达式不可以提升</p>
-</blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">foo();<span class="comment">//2</span></span><br><span class="line">fn();<span class="comment">//typeError</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span></span>&#123;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="循环和闭包"><a href="#循环和闭包" class="headerlink" title="循环和闭包"></a>循环和闭包</h3><blockquote>
-<p>首先看一个非常非常重要但是很容易出错的问题</p>
-</blockquote>
+<h3 id="循环和闭包"><a href="#循环和闭包" class="headerlink" title="循环和闭包"></a>循环和闭包</h3><p>首先看一个非常非常重要但是很容易出错的问题</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;=<span class="number">3</span>; i++)&#123;</span><br><span class="line"> setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);<span class="comment">//4444</span></span><br><span class="line"> &#125;,<span class="number">0</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
 <p>这段代码并不会输出0、1、2、3而是会输出4、4、4、4。这是因为setTimeout会在循环执行完成之后再执行。<br>使用闭包来解决这个问题</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;=<span class="number">3</span>; i++)&#123;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(i);<span class="comment">//4444</span></span><br><span class="line">  &#125;,<span class="number">0</span>)</span><br><span class="line">&#125;)()&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>结果依旧是四个四，这是由于立即执行函数的作用域为空，所以没起作用，再来改进一下</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;=<span class="number">3</span>; i++)&#123;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">j</span>)</span>&#123;</span><br><span class="line"> setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(j);<span class="comment">//0123</span></span><br><span class="line">  &#125;,<span class="number">0</span>)</span><br><span class="line">&#125;)(j)&#125;</span><br></pre></td></tr></table></figure>
+<p>结果依旧是四个四，这是由于立即执行函数的作用域为空，所以没起作用，再来改进一下。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;=<span class="number">3</span>; i++)&#123;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">j</span>)</span>&#123;</span><br><span class="line"> setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(j);<span class="comment">//0123</span></span><br><span class="line">  &#125;,<span class="number">0</span>)</span><br><span class="line">&#125;)(i)&#125;</span><br></pre></td></tr></table></figure>
+<p>此外用let可以很好的解决该问题</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt;=<span class="number">5</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(i);</span><br><span class="line">        &#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -554,6 +540,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">vuex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">vue生命周期</a>
               </li>
              
@@ -563,10 +553,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">事件委托</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">vuex</a>
               </li>
              
               <li class="article-tag-list-item">
