@@ -6,22 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>网易云音乐app仿写爬坑总结 | Claire的小书房</title>
+  <title>关于作用域 | Claire的小书房</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="项目总结前几日大概准备的十天的期末考试，前端的学习进程有些耽误了。近几日做了一个小项目，加深了一下对vue的理解，但也爬了不少坑😂，写完之后，及时总结一下遇到的诸多小问题… 1、在项目搭建过程，使用npm install命令下载过慢解决办法：使用淘宝镜像，附上淘宝镜像的网址，http://npm.taobao.org">
-<meta name="keywords" content="项目总结">
+  <meta name="description" content="理解作用域 1、作用域其实就是一套规则，用于确定何处以及如何查找变量，如果要对变量赋值，就会执行LHS查找。如果是查找变量的值就会执行RHS查找。（RHS是指变量在右侧，LHS是指变量在左侧）。2、LHS和RHS查找都会在当前作用域内进行查找，如果当前作用域没有目标变量他们就会向上级作用域内进行查找，最后抵达全局作用域">
+<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网易云音乐app仿写爬坑总结">
-<meta property="og:url" content="http://yoursite.com/2018/02/06/title: 网易云音乐app仿写爬坑总结/index.html">
+<meta property="og:title" content="关于作用域">
+<meta property="og:url" content="http://yoursite.com/2018/03/22/title: 关于作用域/index.html">
 <meta property="og:site_name" content="Claire的小书房">
-<meta property="og:description" content="项目总结前几日大概准备的十天的期末考试，前端的学习进程有些耽误了。近几日做了一个小项目，加深了一下对vue的理解，但也爬了不少坑😂，写完之后，及时总结一下遇到的诸多小问题… 1、在项目搭建过程，使用npm install命令下载过慢解决办法：使用淘宝镜像，附上淘宝镜像的网址，http://npm.taobao.org/ 在使用npm命令的淘宝镜像时就可以在终端输入 1npm config set">
+<meta property="og:description" content="理解作用域 1、作用域其实就是一套规则，用于确定何处以及如何查找变量，如果要对变量赋值，就会执行LHS查找。如果是查找变量的值就会执行RHS查找。（RHS是指变量在右侧，LHS是指变量在左侧）。2、LHS和RHS查找都会在当前作用域内进行查找，如果当前作用域没有目标变量他们就会向上级作用域内进行查找，最后抵达全局作用域，无论有没有找到都会停止。3、如果RHS查找一个未声明的变量就会抛出一个Refe">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-140ac5af0f184266.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-02-28T13:33:56.419Z">
+<meta property="og:updated_time" content="2018-03-22T14:04:58.122Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网易云音乐app仿写爬坑总结">
-<meta name="twitter:description" content="项目总结前几日大概准备的十天的期末考试，前端的学习进程有些耽误了。近几日做了一个小项目，加深了一下对vue的理解，但也爬了不少坑😂，写完之后，及时总结一下遇到的诸多小问题… 1、在项目搭建过程，使用npm install命令下载过慢解决办法：使用淘宝镜像，附上淘宝镜像的网址，http://npm.taobao.org/ 在使用npm命令的淘宝镜像时就可以在终端输入 1npm config set">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/9381131-140ac5af0f184266.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="关于作用域">
+<meta name="twitter:description" content="理解作用域 1、作用域其实就是一套规则，用于确定何处以及如何查找变量，如果要对变量赋值，就会执行LHS查找。如果是查找变量的值就会执行RHS查找。（RHS是指变量在右侧，LHS是指变量在左侧）。2、LHS和RHS查找都会在当前作用域内进行查找，如果当前作用域没有目标变量他们就会向上级作用域内进行查找，最后抵达全局作用域，无论有没有找到都会停止。3、如果RHS查找一个未声明的变量就会抛出一个Refe">
   
     <link rel="alternative" href="/atom.xml" title="Claire的小书房" type="application/atom+xml">
   
@@ -141,54 +139,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-title: 网易云音乐app仿写爬坑总结" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-title: 关于作用域" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      网易云音乐app仿写爬坑总结
+      关于作用域
     </h1>
   
 
         
-        <a href="/2018/02/06/title: 网易云音乐app仿写爬坑总结/" class="archive-article-date">
-  	<time datetime="2018-02-06T12:40:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-06</time>
+        <a href="/2018/03/22/title: 关于作用域/" class="archive-article-date">
+  	<time datetime="2018-03-22T12:31:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="项目总结"><a href="#项目总结" class="headerlink" title="项目总结"></a>项目总结</h3><p>前几日大概准备的十天的期末考试，前端的学习进程有些耽误了。近几日做了一个小项目，加深了一下对vue的理解，但也爬了不少坑😂，写完之后，及时总结一下遇到的诸多小问题…</p>
-<h5 id="1、在项目搭建过程，使用npm-install命令下载过慢"><a href="#1、在项目搭建过程，使用npm-install命令下载过慢" class="headerlink" title="1、在项目搭建过程，使用npm install命令下载过慢"></a>1、在项目搭建过程，使用npm install命令下载过慢</h5><p>解决办法：使用淘宝镜像，附上淘宝镜像的网址，<a href="http://npm.taobao.org/" target="_blank" rel="noopener">http://npm.taobao.org/</a> 在使用npm命令的淘宝镜像时就可以在终端输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-<p>运行之后可以检查一下是否成功获取淘宝镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config get registry</span><br></pre></td></tr></table></figure>
+        <h3 id="理解作用域"><a href="#理解作用域" class="headerlink" title="理解作用域"></a>理解作用域</h3><blockquote>
+<p>1、作用域其实就是一套规则，用于确定何处以及如何查找变量，如果要对变量赋值，就会执行LHS查找。如果是查找变量的值就会执行RHS查找。（RHS是指变量在右侧，LHS是指变量在左侧）。<br>2、LHS和RHS查找都会在当前作用域内进行查找，如果当前作用域没有目标变量他们就会向上级作用域内进行查找，最后抵达全局作用域，无论有没有找到都会停止。<br>3、如果RHS查找一个未声明的变量就会抛出一个ReferenceError的异常，但是在非严格模式下LHS查询则会创建一个全局变量，严格模式下也会抛出一个ReferenError的异常</p>
 <a id="more"></a>
-<h5 id="2、歌单传递参数问题"><a href="#2、歌单传递参数问题" class="headerlink" title="2、歌单传递参数问题"></a>2、歌单传递参数问题</h5><p>最开始使用的是router-link传递参数以及页面跳转</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--传递参数--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">"&#123;name:xxx params:&#123;id:1&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//另一个页面接收参数</span></span><br><span class="line">data()&#123;</span><br><span class="line">  <span class="keyword">return</span>&#123;</span><br><span class="line">id:<span class="keyword">this</span>.$route.params.id;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但这种用法会出现一个问题，当用户刷新页面时，传递的数据会消失，这是因为只有当点击router-link内容时才会传递参数。<br>解决办法：使用localStorage暂存数据</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line"><span class="comment">//localStorage.setItem(name, value)以键值对的形式存储</span></span><br><span class="line">localStorage.setItem(id,<span class="keyword">this</span>.id)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//另一个页面接收参数</span></span><br><span class="line">data()&#123;</span><br><span class="line">  <span class="keyword">return</span>&#123;</span><br><span class="line">   id:localStorage.getItem(id)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="3、audio重写"><a href="#3、audio重写" class="headerlink" title="3、audio重写"></a>3、audio重写</h5><p>再获取到歌单之后，运用类似的方法获取到歌曲，终于到了播放的环节，但是如果使用audio的自带的样式的话整个程序就没法看了，我们可以去掉controls属性，自己定义一个audio的样式。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">:src</span>=<span class="string">"this.songurl"</span> @<span class="attr">ended</span>=<span class="string">"next"</span> @<span class="attr">canplay</span>=<span class="string">"filter"</span> <span class="attr">autoplay</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--ended和canplay是audio自带的属性，表示音频结束时和音频开始时执行的相关动作。autoplay表示歌曲载入后自动播放--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"player"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--后一首歌--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"iconfont icon-prev"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--播放--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-show</span>=<span class="string">“isShow”</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"iconfont icon-play"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--暂停--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-show</span>=<span class="string">“！isShow”</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"iconfont icon-pause"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--下一首歌--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"iconfont icon-next"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">这里定义了四个标签，图标使用的阿里矢量图标库，通过v-show来控制暂停和播放图标的显示</span><br></pre></td></tr></table></figure>
-<p>附上audio的属性和事件：<br>属性：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/audio。" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/audio。</a><br>事件：<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/Events/Media_events#Error_handling" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/Guide/Events/Media_events#Error_handling</a>  </p>
-<h5 id="4、专辑背景模糊化处理"><a href="#4、专辑背景模糊化处理" class="headerlink" title="4、专辑背景模糊化处理"></a>4、专辑背景模糊化处理</h5><p>要把获取到的歌曲图片设为背景，同时进行模糊化处理，这就需要先把图片放在div标签里然后然后设置背景样式</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"bg-blur"</span> <span class="attr">:style</span>=<span class="string">"`background-image:url($&#123;albumUrl&#125;)`"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.bg-blur</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(-50%, -50%);</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">background-position</span>: center;</span><br><span class="line">  <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">  <span class="attribute">background-size</span>: cover;</span><br><span class="line">  <span class="attribute">filter</span>: <span class="built_in">blur</span>(20px);</span><br><span class="line">  <span class="attribute">z-index</span>: -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="5、歌词格式化以及时间格式化"><a href="#5、歌词格式化以及时间格式化" class="headerlink" title="5、歌词格式化以及时间格式化"></a>5、歌词格式化以及时间格式化</h5><p>获取到的歌词是未处理过的，将其处理成json格式并放入数组，方便歌词滚动时调用</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">formatLrc() &#123;</span><br><span class="line">      <span class="keyword">var</span> lyrics = <span class="keyword">this</span>.lyric.split(<span class="string">"\n"</span>);</span><br><span class="line">      <span class="keyword">var</span> lrcObj = [];</span><br><span class="line">      <span class="keyword">var</span> timeReg = <span class="regexp">/\[\d*:\d*((\.|\:)\d*)*\]/g</span>;</span><br><span class="line">      <span class="comment">// 思路：把歌词进行处理以时间和歌词组成一个对象，放入afterLrc数组中</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; lyrics.length; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> timeRegExpArr = lyrics[i].match(timeReg);</span><br><span class="line">        <span class="keyword">if</span> (!timeRegExpArr) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">var</span> txt = lyrics[i].replace(timeReg, <span class="string">""</span>);</span><br><span class="line">        <span class="comment">// 处理时间</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>; k &lt; timeRegExpArr.length; k++) &#123;</span><br><span class="line">          <span class="keyword">var</span> array = &#123;&#125;;</span><br><span class="line">          <span class="keyword">var</span> t = timeRegExpArr[k];</span><br><span class="line">          <span class="keyword">var</span> min = <span class="built_in">Number</span>(<span class="built_in">String</span>(t.match(<span class="regexp">/\[\d*/i</span>)).slice(<span class="number">1</span>));</span><br><span class="line">          <span class="keyword">var</span> sec = <span class="built_in">Number</span>(<span class="built_in">String</span>(t.match(<span class="regexp">/\:\d*/i</span>)).slice(<span class="number">1</span>));</span><br><span class="line">          <span class="keyword">var</span> time = min * <span class="number">60</span> + sec;</span><br><span class="line">          array.time = time;</span><br><span class="line">          array.txt = txt;</span><br><span class="line">          lrcObj.push(array);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">this</span>.lyric = lrcObj;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
-<p>时间格式化：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">formatTime(value) &#123;</span><br><span class="line">    <span class="keyword">var</span> length = <span class="built_in">Math</span>.floor(<span class="built_in">parseInt</span>(value));</span><br><span class="line">    <span class="keyword">var</span> minute = <span class="built_in">Math</span>.floor(value / <span class="number">60</span>);</span><br><span class="line">    <span class="keyword">if</span> (minute &lt; <span class="number">10</span>) &#123;</span><br><span class="line">      minute = <span class="string">"0"</span> + minute;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> second = length % <span class="number">60</span>;</span><br><span class="line">    <span class="keyword">if</span> (second &lt; <span class="number">10</span>) &#123;</span><br><span class="line">      second = <span class="string">"0"</span> + second;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> minute + <span class="string">":"</span> + second;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h5 id="6、axios全局注册"><a href="#6、axios全局注册" class="headerlink" title="6、axios全局注册"></a>6、axios全局注册</h5><p>首先下载axios npm install axios –save<br>然后再mian.js中进入axios</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> ‘axios’</span><br><span class="line"><span class="comment">//设置属性</span></span><br><span class="line">Vue.prototype.$http = axios</span><br></pre></td></tr></table></figure>
-<p>在使用的页面引入一下,就可以使用啦</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br></pre></td></tr></table></figure>
-<h5 id="7、控制唱片旋转动画的开始和暂停"><a href="#7、控制唱片旋转动画的开始和暂停" class="headerlink" title="7、控制唱片旋转动画的开始和暂停"></a>7、控制唱片旋转动画的开始和暂停</h5><p>先获取到这个元素，然后通过样式中的animationPlayState来控制播放和暂停的动画效果</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//动画开始</span></span><br><span class="line"><span class="built_in">document</span>.getElmentById(<span class="string">'myCD'</span>).style.animationPlayState=<span class="string">"running"</span></span><br><span class="line"><span class="comment">//动画暂停</span></span><br><span class="line"><span class="built_in">document</span>.getElmenyById(<span class="string">'myCD'</span>).style.animationPlayState=<span class="string">"paused"</span></span><br></pre></td></tr></table></figure>
-<h5 id="po张效果图："><a href="#po张效果图：" class="headerlink" title="po张效果图："></a>po张效果图：</h5><p><img src="http://upload-images.jianshu.io/upload_images/9381131-140ac5af0f184266.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="img set up-w100 "></p>
+</blockquote>
+<h3 id="词法的作用域"><a href="#词法的作用域" class="headerlink" title="词法的作用域"></a>词法的作用域</h3><blockquote>
+<p>词法的作用域由所写函数的声明的位置决定的，eval（）和with{}可以欺骗词法作用域，当js引擎遇到这两个机制时，无法确定具体执行的代码块就会导致页面的性能下降，因此不推荐使用这两种机制</p>
+</blockquote>
+<h3 id="函数的作用域和块作用域"><a href="#函数的作用域和块作用域" class="headerlink" title="函数的作用域和块作用域"></a>函数的作用域和块作用域</h3><blockquote>
+<p>函数的作用域就是指属于函数的变量都可以在整个函数的范围内使用。<br>JavaScript本身没有块级作用域的功能，但是trycatch中的catch、es6中的let、const和with中存在块级作用域</p>
+</blockquote>
+<h3 id="函数和变量的提升"><a href="#函数和变量的提升" class="headerlink" title="函数和变量的提升"></a>函数和变量的提升</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上述两段代码的结果分别是2和undefined。乍一看感觉非常奇怪，这其实是由于编译器在执行过程中会将声明和赋值分成两个部分，先声明再赋值。对于第一段代码编译器其实是这样处理的</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;<span class="comment">//由于编译器会先声明变量因此声明提前</span></span><br><span class="line">a = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>第二段代码是这样的</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//undefined</span></span><br><span class="line">a=<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此外函数声明可以提升，函数表达式不可以提升</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">foo();<span class="comment">//2</span></span><br><span class="line">fn();<span class="comment">//typeError</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span></span>&#123;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="循环和闭包"><a href="#循环和闭包" class="headerlink" title="循环和闭包"></a>循环和闭包</h3><blockquote>
+<p>首先看一个非常非常重要但是很容易出错的问题</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;=<span class="number">3</span>; i++)&#123;</span><br><span class="line"> setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);<span class="comment">//4444</span></span><br><span class="line"> &#125;,<span class="number">0</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这段代码并不会输出0、1、2、3而是会输出4、4、4、4。这是因为setTimeout会在循环执行完成之后再执行。<br>使用闭包来解决这个问题</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;=<span class="number">3</span>; i++)&#123;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(i);<span class="comment">//4444</span></span><br><span class="line">  &#125;,<span class="number">0</span>)</span><br><span class="line">&#125;)()&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>结果依旧是四个四，这是由于立即执行函数的作用域为空，所以没起作用，再来改进一下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;=<span class="number">3</span>; i++)&#123;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">j</span>)</span>&#123;</span><br><span class="line"> setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(j);<span class="comment">//0123</span></span><br><span class="line">  &#125;,<span class="number">0</span>)</span><br><span class="line">&#125;)(j)&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -223,7 +227,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">项目总结</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
       		
 		</ul>
@@ -235,11 +239,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/vue//" class="article-tag-list-link color4">vue</a>
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/vue/项目总结//" class="article-tag-list-link color5">项目总结</a>
+        			<a href="/categories/JavaScript/作用域//" class="article-tag-list-link color4">作用域</a>
         		</li>
       		
 		</ul>
@@ -294,7 +298,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/06/title: 网易云音乐app仿写爬坑总结/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/03/22/title: 关于作用域/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -308,18 +312,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/02/24/title: vuex的使用/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          vuex的使用
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/01/08/title: 事件委托或事件代理/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">事件委托或事件代理</div>
+    <a href="/2018/03/12/title: React的属性和状态/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">React的属性和状态</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -346,7 +341,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#项目总结"><span class="toc-number">1.</span> <span class="toc-text">项目总结</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、在项目搭建过程，使用npm-install命令下载过慢"><span class="toc-number">1.0.1.</span> <span class="toc-text">1、在项目搭建过程，使用npm install命令下载过慢</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、歌单传递参数问题"><span class="toc-number">1.0.2.</span> <span class="toc-text">2、歌单传递参数问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、audio重写"><span class="toc-number">1.0.3.</span> <span class="toc-text">3、audio重写</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4、专辑背景模糊化处理"><span class="toc-number">1.0.4.</span> <span class="toc-text">4、专辑背景模糊化处理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5、歌词格式化以及时间格式化"><span class="toc-number">1.0.5.</span> <span class="toc-text">5、歌词格式化以及时间格式化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6、axios全局注册"><span class="toc-number">1.0.6.</span> <span class="toc-text">6、axios全局注册</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7、控制唱片旋转动画的开始和暂停"><span class="toc-number">1.0.7.</span> <span class="toc-text">7、控制唱片旋转动画的开始和暂停</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#po张效果图："><span class="toc-number">1.0.8.</span> <span class="toc-text">po张效果图：</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#理解作用域"><span class="toc-number">1.</span> <span class="toc-text">理解作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#词法的作用域"><span class="toc-number">2.</span> <span class="toc-text">词法的作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数的作用域和块作用域"><span class="toc-number">3.</span> <span class="toc-text">函数的作用域和块作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数和变量的提升"><span class="toc-number">4.</span> <span class="toc-text">函数和变量的提升</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#循环和闭包"><span class="toc-number">5.</span> <span class="toc-text">循环和闭包</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -360,7 +355,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="title: 网易云音乐app仿写爬坑总结" data-title="网易云音乐app仿写爬坑总结" data-url="http://yoursite.com/2018/02/06/title: 网易云音乐app仿写爬坑总结/"></div>
+	<div class="ds-thread" data-thread-key="title: 关于作用域" data-title="关于作用域" data-url="http://yoursite.com/2018/03/22/title: 关于作用域/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -383,8 +378,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://yoursite.com/2018/02/06/title: 网易云音乐app仿写爬坑总结/", 
-    sourceId: "title: 网易云音乐app仿写爬坑总结",
+    url: "http://yoursite.com/2018/03/22/title: 关于作用域/", 
+    sourceId: "title: 关于作用域",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
@@ -393,7 +388,7 @@
   
 
   
-  <div id="SOHUCS" sid="title: 网易云音乐app仿写爬坑总结" ></div> 
+  <div id="SOHUCS" sid="title: 关于作用域" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
