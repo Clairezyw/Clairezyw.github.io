@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="html5提供的getUserMedia的新特性，在学习过程中记录一下学习的例子">
+<meta name="description" content="getUserMediahtml5提供的getUserMedia的新特性，在学习过程中记录一下学习的例子">
 <meta name="keywords" content="html5">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用getUserMedia实现拍照功能">
 <meta property="og:url" content="http://yoursite.com/2018/06/01/title: 使用getUserMedia实现拍照功能/index.html">
 <meta property="og:site_name" content="Claire的小书房">
-<meta property="og:description" content="html5提供的getUserMedia的新特性，在学习过程中记录一下学习的例子">
+<meta property="og:description" content="getUserMediahtml5提供的getUserMedia的新特性，在学习过程中记录一下学习的例子">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-08T10:08:13.681Z">
+<meta property="og:updated_time" content="2018-06-08T10:11:40.069Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用getUserMedia实现拍照功能">
-<meta name="twitter:description" content="html5提供的getUserMedia的新特性，在学习过程中记录一下学习的例子">
+<meta name="twitter:description" content="getUserMediahtml5提供的getUserMedia的新特性，在学习过程中记录一下学习的例子">
 
 
 
@@ -353,7 +353,7 @@
       
 
       
-        <p>html5提供的getUserMedia的新特性，在学习过程中记录一下学习的例子</p>
+        <h4 id="getUserMedia"><a href="#getUserMedia" class="headerlink" title="getUserMedia"></a>getUserMedia</h4><p>html5提供的getUserMedia的新特性，在学习过程中记录一下学习的例子</p>
 <a id="more"></a>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">video</span> <span class="attr">style</span>=<span class="string">"width: 400px; height: 300px;"</span> <span class="attr">id</span>=<span class="string">"video"</span> <span class="attr">autoplay</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"capture"</span>&gt;</span>拍照<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"canvas"</span> <span class="attr">width</span>=<span class="string">"400px"</span> <span class="attr">height</span>=<span class="string">"300px"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">getUserMedia</span>(<span class="params">contraints, success, error</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">if</span> (navigator.mediaDevices.getUserMedia) &#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">//最新api</span></span></span><br><span class="line"><span class="undefined">                navigator.mediaDevices.getUserMedia(contraints).then(success).catch(error);</span></span><br><span class="line"><span class="javascript">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (navigator.webkitGetUserMedia) &#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">//webkit内核浏览器</span></span></span><br><span class="line"><span class="undefined">                navigator.webkitGetUserMedia(contraints, success, error);</span></span><br><span class="line"><span class="javascript">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (navigator.mozGetUserMedia) &#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">//moz内核浏览器</span></span></span><br><span class="line"><span class="undefined">                navigator.mozGetUserMedia(contraints, success, error);</span></span><br><span class="line"><span class="javascript">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (navigator.getUserMedia) &#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">//旧的api</span></span></span><br><span class="line"><span class="undefined">                navigator.getUserMedia(contraints, success, error);</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> video = <span class="built_in">document</span>.getElementById(<span class="string">'video'</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> context = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>).getContext(<span class="string">'2d'</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> captrue = <span class="built_in">document</span>.getElementById(<span class="string">'capture'</span>);</span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">success</span>(<span class="params">stream</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">// window.URL 返回一个对象用来创建和管理urls的静态方法</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> obj = <span class="built_in">window</span>.URL || <span class="built_in">window</span>.webkitURL;</span></span><br><span class="line"><span class="javascript">            <span class="comment">//stram为MediaSteam对象，表示媒体内容的数据流</span></span></span><br><span class="line"><span class="undefined">            video.src = obj.createObjectURL(stream);</span></span><br><span class="line"><span class="undefined">            video.play();</span></span><br><span class="line"><span class="undefined">         &#125;</span></span><br><span class="line"><span class="javascript">         <span class="comment">//失败调用的函数</span></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">error</span> (<span class="params">e</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">             <span class="built_in">console</span>.log(<span class="string">'调用失败'</span>, e.name, e.message)</span></span><br><span class="line"><span class="undefined">         &#125;</span></span><br><span class="line"><span class="javascript">         <span class="keyword">if</span> (navigator.mediaDevices.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator,getUserMedia) &#123;</span></span><br><span class="line"><span class="javascript">             <span class="comment">//设置video的像素以及成功的回调函数和失败的回调函数</span></span></span><br><span class="line"><span class="undefined">             getUserMedia(&#123;video: &#123;width: 400, height:300&#125;&#125;, success, error)</span></span><br><span class="line"><span class="undefined">         &#125;</span></span><br><span class="line"><span class="javascript">         captrue.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">             context.drawImage(video, 0, 0, 400, 300)</span></span><br><span class="line"><span class="undefined">         &#125;)</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -446,8 +446,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -513,6 +522,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#getUserMedia"><span class="nav-number">1.</span> <span class="nav-text">getUserMedia</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
