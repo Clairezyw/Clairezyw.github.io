@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -192,7 +192,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Categories
+            Kategorien
           </a>
         </li>
       
@@ -202,7 +202,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -249,6 +249,167 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/08/iterator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Claire">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Claire的小书房">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/08/iterator/" itemprop="url">DOM节点遍历</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-08T20:48:41+08:00">
+                2017-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/NodeIterator/" itemprop="url" rel="index">
+                    <span itemprop="name">NodeIterator</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>DOM2级对于dom节点的遍历提供了两种深度优先遍历的类型：NodeIterator和TreeWalker,下面来介绍这两种类型的使用。<br>1、NodeIterator<br>该类型通过document.createNodeIterator()方法创建新实例，该方法接受四个参数：</p>
+<p><1>root：表示开始遍历的起点</1></p>
+<p><2>whatToShow：表示访问哪些节点的数字代码，以常量的形式作为参数。<br>常见的参数有：<br>NodeFilter.SHOW_ALL:显示所有类型的节点<br>NodeFilter.SHOW_ELEMNT:显示元素节点<br>NodeFilter.SHOW_ATTRIBUTE：显示属性节点<br>NodeFilter.SHOW_TEXT：显示文本节点</2></p>
+<p><3>filter:表示应该接受某个特定节点还是应该拒绝某个特定节点的函数</3></p>
+<p><4>entityRefernceExpasion:布尔值，表示是否要扩展实体，在html中不起作用，因此为false</4></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/08/iterator/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/07/classList/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -278,7 +439,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-07T21:41:41+08:00">
                 2017-12-07
@@ -299,7 +460,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -310,7 +471,7 @@
 
                 
                 
-                  , 
+                  . 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -358,7 +519,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/12/07/classList/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -437,7 +598,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-05T23:40:41+08:00">
                 2017-12-05
@@ -482,7 +643,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/12/05/applycallbind/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -561,7 +722,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-05T09:40:41+08:00">
                 2017-12-05
@@ -609,7 +770,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/12/05/javascript closure problem/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -700,8 +861,8 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
             
@@ -711,8 +872,8 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">33</span>
-                  <span class="site-state-item-name">categories</span>
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">Kategorien</span>
                 
               </div>
             
@@ -723,7 +884,7 @@
               <div class="site-state-item site-state-tags">
                 
                   <span class="site-state-item-count">23</span>
-                  <span class="site-state-item-name">tags</span>
+                  <span class="site-state-item-name">Tags</span>
                 
               </div>
             
@@ -771,7 +932,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
