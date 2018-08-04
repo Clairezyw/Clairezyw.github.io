@@ -85,12 +85,12 @@
 <meta property="og:title" content="JS异步编程的四种方式">
 <meta property="og:url" content="http://yoursite.com/2018/08/14/title: JS异步编程的四种方式/index.html">
 <meta property="og:site_name" content="Claire的小书房">
-<meta property="og:description" content="回调函数123456function fn1(callback) &amp;#123;    setTimeout(function() &amp;#123;        // 执行f1的任务代码        callback();    &amp;#125;, 1000)&amp;#125; 回调函数的优点是简单、容易部署，先执行主要的代码，耗时的代码延迟执行，缺点是代码之间高度耦合并且只执行一个回调函数； 事件监听123">
+<meta property="og:description" content="回调函数123456function fn1(callback) &amp;#123;    setTimeout(function() &amp;#123;        // 执行f1的任务代码        callback();    &amp;#125;, 1000)&amp;#125; 回调函数的优点是简单、容易部署，先执行主要的代码，耗时的代码延迟执行，缺点是代码之间高度耦合并且只执行一个回调函数；">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-04T13:53:15.851Z">
+<meta property="og:updated_time" content="2018-08-04T13:58:39.140Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS异步编程的四种方式">
-<meta name="twitter:description" content="回调函数123456function fn1(callback) &amp;#123;    setTimeout(function() &amp;#123;        // 执行f1的任务代码        callback();    &amp;#125;, 1000)&amp;#125; 回调函数的优点是简单、容易部署，先执行主要的代码，耗时的代码延迟执行，缺点是代码之间高度耦合并且只执行一个回调函数； 事件监听123">
+<meta name="twitter:description" content="回调函数123456function fn1(callback) &amp;#123;    setTimeout(function() &amp;#123;        // 执行f1的任务代码        callback();    &amp;#125;, 1000)&amp;#125; 回调函数的优点是简单、容易部署，先执行主要的代码，耗时的代码延迟执行，缺点是代码之间高度耦合并且只执行一个回调函数；">
 
 
 
@@ -355,6 +355,7 @@
       
         <h4 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 执行f1的任务代码</span></span><br><span class="line">        callback();</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>回调函数的优点是简单、容易部署，先执行主要的代码，耗时的代码延迟执行，缺点是代码之间高度耦合并且只执行一个回调函数；</p>
+<a id="more"></a>
 <h4 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// fn1监听done事件一旦触发立即执行fn2</span><br><span class="line">fn1.on(&apos;done&apos;, fn2)</span><br><span class="line">function fn1() &#123;</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">        // 执行代码</span><br><span class="line">        fn1.trigger(&apos;done&apos;); //触发done事件</span><br><span class="line">    &#125;, 1000)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>事件监听的优点是可以绑定多个回调函数，并且去耦合性实现代码的模块化，缺点是异步编程由事件驱动，运行流程变得不是很清晰</p>
 <h4 id="发布-订阅模式"><a href="#发布-订阅模式" class="headerlink" title="发布/订阅模式"></a>发布/订阅模式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">jquery.subscribe(&apos;done&apos;, fn2); // fn2向消息中心发送done</span><br><span class="line">function fn1() &#123;</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">        // fn1的任务代码</span><br><span class="line">        fn1.publish(&apos;done&apos;)</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
