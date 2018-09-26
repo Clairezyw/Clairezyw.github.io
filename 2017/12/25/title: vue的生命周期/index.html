@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+
+
+
+	  
+	
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="vue生命周期," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Vue实例的创建var vm = new Vue({   });  通常用vm代表vue的实例 Vue的选项1.与视图模版有关的选项[1] el：提供一个页面已经存在的挂载元素，可以是选择器也可以是htmlelement实例[2] template：字符串模版[3] rendar：渲染函数，接收createElemen">
+<meta name="keywords" content="vue生命周期">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue的生命周期">
+<meta property="og:url" content="http://yoursite.com/2017/12/25/title: vue的生命周期/index.html">
+<meta property="og:site_name" content="Claire的小书房">
+<meta property="og:description" content="Vue实例的创建var vm = new Vue({   });  通常用vm代表vue的实例 Vue的选项1.与视图模版有关的选项[1] el：提供一个页面已经存在的挂载元素，可以是选择器也可以是htmlelement实例[2] template：字符串模版[3] rendar：渲染函数，接收createElement方法创建vnode2.与数据相关的选项[1] data:实例的数据对象[2]">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-a482211d76d646b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-e142c7bed7619f26.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-3050b033a9713869.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-41c8e78d53633e61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-02-28T14:18:27.843Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue的生命周期">
+<meta name="twitter:description" content="Vue实例的创建var vm = new Vue({   });  通常用vm代表vue的实例 Vue的选项1.与视图模版有关的选项[1] el：提供一个页面已经存在的挂载元素，可以是选择器也可以是htmlelement实例[2] template：字符串模版[3] rendar：渲染函数，接收createElement方法创建vnode2.与数据相关的选项[1] data:实例的数据对象[2]">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/9381131-a482211d76d646b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/25/title: vue的生命周期/"/>
+
+
+
+
+
+  <title>vue的生命周期 | Claire的小书房</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Claire的小书房</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">佛系少女</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/title: vue的生命周期/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Claire">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Claire的小书房">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue的生命周期</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-25T18:41:41+08:00">
+                2017-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/生命周期/" itemprop="url" rel="index">
+                    <span itemprop="name">生命周期</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h5 id="Vue实例的创建"><a href="#Vue实例的创建" class="headerlink" title="Vue实例的创建"></a>Vue实例的创建</h5><pre><code class="js">var vm = new Vue({
+  });
+</code></pre>
+<p>通常用vm代表vue的实例</p>
+<h4 id="Vue的选项"><a href="#Vue的选项" class="headerlink" title="Vue的选项"></a>Vue的选项</h4><p>1.与视图模版有关的选项<br>[1] el：提供一个页面已经存在的挂载元素，可以是选择器也可以是htmlelement实例<br>[2] template：字符串模版<br>[3] rendar：渲染函数，接收createElement方法创建vnode<br>2.与数据相关的选项<br>[1] data:实例的数据对象<br>[2] method：实例方法<br>[3] computed：计算属性<br>[4] watch：观察模式<br>[5] props：接收函数</p>
+<a id="more"></a>
+<h4 id="Vue的生命周期"><a href="#Vue的生命周期" class="headerlink" title="Vue的生命周期"></a>Vue的生命周期</h4><p>vue的生命周期大致分为四个部分：<br>创建 挂载 更新 销毁</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/9381131-a482211d76d646b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="生命周期"></p>
+<p> 下面来看一段代码，通过代码来了解vue的生命周期:</p>
+<pre><code class="html">&lt;div id=&quot;app&quot;&gt;{{message}}
+            &lt;input type=&quot;button&quot; @click=&quot;change&quot; value=&quot;改变&quot; &gt;
+            &lt;input type=&quot;button&quot; @click=&quot;destroy&quot; value=&quot;销毁&quot;&gt;
+    &lt;/div&gt;    
+    &lt;script&gt;
+        var vm = new Vue({
+            el:&#39;#app&#39;,
+            data:{
+                message:&#39;Hello Vue&#39;
+            },
+            methods: {
+                change:function(){
+                 this.message=&quot;hello world&quot;
+                },
+                destroy:function(){
+                    vm.$destroy();
+                }
+            },
+            beforeCreate(){
+            console.log(&quot;*******创建前********&quot;)
+            console.log(this.message)
+            console.log(this.$el)
+
+        },
+        created(){
+            console.log(&quot;*******创建时********&quot;)
+            console.log(this.message)
+            console.log(this.$el)
+
+        },
+        beforeMount(){
+            console.log(&quot;*******挂载前********&quot;)
+            console.log(this.message)
+            console.log(this.$el)
+
+        },
+        mounted(){
+            console.log(&quot;*******挂载时********&quot;)
+            console.log(this.message)
+            console.log(this.$el)
+
+        },
+        beforeUpdate () {
+            console.log(&quot;*******更新前********&quot;)
+            console.log(this.message)
+            console.log(this.$el)
+        },
+        updated(){
+            console.log(&quot;*******更新时********&quot;)
+            console.log(this.message)
+            console.log(this.$el)
+        },
+        beforeDestroy(){
+            console.log(&quot;*******销毁前********&quot;)
+            console.log(this.message)
+            console.log(this.$el)
+        },
+        destroyed(){
+            console.log(&quot;******销毁时********&quot;)
+            console.log(this.message)
+            console.log(this.$el)
+        }
+        })  
+
+    &lt;/script&gt;
+</code></pre>
+<p>当页面加载完成时，我们在控制台中可以看到以下信息</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/9381131-e142c7bed7619f26.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="生命周期"><br> 点击改变按钮后出发beforeUpdate和update<br><img src="http://upload-images.jianshu.io/upload_images/9381131-3050b033a9713869.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="生命周期"><br>点击销毁按钮后触发destory<br><img src="http://upload-images.jianshu.io/upload_images/9381131-41c8e78d53633e61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="生命周期"><br>vue的整个生命周期就结束了</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue生命周期/" rel="tag"># vue生命周期</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/19/title: set与map/" rel="next" title="set与map">
+                <i class="fa fa-chevron-left"></i> set与map
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/26/ title: 301和302的区别-1/" rel="prev" title="301和302的区别">
+                301和302的区别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Claire" />
+            
+              <p class="site-author-name" itemprop="name">Claire</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">Kategorien</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Vue实例的创建"><span class="nav-number">1.</span> <span class="nav-text">Vue实例的创建</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue的选项"><span class="nav-number"></span> <span class="nav-text">Vue的选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue的生命周期"><span class="nav-number"></span> <span class="nav-text">Vue的生命周期</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Claire</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

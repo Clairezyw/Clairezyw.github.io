@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+
+
+
+	  
+	
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="webpack," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.安装mkdir vue-demo //创建vue-demo包 cd vue-demo   npm init -y    npm install webpack webpack-cli --save-dev //下载webpack webpack-cli 创建如下目录  vue-demo  |-package.jso">
+<meta name="keywords" content="webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack简单搭建vue架构">
+<meta property="og:url" content="http://yoursite.com/2018/05/30/title: webpack简单搭建vue架构/index.html">
+<meta property="og:site_name" content="Claire的小书房">
+<meta property="og:description" content="1.安装mkdir vue-demo //创建vue-demo包 cd vue-demo   npm init -y    npm install webpack webpack-cli --save-dev //下载webpack webpack-cli 创建如下目录  vue-demo  |-package.json  |-node_modules +|-src     |-router //">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-29T13:45:12.993Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack简单搭建vue架构">
+<meta name="twitter:description" content="1.安装mkdir vue-demo //创建vue-demo包 cd vue-demo   npm init -y    npm install webpack webpack-cli --save-dev //下载webpack webpack-cli 创建如下目录  vue-demo  |-package.json  |-node_modules +|-src     |-router //">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/30/title: webpack简单搭建vue架构/"/>
+
+
+
+
+
+  <title>webpack简单搭建vue架构 | Claire的小书房</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Claire的小书房</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">佛系少女</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/30/title: webpack简单搭建vue架构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Claire">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Claire的小书房">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">webpack简单搭建vue架构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-30T20:55:41+08:00">
+                2018-05-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h4><pre><code>mkdir vue-demo //创建vue-demo包
+cd vue-demo  
+npm init -y   
+npm install webpack webpack-cli --save-dev //下载webpack webpack-cli
+</code></pre><p>创建如下目录</p>
+<pre><code class="node"> vue-demo
+ |-package.json
+ |-node_modules
++|-src 
+   |-router //路由相关配置
+     |-index.js
+   |-main.js
+   |-App.vue
++|-dist
+   |-index.html
++|-webpack.config.js
+</code></pre>
+<a id="more"></a>
+<h4 id="2-下载相关依赖"><a href="#2-下载相关依赖" class="headerlink" title="2.下载相关依赖"></a>2.下载相关依赖</h4><pre><code>npm install babel-loader css-loader style-loader file-loader vue vue-loader vue-router webpack vue-template-compiler --save-dev
+</code></pre><h4 id="3-相关配置"><a href="#3-相关配置" class="headerlink" title="3.相关配置"></a>3.相关配置</h4><h5 id="webpack-config-js"><a href="#webpack-config-js" class="headerlink" title="webpack.config.js"></a>webpack.config.js</h5><pre><code> const path = require(&#39;path&#39;);
+ const {VueLoaderPlugin} = require(&#39;vue-loader&#39;);
+ const webpack = require(&#39;webpack&#39;);
+
+ module.exports = {
+    entry:&#39;./src/main.js&#39;,
+    output: {
+        filename: &#39;bundle.js&#39;,//build之后生成的js文件，名字自己起
+        path: path.resolve(__dirname, &#39;dist&#39;)
+    },
+    devServer: {
+        contentBase: &#39;./dist&#39;,
+        hot true//实时刷新
+    },
+    plugins: [
+        new VueLoaderPlugin(),//使用vue-loader插件
+        new webpack.HotModuleReplacementPlugin()//使用模块热替换
+    ],
+    module: {
+        rules: [
+        {
+            test: /\.vue$/,
+            use: &#39;vue-loader&#39;//解析.vue文件
+        },{
+            test: /\.css$/,
+            use: [&#39;css-loader&#39;, &#39;style-loader&#39;]//解析css
+        },{
+            test: /\.js$/,
+            use: &#39;babel-loader&#39;,//使用babel将es6解析为浏览器认识的es5
+            exclude: /node_modules/
+        },{
+            test: /\.(png|svg|jpg|gif)$/,
+            use: &#39;file-loader&#39;//解析图片
+        }
+        ]
+    },
+    resolve: {
+        alias: {
+            &#39;vue$&#39;: &#39;vue/dist/vue.esm.js&#39;
+        }
+    },//参照官网
+}
+</code></pre><h5 id="dist-html"><a href="#dist-html" class="headerlink" title="dist/html"></a>dist/html</h5><pre><code class="html"> &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+    &lt;script src=&quot;bundle.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h5 id="src-router-index-js-配置路由"><a href="#src-router-index-js-配置路由" class="headerlink" title="src/router/index.js 配置路由"></a>src/router/index.js 配置路由</h5><pre><code>import Vue from &#39;vue&#39;;
+import Router from &#39;vue-router&#39;;
+import App from &#39;../App.vue&#39;;
+
+
+Vue.use(Router);
+export default new Router({
+    routes: [
+        {
+            path: &#39;/&#39;,
+            name: &#39;index&#39;,
+            component: App
+        }
+    ]
+})
+</code></pre><h5 id="src-main-js-全局配置"><a href="#src-main-js-全局配置" class="headerlink" title="src/main.js 全局配置"></a>src/main.js 全局配置</h5><pre><code class="js">import Vue from &#39;vue&#39;;
+import App from &#39;./App.vue&#39;;
+import VueRouter from &#39;vue-router&#39;;
+import router from &#39;./router&#39;;
+
+Vue.config.debug = true;
+
+new Vue({
+    el: &quot;#app&quot;,
+    router: router,
+    template: &#39;&lt;App/&gt;&#39;,
+    render: h =&gt; h(App)
+})
+</code></pre>
+<h5 id="src-App-vue"><a href="#src-App-vue" class="headerlink" title="src/App.vue"></a>src/App.vue</h5><pre><code class="html">&lt;template&gt;
+    &lt;div&gt;Hello {{msg}}&lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+    data () {
+        return {
+            msg: &#39;Vue&#39;
+        }
+    }
+}
+&lt;/script&gt;
+</code></pre>
+<h5 id="package-json-配置dev、build"><a href="#package-json-配置dev、build" class="headerlink" title="package.json 配置dev、build"></a>package.json 配置dev、build</h5><pre><code class="json">  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,
+    &quot;dev&quot;: &quot;webpack-dev-server --mode=development&quot;,
+    &quot;build&quot;: &quot;webpack --mode=production&quot;
+  },
+</code></pre>
+<h4 id="4-run"><a href="#4-run" class="headerlink" title="4.run"></a>4.run</h4><pre><code>npm run build
+npm run dev
+</code></pre><p>打开localhost:8080网址看如果浏览器出现“Hello Vue”说明配置成功。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/16/title: js判断scroll滚动方向/" rel="next" title="js判断scroll滚动方向">
+                <i class="fa fa-chevron-left"></i> js判断scroll滚动方向
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/01/title: 使用getUserMedia实现拍照功能/" rel="prev" title="使用getUserMedia实现拍照功能">
+                使用getUserMedia实现拍照功能 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Claire" />
+            
+              <p class="site-author-name" itemprop="name">Claire</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">Kategorien</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装"><span class="nav-number">1.</span> <span class="nav-text">1.安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-下载相关依赖"><span class="nav-number">2.</span> <span class="nav-text">2.下载相关依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-相关配置"><span class="nav-number">3.</span> <span class="nav-text">3.相关配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#webpack-config-js"><span class="nav-number">3.1.</span> <span class="nav-text">webpack.config.js</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dist-html"><span class="nav-number">3.2.</span> <span class="nav-text">dist/html</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#src-router-index-js-配置路由"><span class="nav-number">3.3.</span> <span class="nav-text">src/router/index.js 配置路由</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#src-main-js-全局配置"><span class="nav-number">3.4.</span> <span class="nav-text">src/main.js 全局配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#src-App-vue"><span class="nav-number">3.5.</span> <span class="nav-text">src/App.vue</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#package-json-配置dev、build"><span class="nav-number">3.6.</span> <span class="nav-text">package.json 配置dev、build</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-run"><span class="nav-number">4.</span> <span class="nav-text">4.run</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Claire</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

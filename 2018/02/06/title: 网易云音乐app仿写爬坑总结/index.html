@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+
+
+
+	  
+	
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="项目总结," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="项目总结前几日大概准备的十天的期末考试，前端的学习进程有些耽误了。近几日做了一个小项目，加深了一下对vue的理解，但也爬了不少坑😂，写完之后，及时总结一下遇到的诸多小问题… 1、在项目搭建过程，使用npm install命令下载过慢解决办法：使用淘宝镜像，附上淘宝镜像的网址，http://npm.taobao.org">
+<meta name="keywords" content="项目总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网易云音乐app仿写爬坑总结">
+<meta property="og:url" content="http://yoursite.com/2018/02/06/title: 网易云音乐app仿写爬坑总结/index.html">
+<meta property="og:site_name" content="Claire的小书房">
+<meta property="og:description" content="项目总结前几日大概准备的十天的期末考试，前端的学习进程有些耽误了。近几日做了一个小项目，加深了一下对vue的理解，但也爬了不少坑😂，写完之后，及时总结一下遇到的诸多小问题… 1、在项目搭建过程，使用npm install命令下载过慢解决办法：使用淘宝镜像，附上淘宝镜像的网址，http://npm.taobao.org/ 在使用npm命令的淘宝镜像时就可以在终端输入 npm config set">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9381131-140ac5af0f184266.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-02-28T13:33:56.419Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网易云音乐app仿写爬坑总结">
+<meta name="twitter:description" content="项目总结前几日大概准备的十天的期末考试，前端的学习进程有些耽误了。近几日做了一个小项目，加深了一下对vue的理解，但也爬了不少坑😂，写完之后，及时总结一下遇到的诸多小问题… 1、在项目搭建过程，使用npm install命令下载过慢解决办法：使用淘宝镜像，附上淘宝镜像的网址，http://npm.taobao.org/ 在使用npm命令的淘宝镜像时就可以在终端输入 npm config set">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/9381131-140ac5af0f184266.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/06/title: 网易云音乐app仿写爬坑总结/"/>
+
+
+
+
+
+  <title>网易云音乐app仿写爬坑总结 | Claire的小书房</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Claire的小书房</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">佛系少女</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/06/title: 网易云音乐app仿写爬坑总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Claire">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Claire的小书房">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网易云音乐app仿写爬坑总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-06T20:40:41+08:00">
+                2018-02-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/项目总结/" itemprop="url" rel="index">
+                    <span itemprop="name">项目总结</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="项目总结"><a href="#项目总结" class="headerlink" title="项目总结"></a>项目总结</h3><p>前几日大概准备的十天的期末考试，前端的学习进程有些耽误了。近几日做了一个小项目，加深了一下对vue的理解，但也爬了不少坑😂，写完之后，及时总结一下遇到的诸多小问题…</p>
+<h5 id="1、在项目搭建过程，使用npm-install命令下载过慢"><a href="#1、在项目搭建过程，使用npm-install命令下载过慢" class="headerlink" title="1、在项目搭建过程，使用npm install命令下载过慢"></a>1、在项目搭建过程，使用npm install命令下载过慢</h5><p>解决办法：使用淘宝镜像，附上淘宝镜像的网址，<a href="http://npm.taobao.org/" target="_blank" rel="noopener">http://npm.taobao.org/</a> 在使用npm命令的淘宝镜像时就可以在终端输入</p>
+<pre><code class="nodejs">npm config set registry https://registry.npm.taobao.org
+</code></pre>
+<p>运行之后可以检查一下是否成功获取淘宝镜像</p>
+<pre><code class="npm">npm config get registry
+</code></pre>
+<a id="more"></a>
+<h5 id="2、歌单传递参数问题"><a href="#2、歌单传递参数问题" class="headerlink" title="2、歌单传递参数问题"></a>2、歌单传递参数问题</h5><p>最开始使用的是router-link传递参数以及页面跳转</p>
+<pre><code class="html">&lt;!--传递参数--&gt;
+&lt;router-link :to=&quot;{name:xxx params:{id:1}}&quot;&gt;&lt;/router-link&gt;
+</code></pre>
+<pre><code class="js">//另一个页面接收参数
+data(){
+  return{
+id:this.$route.params.id;
+   }
+}
+</code></pre>
+<p>但这种用法会出现一个问题，当用户刷新页面时，传递的数据会消失，这是因为只有当点击router-link内容时才会传递参数。<br>解决办法：使用localStorage暂存数据</p>
+<pre><code class="js">methods:{
+//localStorage.setItem(name, value)以键值对的形式存储
+localStorage.setItem(id,this.id)
+}
+//另一个页面接收参数
+data(){
+  return{
+   id:localStorage.getItem(id)
+  }
+}
+</code></pre>
+<h5 id="3、audio重写"><a href="#3、audio重写" class="headerlink" title="3、audio重写"></a>3、audio重写</h5><p>再获取到歌单之后，运用类似的方法获取到歌曲，终于到了播放的环节，但是如果使用audio的自带的样式的话整个程序就没法看了，我们可以去掉controls属性，自己定义一个audio的样式。</p>
+<pre><code class="html">&lt;audio :src=&quot;this.songurl&quot; @ended=&quot;next&quot; @canplay=&quot;filter&quot; autoplay&gt;
+&lt;!--ended和canplay是audio自带的属性，表示音频结束时和音频开始时执行的相关动作。autoplay表示歌曲载入后自动播放--&gt;
+&lt;div class=&quot;player&quot;&gt;
+&lt;!--后一首歌--&gt;
+&lt;span&gt;&lt;i class=&quot;iconfont icon-prev&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;!--播放--&gt;
+&lt;span v-show=“isShow”&gt;&lt;i class=&quot;iconfont icon-play&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;!--暂停--&gt;
+&lt;span v-show=“！isShow”&gt;&lt;i class=&quot;iconfont icon-pause&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;!--下一首歌--&gt;
+&lt;span&gt;&lt;i class=&quot;iconfont icon-next&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;/div&gt;
+这里定义了四个标签，图标使用的阿里矢量图标库，通过v-show来控制暂停和播放图标的显示
+</code></pre>
+<p>附上audio的属性和事件：<br>属性：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/audio。" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/audio。</a><br>事件：<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/Events/Media_events#Error_handling" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/Guide/Events/Media_events#Error_handling</a>  </p>
+<h5 id="4、专辑背景模糊化处理"><a href="#4、专辑背景模糊化处理" class="headerlink" title="4、专辑背景模糊化处理"></a>4、专辑背景模糊化处理</h5><p>要把获取到的歌曲图片设为背景，同时进行模糊化处理，这就需要先把图片放在div标签里然后然后设置背景样式</p>
+<pre><code class="html"> &lt;div class=&quot;bg-blur&quot; :style=&quot;`background-image:url(${albumUrl})`&quot;&gt;&lt;/div&gt;
+</code></pre>
+<pre><code class="css">.bg-blur {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(20px);
+  z-index: -1;
+}
+</code></pre>
+<h5 id="5、歌词格式化以及时间格式化"><a href="#5、歌词格式化以及时间格式化" class="headerlink" title="5、歌词格式化以及时间格式化"></a>5、歌词格式化以及时间格式化</h5><p>获取到的歌词是未处理过的，将其处理成json格式并放入数组，方便歌词滚动时调用</p>
+<pre><code class="js">formatLrc() {
+      var lyrics = this.lyric.split(&quot;\n&quot;);
+      var lrcObj = [];
+      var timeReg = /\[\d*:\d*((\.|\:)\d*)*\]/g;
+      // 思路：把歌词进行处理以时间和歌词组成一个对象，放入afterLrc数组中
+      for (var i = 0; i &lt; lyrics.length; i++) {
+        var timeRegExpArr = lyrics[i].match(timeReg);
+        if (!timeRegExpArr) continue;
+        var txt = lyrics[i].replace(timeReg, &quot;&quot;);
+        // 处理时间
+        for (var k = 0; k &lt; timeRegExpArr.length; k++) {
+          var array = {};
+          var t = timeRegExpArr[k];
+          var min = Number(String(t.match(/\[\d*/i)).slice(1));
+          var sec = Number(String(t.match(/\:\d*/i)).slice(1));
+          var time = min * 60 + sec;
+          array.time = time;
+          array.txt = txt;
+          lrcObj.push(array);
+        }
+      }
+      this.lyric = lrcObj;
+
+    },
+</code></pre>
+<p>时间格式化：</p>
+<pre><code class="js">  formatTime(value) {
+      var length = Math.floor(parseInt(value));
+      var minute = Math.floor(value / 60);
+      if (minute &lt; 10) {
+        minute = &quot;0&quot; + minute;
+      }
+      var second = length % 60;
+      if (second &lt; 10) {
+        second = &quot;0&quot; + second;
+      }
+      return minute + &quot;:&quot; + second;
+    }
+</code></pre>
+<h5 id="6、axios全局注册"><a href="#6、axios全局注册" class="headerlink" title="6、axios全局注册"></a>6、axios全局注册</h5><p>首先下载axios npm install axios –save<br>然后再mian.js中进入axios</p>
+<pre><code class="js">import axios from ‘axios’
+//设置属性
+Vue.prototype.$http = axios
+</code></pre>
+<p>在使用的页面引入一下,就可以使用啦</p>
+<pre><code class="js">import axios from &#39;axios&#39;
+</code></pre>
+<h5 id="7、控制唱片旋转动画的开始和暂停"><a href="#7、控制唱片旋转动画的开始和暂停" class="headerlink" title="7、控制唱片旋转动画的开始和暂停"></a>7、控制唱片旋转动画的开始和暂停</h5><p>先获取到这个元素，然后通过样式中的animationPlayState来控制播放和暂停的动画效果</p>
+<pre><code class="js">//动画开始
+document.getElmentById(&#39;myCD&#39;).style.animationPlayState=&quot;running&quot;
+//动画暂停
+document.getElmenyById(&#39;myCD&#39;).style.animationPlayState=&quot;paused&quot;
+</code></pre>
+<h5 id="po张效果图："><a href="#po张效果图：" class="headerlink" title="po张效果图："></a>po张效果图：</h5><p><img src="http://upload-images.jianshu.io/upload_images/9381131-140ac5af0f184266.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="img set up-w100 "></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/项目总结/" rel="tag"># 项目总结</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/08/title: 事件委托或事件代理/" rel="next" title="事件委托或事件代理">
+                <i class="fa fa-chevron-left"></i> 事件委托或事件代理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/24/title: vuex的使用/" rel="prev" title="vuex的使用">
+                vuex的使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Claire" />
+            
+              <p class="site-author-name" itemprop="name">Claire</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">Kategorien</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目总结"><span class="nav-number">1.</span> <span class="nav-text">项目总结</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、在项目搭建过程，使用npm-install命令下载过慢"><span class="nav-number">1.0.1.</span> <span class="nav-text">1、在项目搭建过程，使用npm install命令下载过慢</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、歌单传递参数问题"><span class="nav-number">1.0.2.</span> <span class="nav-text">2、歌单传递参数问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、audio重写"><span class="nav-number">1.0.3.</span> <span class="nav-text">3、audio重写</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、专辑背景模糊化处理"><span class="nav-number">1.0.4.</span> <span class="nav-text">4、专辑背景模糊化处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5、歌词格式化以及时间格式化"><span class="nav-number">1.0.5.</span> <span class="nav-text">5、歌词格式化以及时间格式化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6、axios全局注册"><span class="nav-number">1.0.6.</span> <span class="nav-text">6、axios全局注册</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7、控制唱片旋转动画的开始和暂停"><span class="nav-number">1.0.7.</span> <span class="nav-text">7、控制唱片旋转动画的开始和暂停</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#po张效果图："><span class="nav-number">1.0.8.</span> <span class="nav-text">po张效果图：</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Claire</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
