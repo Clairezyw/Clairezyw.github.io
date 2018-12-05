@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/05/Docker配置：从入门到放弃/" itemprop="url">Unbenannt</a></h1>
+                <a class="post-title-link" href="/2018/12/05/Docker配置：从入门到放弃/" itemprop="url">Docker部署从入门到放弃</a></h1>
         
 
         <div class="post-meta">
@@ -260,7 +260,7 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-05T20:02:55+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-05T20:44:20+08:00">
                 2018-12-05
               </time>
             
@@ -270,6 +270,39 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/部署/" itemprop="url" rel="index">
+                    <span itemprop="name">部署</span>
+                  </a>
+                </span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/部署/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -299,39 +332,20 @@
 
       
         
-          
-            <h1 id="Docker配置：从入门到放弃"><a href="#Docker配置：从入门到放弃" class="headerlink" title="Docker配置：从入门到放弃"></a>Docker配置：从入门到放弃</h1><p>最近尝试着把自己的一个项目在服务器上docker化了一下，遇到了诸多的问题，记录总结一下。</p>
+          <p>最近尝试着把自己的一个项目在服务器上docker化了一下，遇到了诸多的问题，记录总结一下。</p>
 <h3 id="部署过程"><a href="#部署过程" class="headerlink" title="部署过程"></a>部署过程</h3><h4 id="一、编写Dockerfile文件"><a href="#一、编写Dockerfile文件" class="headerlink" title="一、编写Dockerfile文件"></a>一、编写Dockerfile文件</h4><p>选好前端项目后，在根目录下建立Dockerfile文件<br>然后开始编写Dockerfile文件，具体如何编写可以参考docker文档内容：<a href="https://docs.docker.com/engine/reference/builder/#cmd" target="_blank" rel="noopener">https://docs.docker.com/engine/reference/builder/#cmd</a></p>
 <p>下面是自己Dockerfile文件的例子</p>
 <ol>
 <li>from 选择镜像，因为项目使用的node环境所以选择的是node</li>
 <li>expose 容器暴露的端口号</li>
 </ol>
-<p><img src="media/15440113752898/15440120775228.jpg" alt=""></p>
-<h4 id="二、注册docker-hub"><a href="#二、注册docker-hub" class="headerlink" title="二、注册docker hub"></a>二、注册docker hub</h4><p>在<a href="https://hub.docker.com/注册完成后，可以将github上的项目与docker" target="_blank" rel="noopener">https://hub.docker.com/注册完成后，可以将github上的项目与docker</a> hub绑定起来，并进行自动化构建，这样每次github提交之后，docker hub中的项目就会自动构建。具体过程可自行搜索。</p>
-<h4 id="三、在服务器上部署自己的docker项目"><a href="#三、在服务器上部署自己的docker项目" class="headerlink" title="三、在服务器上部署自己的docker项目"></a>三、在服务器上部署自己的docker项目</h4><p>看起来一切都很简单，登陆服务器后，执行如下步骤</p>
-<pre><code class="js">docker login //登陆一下刚才注册的账号
-
-docker pull hub名/项目名 // 拉取构建好的项目
-
-docker run --name pf-view -d -p 3000:3000 --rm  hub名/项目名 // run 跑镜像， --name 给镜像起名称方便下次查找  -d后台运行  -p映射端口号（物理机端口号:容器端口号也就是dockerfile中expose的端口号）  --rm 镜像stop以后自动删除
-</code></pre>
-<p>此外，在run之前还需配置好docker nginx，可以参考以下配置</p>
-<pre><code class="js"> server {
-        listen          80;
-        server_name     xxx.com; // 域名
-
-        location / {
-                proxy_redirect off;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                proxy_pass       http://服务器的ip地址:物理机的端口号;
-        }
-     }
-</code></pre>
-<p>最后就可以在nginx配置域名中进行访问</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/05/Docker配置：从入门到放弃/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1245,7 +1259,7 @@ npm install webpack webpack-cli --save-dev //下载webpack webpack-cli
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">Kategorien</span>
                 
               </div>
@@ -1256,7 +1270,7 @@ npm install webpack webpack-cli --save-dev //下载webpack webpack-cli
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">Tags</span>
                 
               </div>
