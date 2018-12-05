@@ -79,17 +79,19 @@
 
 
 
-<meta name="description" content="关于我一只笨笨的小猪">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="Docker配置：从入门到放弃最近尝试着把自己的一个项目在服务器上docker化了一下，遇到了诸多的问题，记录总结一下。 部署过程一、编写Dockerfile文件选好前端项目后，在根目录下建立Dockerfile文件然后开始编写Dockerfile文件，具体如何编写可以参考docker文档内容：https://docs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Claire的小书房">
+<meta property="og:url" content="http://yoursite.com/2018/12/05/Docker配置：从入门到放弃/index.html">
 <meta property="og:site_name" content="Claire的小书房">
-<meta property="og:description" content="关于我一只笨笨的小猪">
+<meta property="og:description" content="Docker配置：从入门到放弃最近尝试着把自己的一个项目在服务器上docker化了一下，遇到了诸多的问题，记录总结一下。 部署过程一、编写Dockerfile文件选好前端项目后，在根目录下建立Dockerfile文件然后开始编写Dockerfile文件，具体如何编写可以参考docker文档内容：https://docs.docker.com/engine/reference/builder/#cm">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-03T16:09:08.700Z">
+<meta property="og:image" content="http://yoursite.com/2018/12/05/Docker配置：从入门到放弃/media/15440113752898/15440120775228.jpg">
+<meta property="og:updated_time" content="2018-12-05T12:34:04.161Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="关于我一只笨笨的小猪">
+<meta name="twitter:title" content="Claire的小书房">
+<meta name="twitter:description" content="Docker配置：从入门到放弃最近尝试着把自己的一个项目在服务器上docker化了一下，遇到了诸多的问题，记录总结一下。 部署过程一、编写Dockerfile文件选好前端项目后，在根目录下建立Dockerfile文件然后开始编写Dockerfile文件，具体如何编写可以参考docker文档内容：https://docs.docker.com/engine/reference/builder/#cm">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/05/Docker配置：从入门到放弃/media/15440113752898/15440120775228.jpg">
 
 
 
@@ -119,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/05/Docker配置：从入门到放弃/"/>
 
 
 
 
 
-  <title>about | Claire的小书房</title>
+  <title> | Claire的小书房</title>
   
 
 
@@ -220,34 +222,172 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/Docker配置：从入门到放弃/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Claire">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Claire的小书房">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">about</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>一只笨笨的小猪</p>
-
+          <h1 class="post-title" itemprop="name headline"></h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-05T20:02:55+08:00">
+                2018-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="Docker配置：从入门到放弃"><a href="#Docker配置：从入门到放弃" class="headerlink" title="Docker配置：从入门到放弃"></a>Docker配置：从入门到放弃</h1><p>最近尝试着把自己的一个项目在服务器上docker化了一下，遇到了诸多的问题，记录总结一下。</p>
+<h3 id="部署过程"><a href="#部署过程" class="headerlink" title="部署过程"></a>部署过程</h3><h4 id="一、编写Dockerfile文件"><a href="#一、编写Dockerfile文件" class="headerlink" title="一、编写Dockerfile文件"></a>一、编写Dockerfile文件</h4><p>选好前端项目后，在根目录下建立Dockerfile文件<br>然后开始编写Dockerfile文件，具体如何编写可以参考docker文档内容：<a href="https://docs.docker.com/engine/reference/builder/#cmd" target="_blank" rel="noopener">https://docs.docker.com/engine/reference/builder/#cmd</a></p>
+<p>下面是自己Dockerfile文件的例子</p>
+<ol>
+<li>from 选择镜像，因为项目使用的node环境所以选择的是node</li>
+<li>expose 容器暴露的端口号</li>
+</ol>
+<p><img src="media/15440113752898/15440120775228.jpg" alt=""></p>
+<h4 id="二、注册docker-hub"><a href="#二、注册docker-hub" class="headerlink" title="二、注册docker hub"></a>二、注册docker hub</h4><p>在<a href="https://hub.docker.com/注册完成后，可以将github上的项目与docker" target="_blank" rel="noopener">https://hub.docker.com/注册完成后，可以将github上的项目与docker</a> hub绑定起来，并进行自动化构建，这样每次github提交之后，docker hub中的项目就会自动构建。具体过程可自行搜索。</p>
+<h4 id="三、在服务器上部署自己的docker项目"><a href="#三、在服务器上部署自己的docker项目" class="headerlink" title="三、在服务器上部署自己的docker项目"></a>三、在服务器上部署自己的docker项目</h4><p>看起来一切都很简单，登陆服务器后，执行如下步骤</p>
+<pre><code class="js">docker login //登陆一下刚才注册的账号
+
+docker pull hub名/项目名 // 拉取构建好的项目
+
+docker run --name pf-view -d -p 3000:3000 --rm  hub名/项目名 // run 跑镜像， --name 给镜像起名称方便下次查找  -d后台运行  -p映射端口号（物理机端口号:容器端口号也就是dockerfile中expose的端口号）  --rm 镜像stop以后自动删除
+</code></pre>
+<p>此外，在run之前还需配置好docker nginx，可以参考以下配置</p>
+<pre><code class="js"> server {
+        listen          80;
+        server_name     xxx.com; // 域名
+
+        location / {
+                proxy_redirect off;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_pass       http://服务器的ip地址:物理机的端口号;
+        }
+     }
+</code></pre>
+<p>最后就可以在nginx配置域名中进行访问</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/14/title: JS异步编程的四种方式/" rel="next" title="JS异步编程的四种方式">
+                <i class="fa fa-chevron-left"></i> JS异步编程的四种方式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -366,7 +506,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于我"><span class="nav-number">1.</span> <span class="nav-text">关于我</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker配置：从入门到放弃"><span class="nav-number">1.</span> <span class="nav-text">Docker配置：从入门到放弃</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#部署过程"><span class="nav-number">1.0.1.</span> <span class="nav-text">部署过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、编写Dockerfile文件"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">一、编写Dockerfile文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、注册docker-hub"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">二、注册docker hub</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、在服务器上部署自己的docker项目"><span class="nav-number">1.0.1.3.</span> <span class="nav-text">三、在服务器上部署自己的docker项目</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
