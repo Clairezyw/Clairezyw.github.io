@@ -87,12 +87,15 @@
 <meta property="og:site_name" content="Claire的小书房">
 <meta property="og:description" content="最近尝试着把自己的一个项目在服务器上docker化了一下，遇到了诸多的问题，记录总结一下。 部署过程一、编写Dockerfile文件选好前端项目后，在根目录下建立Dockerfile文件然后开始编写Dockerfile文件，具体如何编写可以参考docker文档内容：https://docs.docker.com/engine/reference/builder/#cmd 下面是自己Dockerfi">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2018/12/05/Docker配置：从入门到放弃/media/15440113752898/15440120775228.jpg">
-<meta property="og:updated_time" content="2018-12-05T12:44:50.156Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9381131-bc8a19a3e455ea71.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9381131-dc5171aa7dc5098f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9381131-6aff7367c45908fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9381131-6aff7367c45908fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-12-06T03:05:34.497Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker部署从入门到放弃">
 <meta name="twitter:description" content="最近尝试着把自己的一个项目在服务器上docker化了一下，遇到了诸多的问题，记录总结一下。 部署过程一、编写Dockerfile文件选好前端项目后，在根目录下建立Dockerfile文件然后开始编写Dockerfile文件，具体如何编写可以参考docker文档内容：https://docs.docker.com/engine/reference/builder/#cmd 下面是自己Dockerfi">
-<meta name="twitter:image" content="http://yoursite.com/2018/12/05/Docker配置：从入门到放弃/media/15440113752898/15440120775228.jpg">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/9381131-bc8a19a3e455ea71.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -188,7 +191,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -198,7 +201,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -262,7 +265,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-05T20:44:20+08:00">
                 2018-12-05
@@ -283,7 +286,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -294,7 +297,7 @@
 
                 
                 
-                  . 
+                  , 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -348,7 +351,7 @@
 <li>expose 容器暴露的端口号</li>
 </ol>
 <a id="more"></a>
-<p><img src="media/15440113752898/15440120775228.jpg" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9381131-bc8a19a3e455ea71.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h4 id="二、注册docker-hub"><a href="#二、注册docker-hub" class="headerlink" title="二、注册docker hub"></a>二、注册docker hub</h4><p>在<a href="https://hub.docker.com/注册完成后，可以将github上的项目与docker" target="_blank" rel="noopener">https://hub.docker.com/注册完成后，可以将github上的项目与docker</a> hub绑定起来，并进行自动化构建，这样每次github提交之后，docker hub中的项目就会自动构建。具体过程可自行搜索。</p>
 <h4 id="三、在服务器上部署自己的docker项目"><a href="#三、在服务器上部署自己的docker项目" class="headerlink" title="三、在服务器上部署自己的docker项目"></a>三、在服务器上部署自己的docker项目</h4><p>看起来一切都很简单，登陆服务器后，执行如下步骤</p>
 <pre><code class="js">docker login //登陆一下刚才注册的账号
@@ -371,6 +374,87 @@ docker run --name pf-view -d -p 3000:3000 --rm  hub名/项目名 // run 跑镜�
      }
 </code></pre>
 <p>最后就可以在nginx配置域名中进行访问</p>
+<h3 id="踩坑总结"><a href="#踩坑总结" class="headerlink" title="踩坑总结"></a>踩坑总结</h3><h5 id="1-Dockerfile的编写"><a href="#1-Dockerfile的编写" class="headerlink" title="1.Dockerfile的编写"></a>1.Dockerfile的编写</h5><p>Dockerfile编写完成之后发现在本地run的时候找不到build/webpack.dev.conf.js文件，自己看了看写的Dockerfile。<br>　<img src="https://upload-images.jianshu.io/upload_images/9381131-dc5171aa7dc5098f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>年少无知的我将build文件内的所有文件拷贝到app下面了，自然找不到build文件夹,正确的写法👇</p>
+<pre><code>COPY  ./build /app/build/
+</code></pre><h5 id="2-no-PostCss-config"><a href="#2-no-PostCss-config" class="headerlink" title="2.no PostCss config"></a>2.no PostCss config</h5><p>错误如下</p>
+<pre><code>no PostCSS Config found in: /app/node_modules/element-uixxxxx
+</code></pre><p>这是postcssLoader的原本的配置：</p>
+<pre><code>  const postcssLoader = {
+    loader: &#39;postcss-loader&#39;,
+    options: {
+      sourceMap: options.sourceMap,
+    }
+  }
+</code></pre><p>在网上搜索了一下找到了解决方案<br>方法一：</p>
+<pre><code>const postcssLoader = {
+    loader: &#39;postcss-loader&#39;,
+    options: {
+      sourceMap: options.sourceMap,
+      plugins: [], // 添加一个空的plugins
+    }
+  }
+</code></pre><p>方法二：</p>
+<pre><code>手动创建postcss.config.js文件，在文件内写入
+
+module.exports = {};
+</code></pre><p>这是因为在git commit的时候不会把node_modules上传上去，每次npm install的时候都是新的node_modules包，必须创建postcss.config.js文件或者手动添加一个空的plugins，这样下次的npm install的时候就能找到相关的配置。</p>
+<h5 id="运行到94-报出1个错误"><a href="#运行到94-报出1个错误" class="headerlink" title="运行到94%报出1个错误"></a>运行到94%报出1个错误</h5><p>错误如下：</p>
+<pre><code>94% asset optimization ERROR Failed to compile with 1 errors
+</code></pre><p>run的时候只提示了有这一个错误但没有具体的报错信息，尝试了很多方法都没有解决，后来一想可能是Dockerfile写的有问题，可能是有些文件缺失导致项目无法运行。自行检查了一遍发现是.babelrc文件没有拷贝出来。。。</p>
+<h5 id="卡了很久的问题"><a href="#卡了很久的问题" class="headerlink" title="卡了很久的问题"></a>卡了很久的问题</h5><p>经历了如上的坑以后，心心念念的项目终于跑起来了，But，项目成功运行但是网页无法访问，curl也返回空响应。。。<br><img src="https://upload-images.jianshu.io/upload_images/9381131-6aff7367c45908fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>解决过程一：<br>首先发现的问题是项目使用的是vue-cli，config里默认的端口是8080，于是把8080端口号改成3000后依旧无法访问。</p>
+<pre><code class="js">module.exports = {
+  dev: {
+
+    // Paths
+    assetsSubDirectory: &#39;static&#39;,
+    assetsPublicPath: &#39;/&#39;,
+    proxyTable: {},
+
+    // Various Dev Server settings
+    host: &#39;localhost&#39;,
+    port: 8080, // *改为3000
+    autoOpenBrowser: false,
+    errorOverlay: true,
+    notifyOnErrors: true,
+    poll: false,
+    // 省略部分代码和注解
+  },
+</code></pre>
+<p>解决过程二：<br>就当我以为是-p端口映射问题，几乎尝试了各种办法马上就要崩溃的时候，通过 docker inspect 命令发现了一些问题</p>
+<pre><code class="js">➜  ~ docker inspect 0472a8d5364b
+
+// 省略其他部分
+      &quot;PortBindings&quot;: {
+                &quot;3000/tcp&quot;: [
+                    {
+                        &quot;HostIp&quot;: &quot;&quot;, // HostIp是空的？
+                        &quot;HostPort&quot;: &quot;3000&quot;
+                    }
+                ]
+            }, 
+// 省略其他部分
+</code></pre>
+<p>发现hostip是空的。。难怪访问不到，继续查看一下项目中的config,</p>
+<pre><code class="js">module.exports = {
+  dev: {
+
+    // Paths
+    assetsSubDirectory: &#39;static&#39;,
+    assetsPublicPath: &#39;/&#39;,
+    proxyTable: {},
+
+    // Various Dev Server settings
+    host: &#39;localhost&#39;, // !!!!!
+    port: 3000, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    autoOpenBrowser: false,
+    errorOverlay: true,
+    notifyOnErrors: true,
+    poll: false,
+    // 省略部分代码和注解
+  },
+</code></pre>
+<p>　清楚地可以看到项目默认配置的host写的localhost<br>　但是项目在运行的时候映射地址是0.0.0.0:30000<br>　<img src="https://upload-images.jianshu.io/upload_images/9381131-6aff7367c45908fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>　把config配置里的host改为0.0.0.0之后成功解决了以上问题</p>
 
       
     </div>
@@ -463,10 +547,10 @@ docker run --name pf-view -d -p 3000:3000 --rm  hub名/项目名 // run 跑镜�
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -491,7 +575,7 @@ docker run --name pf-view -d -p 3000:3000 --rm  hub名/项目名 // run 跑镜�
                 <a href="/archives/">
               
                   <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -502,7 +586,7 @@ docker run --name pf-view -d -p 3000:3000 --rm  hub名/项目名 // run 跑镜�
               <div class="site-state-item site-state-categories">
                 
                   <span class="site-state-item-count">12</span>
-                  <span class="site-state-item-name">Kategorien</span>
+                  <span class="site-state-item-name">categories</span>
                 
               </div>
             
@@ -513,7 +597,7 @@ docker run --name pf-view -d -p 3000:3000 --rm  hub名/项目名 // run 跑镜�
               <div class="site-state-item site-state-tags">
                 
                   <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">Tags</span>
+                  <span class="site-state-item-name">tags</span>
                 
               </div>
             
@@ -547,7 +631,7 @@ docker run --name pf-view -d -p 3000:3000 --rm  hub名/项目名 // run 跑镜�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#部署过程"><span class="nav-number">1.</span> <span class="nav-text">部署过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、编写Dockerfile文件"><span class="nav-number">1.1.</span> <span class="nav-text">一、编写Dockerfile文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、注册docker-hub"><span class="nav-number">1.2.</span> <span class="nav-text">二、注册docker hub</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、在服务器上部署自己的docker项目"><span class="nav-number">1.3.</span> <span class="nav-text">三、在服务器上部署自己的docker项目</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#部署过程"><span class="nav-number">1.</span> <span class="nav-text">部署过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、编写Dockerfile文件"><span class="nav-number">1.1.</span> <span class="nav-text">一、编写Dockerfile文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、注册docker-hub"><span class="nav-number">1.2.</span> <span class="nav-text">二、注册docker hub</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、在服务器上部署自己的docker项目"><span class="nav-number">1.3.</span> <span class="nav-text">三、在服务器上部署自己的docker项目</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#踩坑总结"><span class="nav-number">2.</span> <span class="nav-text">踩坑总结</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Dockerfile的编写"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.Dockerfile的编写</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-no-PostCss-config"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.no PostCss config</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#运行到94-报出1个错误"><span class="nav-number">2.0.3.</span> <span class="nav-text">运行到94%报出1个错误</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#卡了很久的问题"><span class="nav-number">2.0.4.</span> <span class="nav-text">卡了很久的问题</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -577,7 +661,7 @@ docker run --name pf-view -d -p 3000:3000 --rm  hub名/项目名 // run 跑镜�
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
