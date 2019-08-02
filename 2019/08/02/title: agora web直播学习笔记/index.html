@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="html5," />
+  <meta name="keywords" content="web直播，agora-sdk," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="getUserMediahtml5提供的getUserMedia的新特性，在学习过程中记录一下学习的例子">
-<meta name="keywords" content="html5">
+<meta name="description" content="WebRTC简介 Bringing real-time communications to the web Building a state-of-the-art media stack into Chrome Developing a new communications platform  简单来说，WebRTC（">
+<meta name="keywords" content="web直播，agora-sdk">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用getUserMedia实现拍照功能">
-<meta property="og:url" content="http://yoursite.com/2018/06/01/title: 使用getUserMedia实现拍照功能/index.html">
+<meta property="og:title" content="agora web直播学习笔记">
+<meta property="og:url" content="http://yoursite.com/2019/08/02/title: agora web直播学习笔记/index.html">
 <meta property="og:site_name" content="Claire的小书房">
-<meta property="og:description" content="getUserMediahtml5提供的getUserMedia的新特性，在学习过程中记录一下学习的例子">
+<meta property="og:description" content="WebRTC简介 Bringing real-time communications to the web Building a state-of-the-art media stack into Chrome Developing a new communications platform  简单来说，WebRTC（Web Real-Time Communication）是一种可以支持浏览器实时">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-08T10:11:40.069Z">
+<meta property="og:updated_time" content="2019-08-02T09:45:59.707Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用getUserMedia实现拍照功能">
-<meta name="twitter:description" content="getUserMediahtml5提供的getUserMedia的新特性，在学习过程中记录一下学习的例子">
+<meta name="twitter:title" content="agora web直播学习笔记">
+<meta name="twitter:description" content="WebRTC简介 Bringing real-time communications to the web Building a state-of-the-art media stack into Chrome Developing a new communications platform  简单来说，WebRTC（Web Real-Time Communication）是一种可以支持浏览器实时">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/01/title: 使用getUserMedia实现拍照功能/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/08/02/title: agora web直播学习笔记/"/>
 
 
 
 
 
-  <title>使用getUserMedia实现拍照功能 | Claire的小书房</title>
+  <title>agora web直播学习笔记 | Claire的小书房</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/01/title: 使用getUserMedia实现拍照功能/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/02/title: agora web直播学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Claire">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">使用getUserMedia实现拍照功能</h1>
+          <h1 class="post-title" itemprop="name headline">agora web直播学习笔记</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-01T15:39:06+08:00">
-                2018-06-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-02T17:09:41+08:00">
+                2019-08-02
               </time>
             
 
@@ -285,19 +285,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/html/" itemprop="url" rel="index">
-                    <span itemprop="name">html</span>
-                  </a>
-                </span>
-
-                
-                
-                  . 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/html/media/" itemprop="url" rel="index">
-                    <span itemprop="name">media</span>
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
                   </a>
                 </span>
 
@@ -338,61 +327,96 @@
       
 
       
-        <h4 id="getUserMedia"><a href="#getUserMedia" class="headerlink" title="getUserMedia"></a>getUserMedia</h4><p>html5提供的getUserMedia的新特性，在学习过程中记录一下学习的例子</p>
+        <h3 id="WebRTC简介"><a href="#WebRTC简介" class="headerlink" title="WebRTC简介"></a>WebRTC简介</h3><blockquote>
+<p>Bringing real-time communications to the web<br> Building a state-of-the-art media stack into Chrome<br> Developing a new communications platform</p>
+</blockquote>
+<p>简单来说，WebRTC（Web Real-Time Communication）是一种可以支持浏览器实时语音或视频通信的API<br>agora-sdk-web就是基于WebRTC技术的</p>
 <a id="more"></a>
-<pre><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;video style=&quot;width: 400px; height: 300px;&quot; id=&quot;video&quot; autoplay&gt;&lt;/video&gt;
-    &lt;div&gt;&lt;button id=&quot;capture&quot;&gt;拍照&lt;/button&gt;&lt;/div&gt;
-    &lt;canvas id=&quot;canvas&quot; width=&quot;400px&quot; height=&quot;300px&quot;&gt;&lt;/canvas&gt;
-    &lt;script&gt;
-        function getUserMedia(contraints, success, error) {
-            if (navigator.mediaDevices.getUserMedia) {
-                //最新api
-                navigator.mediaDevices.getUserMedia(contraints).then(success).catch(error);
-            } else if (navigator.webkitGetUserMedia) {
-                //webkit内核浏览器
-                navigator.webkitGetUserMedia(contraints, success, error);
-            } else if (navigator.mozGetUserMedia) {
-                //moz内核浏览器
-                navigator.mozGetUserMedia(contraints, success, error);
-            } else if (navigator.getUserMedia) {
-                //旧的api
-                navigator.getUserMedia(contraints, success, error);
-            }
-        }
-        var video = document.getElementById(&#39;video&#39;);
-        var context = document.getElementById(&#39;canvas&#39;).getContext(&#39;2d&#39;);
-        var captrue = document.getElementById(&#39;capture&#39;);
-        function success(stream) {
-            // window.URL 返回一个对象用来创建和管理urls的静态方法
-            var obj = window.URL || window.webkitURL;
-            //stram为MediaSteam对象，表示媒体内容的数据流
-            video.src = obj.createObjectURL(stream);
-            video.play();
-         }
-         //失败调用的函数
-        function error (e) {
-             console.log(&#39;调用失败&#39;, e.name, e.message)
-         }
-         if (navigator.mediaDevices.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator,getUserMedia) {
-             //设置video的像素以及成功的回调函数和失败的回调函数
-             getUserMedia({video: {width: 400, height:300}}, success, error)
-         }
-         captrue.addEventListener(&#39;click&#39;, function() {
-             context.drawImage(video, 0, 0, 400, 300)
-         })
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+<h3 id="具体使用"><a href="#具体使用" class="headerlink" title="具体使用"></a>具体使用</h3><h5 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h5><pre><code class="js">yarn add agora-rtc-sdk --dev
 </code></pre>
+<h4 id="初始化client"><a href="#初始化client" class="headerlink" title="初始化client"></a>初始化client</h4><pre><code class="js">import { AgoraRTC } from &#39;agora-rtc-sdk&#39;
+
+ const client = AgoraRTC.createClient({ mode: &#39;live&#39;, codec: &#39;h264&#39; })
+
+ client.init(APP_ID, () =&gt; {
+    console.log(&#39;init success&#39;)
+    client.join(channelKey, channelName, uid, (userId) =&gt; {
+      rtcParams.uid = uid
+      console.log(`join channel: ${channelName} success, uid: ${userId}`)
+    }, (err) =&gt; {
+      console.error(&#39;client join failed&#39;, err)
+    })
+  }, (err) =&gt; {
+    console.error(err)
+  });
+</code></pre>
+<h4 id="订阅远端视频流"><a href="#订阅远端视频流" class="headerlink" title="订阅远端视频流"></a>订阅远端视频流</h4><pre><code>   // 添加视频流
+  client.on(&#39;stream-added&#39;, (evt) =&gt; {
+    const remoteStream = evt.stream;
+    const id = remoteStream.getId();
+    if (id !== rtcParams.uid) {
+      client.subscribe(remoteStream, (err) =&gt; {
+        console.log(&#39;stream subscribe failed&#39;, err)
+      })
+    }
+    console.log(&#39;stream-added remote-uid: &#39;, id)
+  })
+
+  // 订阅视频流
+  client.on(&#39;stream-subscribed&#39;, (evt) =&gt; {
+    const remoteStream = evt.stream
+    const id = remoteStream.getId()
+    remoteStreams.push(remoteStream)
+    remoteStream.play(&#39;videoContainer&#39;, { fit: &#39;cover&#39; }, (errState) =&gt; {
+      if (errState) {
+        document.getElementById(&#39;play&#39;).addEventListener(&#39;click&#39;, () =&gt; {
+          remoteStream.play(&#39;videoContainer&#39;)
+        })
+      }
+    })
+    console.log(&#39;stream-subscribed remote-uid: &#39;, id)
+  })
+</code></pre><h4 id="获取统计信息"><a href="#获取统计信息" class="headerlink" title="获取统计信息"></a>获取统计信息</h4><p>获取传输延迟时间和丢包率，可根据自己项目情况获取统计参数</p>
+<pre><code class="js">setInterval(() =&gt; {
+     if (!client || !isJoined) return
+  client.getRemoteVideoStats((remoteVideoStatsMap) =&gt; {
+    for (const uid in remoteVideoStatsMap) {
+      if (remoteVideoStatsMap[uid]) {
+        if (remoteVideoStatsMap[uid].TransportDelay) {
+          data.videoDelay = remoteVideoStatsMap[uid].TransportDelay
+        }
+        if (remoteVideoStatsMap[uid].PacketLossRate) {
+          data.videoLost = remoteVideoStatsMap[uid].PacketLossRate
+        }
+      }
+    }
+  })
+
+  client.getRemoteAudioStats((remoteAudioStatsMap) =&gt; {
+    for (const uid in remoteAudioStatsMap) {
+      if (remoteAudioStatsMap[uid]) {
+        if (remoteAudioStatsMap[uid].TransportDelay) {
+          data.audioDelay = remoteAudioStatsMap[uid].TransportDelay
+        }
+        if (remoteAudioStatsMap[uid].PacketLossRate) {
+          data.audioLost = remoteAudioStatsMap[uid].PacketLossRate
+        }
+      }
+    }
+  })
+}, 2000)
+</code></pre>
+<h3 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h3><h4 id="web端黑屏但是安卓端却可以看到直播？"><a href="#web端黑屏但是安卓端却可以看到直播？" class="headerlink" title="web端黑屏但是安卓端却可以看到直播？"></a>web端黑屏但是安卓端却可以看到直播？</h4><p>PC 或移动端用户（使用 Agora Native SDK 的用户）在直播场景下必须调用 enableWebSdkInteroperability 打开互通功能。</p>
+<h4 id="chrome浏览器刷新后黑屏？"><a href="#chrome浏览器刷新后黑屏？" class="headerlink" title="chrome浏览器刷新后黑屏？"></a>chrome浏览器刷新后黑屏？</h4><p>根据<a href="https://developers.google.com/web/updates/2017/09/autoplay-policy-changes" target="_blank" rel="noopener">chrome autoplay</a>政策,chrome 70+的浏览器无法使用自动播放功能，只有在用户手势触发之后才会自动播放，目前Stream.play，Stream.startAudioMixing 以及 Stream.getAudioLevel 这三个方法必须由用户手势触发</p>
+<h3 id="使用感受"><a href="#使用感受" class="headerlink" title="使用感受"></a>使用感受</h3><ul>
+<li>卡顿时间相较于原始的推流减少了很多</li>
+<li>UI方面可自定义实现，避免了重写video组件样式的痛点</li>
+<li>实现起来非常简单,官方提供多种api</li>
+<li>文档和社区不是很完善, 遇到问题解决起来相对比较困难</li>
+</ul>
+<blockquote>
+<p>参考：<a href="https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/web/index.html" target="_blank" rel="noopener">Agora Web SDK API Reference</a><br> <a href="http://io13webrtc.appspot.com/" target="_blank" rel="noopener">Google developers</a></p>
+</blockquote>
 
       
     </div>
@@ -410,7 +434,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/html5/" rel="tag"># html5</a>
+            <a href="/tags/web直播，agora-sdk/" rel="tag"># web直播，agora-sdk</a>
           
         </div>
       
@@ -423,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/30/title: webpack简单搭建vue架构/" rel="next" title="webpack简单搭建vue架构">
-                <i class="fa fa-chevron-left"></i> webpack简单搭建vue架构
+              <a href="/2018/12/05/Docker配置：从入门到放弃/" rel="next" title="Docker部署从入门到放弃">
+                <i class="fa fa-chevron-left"></i> Docker部署从入门到放弃
               </a>
             
           </div>
@@ -432,10 +456,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/14/title: JS异步编程的四种方式/" rel="prev" title="JS异步编程的四种方式">
-                JS异步编程的四种方式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -573,7 +593,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#getUserMedia"><span class="nav-number">1.</span> <span class="nav-text">getUserMedia</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#WebRTC简介"><span class="nav-number">1.</span> <span class="nav-text">WebRTC简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体使用"><span class="nav-number">2.</span> <span class="nav-text">具体使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#下载"><span class="nav-number">2.0.1.</span> <span class="nav-text">下载</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化client"><span class="nav-number">2.1.</span> <span class="nav-text">初始化client</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#订阅远端视频流"><span class="nav-number">2.2.</span> <span class="nav-text">订阅远端视频流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取统计信息"><span class="nav-number">2.3.</span> <span class="nav-text">获取统计信息</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到问题"><span class="nav-number">3.</span> <span class="nav-text">遇到问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#web端黑屏但是安卓端却可以看到直播？"><span class="nav-number">3.1.</span> <span class="nav-text">web端黑屏但是安卓端却可以看到直播？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#chrome浏览器刷新后黑屏？"><span class="nav-number">3.2.</span> <span class="nav-text">chrome浏览器刷新后黑屏？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用感受"><span class="nav-number">4.</span> <span class="nav-text">使用感受</span></a></li></ol></div>
             
 
           </div>
