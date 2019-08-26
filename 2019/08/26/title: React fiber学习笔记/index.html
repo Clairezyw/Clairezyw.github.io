@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+
+
+
+	  
+	
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="学习笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="什么是React fiiber Fiber是React 16中新的协调引擎。它的主要目标是实现虚拟DOM的增量呈现，能够将渲染工作分割成块并将其分散到多个帧中。  目的 能够把可中断的任务切片处理。 能够调整优先级，重置并复用任务。 能够在父元素与子元素之间交错处理，以支持 React 中的布局。 能够在 render">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React fiber学习笔记">
+<meta property="og:url" content="http://yoursite.com/2019/08/26/title: React fiber学习笔记/index.html">
+<meta property="og:site_name" content="Claire&#39;s home">
+<meta property="og:description" content="什么是React fiiber Fiber是React 16中新的协调引擎。它的主要目标是实现虚拟DOM的增量呈现，能够将渲染工作分割成块并将其分散到多个帧中。  目的 能够把可中断的任务切片处理。 能够调整优先级，重置并复用任务。 能够在父元素与子元素之间交错处理，以支持 React 中的布局。 能够在 render() 中返回多个元素。 更好地支持错误边界。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://zxh1989.oss-cn-qingdao.aliyuncs.com/20190127/181245_60244.png">
+<meta property="og:image" content="http://zxh1989.oss-cn-qingdao.aliyuncs.com/20190127/181604_73989.png">
+<meta property="og:image" content="http://zxh1989.oss-cn-qingdao.aliyuncs.com/20190127/234224_88123.gif">
+<meta property="og:updated_time" content="2019-08-26T12:47:53.507Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React fiber学习笔记">
+<meta name="twitter:description" content="什么是React fiiber Fiber是React 16中新的协调引擎。它的主要目标是实现虚拟DOM的增量呈现，能够将渲染工作分割成块并将其分散到多个帧中。  目的 能够把可中断的任务切片处理。 能够调整优先级，重置并复用任务。 能够在父元素与子元素之间交错处理，以支持 React 中的布局。 能够在 render() 中返回多个元素。 更好地支持错误边界。">
+<meta name="twitter:image" content="http://zxh1989.oss-cn-qingdao.aliyuncs.com/20190127/181245_60244.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/26/title: React fiber学习笔记/"/>
+
+
+
+
+
+  <title>React fiber学习笔记 | Claire's home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Claire's home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/26/title: React fiber学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Claire">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Claire's home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">React fiber学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-26T20:47:41+08:00">
+                2019-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React-fiber/" itemprop="url" rel="index">
+                    <span itemprop="name">React fiber</span>
+                  </a>
+                </span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React-fiber/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="什么是React-fiiber"><a href="#什么是React-fiiber" class="headerlink" title="什么是React fiiber"></a>什么是React fiiber</h3><blockquote>
+<p>Fiber是React 16中新的协调引擎。它的主要目标是实现虚拟DOM的增量呈现，能够将渲染工作分割成块并将其分散到多个帧中。</p>
+</blockquote>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ul>
+<li>能够把可中断的任务切片处理。</li>
+<li>能够调整优先级，重置并复用任务。</li>
+<li>能够在父元素与子元素之间交错处理，以支持 React 中的布局。</li>
+<li>能够在 render() 中返回多个元素。</li>
+<li>更好地支持错误边界。</li>
+</ul>
+<a id="more"></a>
+<h3 id="fiber的描述"><a href="#fiber的描述" class="headerlink" title="fiber的描述"></a>fiber的描述</h3><ul>
+<li>暂停工作，稍后再回来。</li>
+<li>为不同类型的工作分配优先权。</li>
+<li>重用以前完成的工作。</li>
+<li>如果不再需要，则中止工作。</li>
+</ul>
+<h3 id="部分属性介绍"><a href="#部分属性介绍" class="headerlink" title="部分属性介绍"></a>部分属性介绍</h3><h3 id="type和key"><a href="#type和key" class="headerlink" title="type和key"></a>type和key</h3><p>type描述了对应的组件类型，对于复合组件，类型就是函数或者组件本身，对于div、span等来说，类型就是字符串，除了type以外reconciliation期间使用key来确定fiber是否可复用</p>
+<h3 id="pendingProps-和-memoizedProps"><a href="#pendingProps-和-memoizedProps" class="headerlink" title="pendingProps 和 memoizedProps"></a>pendingProps 和 memoizedProps</h3><p>memoizedProps<br>在前一轮的渲染中，已经用来产生了输出（子组件）的属性数据。<br>pendingProps<br>由 React 元素的新数据，更新之后的属性数据，它将要被用到子组件或 DOM 元素上。</p>
+<h3 id="pendingWorkPriority"><a href="#pendingWorkPriority" class="headerlink" title="pendingWorkPriority"></a>pendingWorkPriority</h3><p>设置fiber的优先级</p>
+<h3 id="alternate"><a href="#alternate" class="headerlink" title="alternate"></a>alternate</h3><h4 id="work-in-progress和current-tree"><a href="#work-in-progress和current-tree" class="headerlink" title="work-in-progress和current tree"></a>work-in-progress和current tree</h4><p>首次渲染之后，React会有一个节点树，用来反映当前UI渲染的状态，这个树被成称为current tree。<br> 当状态改变的时候，React会构建一个work-in-progres tree用来反映未来的、以后用来更新的状态。<br>所有的操作都是发生在在work-in-progress tree中的，当React遍历current tree的时候，每一个fiber节点都会有一个alternate 节点，这些alternate 节点组成了work-in-progres tree，alternate tree是由render 方法返回的数据构成的，当这些状态都已经更新完成并且work也都完成了，alternate tree会渲染到界面上，并且alternate tre变成了current tree</p>
+<h3 id="Side-effects"><a href="#Side-effects" class="headerlink" title="Side-effects"></a>Side-effects</h3><p>Side-effects可以简单理解为React的组件的其他操作，例如更新状态、调用生命周期等，每一个fiber节点都与Side-effects有关联，并且以编码的形式存储在effectTag中，Side-effects对fiber节点所要做的工作（Work）进行定义，比如class组件，React可能会更新refs，调用生命周期，对于host组件（dom）， 可能会做dom的增删改查</p>
+<h3 id="Effects-list"><a href="#Effects-list" class="headerlink" title="Effects list"></a>Effects list</h3><p>React的更新速度非常之快，为了达到此性能，React使用了链表结构，就是将带有effects的fiber节点构成一个链表通过nextEffects链接起来，加快更新的速度</p>
+<p>如下图所示，下面是一个链表结构图，高亮的节点表示该节点需要执行effects<br><img src="http://zxh1989.oss-cn-qingdao.aliyuncs.com/20190127/181245_60244.png" alt="effects"></p>
+<p>通过nextEffects属性将这些节点链接起来,firstEffect将决定链表从何处开始<br><img src="http://zxh1989.oss-cn-qingdao.aliyuncs.com/20190127/181604_73989.png" alt="effects list"></p>
+<h3 id="调度过程"><a href="#调度过程" class="headerlink" title="调度过程"></a>调度过程</h3><p>在reconciliation 期间，由组件的render方法返回的数据会被合并到fiber树中，对于不同类型的react元素会转成不同类型的fiber节点，比如说class组件，React会调用生命周期和render函数，对于host组件（dom）React会调用dom操作，react会根据不同的类型转成对应的fiber节点，然后fiber节点将会告诉React接下来该执行什么操作</p>
+<h3 id="算法概括"><a href="#算法概括" class="headerlink" title="算法概括"></a>算法概括</h3><p>React执行的工作分为render和commit部分</p>
+<h4 id="render阶段"><a href="#render阶段" class="headerlink" title="render阶段"></a>render阶段</h4><p>在首次render的阶段，通过调用setState或React.render计算出来的UI更新数据表达被列入调度队列中，如果是首次render，render阶段会返回一个fiber树，在后续的更新中，这个fiber树将得到复用，render最终的结果是一个带有side-effects标记的fiber树，render阶段Work是异步执行的，React可以根据可用时间执行Work然后停止暂存起来，转去执行优先级更高的work，下次再从暂存的位置继续执行</p>
+<h5 id="render具体过程"><a href="#render具体过程" class="headerlink" title="render具体过程"></a>render具体过程</h5><p>所有fiber的节点都是在work loop中处理的</p>
+<pre><code>function workLoop() {
+  // Perform work until Scheduler asks us to yield
+  while (workInProgress !== null &amp;&amp; !shouldYield()) {
+    workInProgress = performUnitOfWork(workInProgress);
+  }
+}
+</code></pre><p>在React遍历fiber树的时候，当work已经全部完成或者workInProgress节点为null的时候退出work loop<br>主要有4个函数，来遍历 Fiber 树，初始化或者结束一个 Fiber 上的 Work：</p>
+<ul>
+<li>performUnitOfWork    </li>
+<li>beginWork    </li>
+<li>completeUnitOfWork    </li>
+<li>completeWork    </li>
+</ul>
+<p><img src="http://zxh1989.oss-cn-qingdao.aliyuncs.com/20190127/234224_88123.gif" alt="11"><br>现在来看看前面两个函数 performUnitOfWork 和 beginWork：</p>
+<pre><code>function performUnitOfWork(workInProgress) {
+    let next = beginWork(workInProgress);
+    if (next === null) {
+        next = completeUnitOfWork(workInProgress);
+    }
+    return next;
+}
+
+function beginWork(workInProgress) {
+    console.log(&#39;work performed for &#39; + workInProgress.name);
+    return workInProgress.child;
+}
+</code></pre><p>函数 performUnitOfWork 从 workInProgress 树接收一个 fiber node，通过调用 beginWork 函数开始处理节点 Work。全部的 Work 均在函数 beginWork 中处理。见于演示之用，我们只是简单地 console.log 出 fiber 节点的 name 属性，以表示 Work 已经被处理掉。beginWork 总是返回下一个 child 的引用或者 null。</p>
+<p>如果存在下一个 child，它将在 workLoop 函数中被赋值给变量 nextUnitOfWork 。如果没有下一个 child，React 知道已经到了当前分支终点，因此可以结束当前节点。一旦节点结束处理，React 需要处理兄弟节点上的 Work，之后返回到父节点。这些在函数 completeUnitOfWork 中完成：</p>
+<pre><code>function completeUnitOfWork(workInProgress) {
+    while (true) {
+        let returnFiber = workInProgress.return;
+        let siblingFiber = workInProgress.sibling;
+
+        nextUnitOfWork = completeWork(workInProgress);
+
+        if (siblingFiber !== null) {
+            // If there is a sibling, return it
+            // to perform work for this sibling
+            return siblingFiber;
+        } else if (returnFiber !== null) {
+            // If there&#39;s no more work in this returnFiber,
+            // continue the loop to complete the parent.
+            workInProgress = returnFiber;
+            continue;
+        } else {
+            // We&#39;ve reached the root.
+            return null;
+        }
+    }
+}
+
+function completeWork(workInProgress) {
+    console.log(&#39;work completed for &#39; + workInProgress.name);
+    return null;
+}
+</code></pre><p>你可以注意到这个函数是一个大的 while 循环。React 在 workInProgress 没有 child 的时候进入这个函数。在结束当前节点 Work 之后，检查是否有兄弟节点。如果有，函数返回对这个兄弟节点的引用。React 将这个节点引用赋值给变量 nextUnitOfWork，并开始处理以这个兄弟节点开端的分支。一定要明白，这个时候，React 已经结束了之前的兄弟节点上的 Work，父节点上的 Work 还没有结束呢。只有所有自子节点开端的分支上的 Work 得以结束，React 才会来结束父节点的 Work，并原路返回。</p>
+<p>从实现你可以看到，performUnitOfWork 和 completeUnitOfWork 主要用于迭代之目的，而主要的、实质的工作在 beginWork 和 completeWork 两个函数中完成。在下一篇文章中，我们将了解到对于 ClickCounter 组件和 span 节点，beginWork 和 completeWork 都做了些什么。</p>
+<h4 id="commit阶段"><a href="#commit阶段" class="headerlink" title="commit阶段"></a>commit阶段</h4><p>commit阶段会将带有side-effects标记的fiber节点通过链表结构连接起来，执行节点的side-effects操作。完成更新，commit阶段是同步的，因为这个阶段会导致用户界面的改变</p>
+<h5 id="commit具体过程"><a href="#commit具体过程" class="headerlink" title="commit具体过程"></a>commit具体过程</h5><p>commit 期间需要调用的主要函数是 commitRoot。它基本上做了以下几件事：</p>
+<ul>
+<li>对于标记以 Snapshot effect 的节点，调用周期函数 getSnapshotBeforeUpdate</li>
+<li>对于标记以 Deletion effect 的节点，调用周期函数 componentWillUnmount</li>
+<li>执行全部的DOM插入、更新、移除操作<br>将 finishedWork 树设置为当前树（current）</li>
+<li>对于标记以 Placement effect 的节点，调用周期函数 componentDidMount</li>
+<li>对于标记以 Update effect 的节点，调用周期函数 componentDidUpdate</li>
+</ul>
+<p><a href="https://medium.com/react-in-depth/inside-fiber-in-depth-overview-of-the-new-reconciliation-algorithm-in-react-e1c04700ef6e" target="_blank" rel="noopener">参考资料1</a><br><a href="http://zhangxinghai.cn/d/74" target="_blank" rel="noopener">参考资料2</a><br><a href="https://reactjs.org/docs/faq-internals.html#what-is-react-fiber" target="_blank" rel="noopener">参考资料3</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/02/title: agora web直播学习笔记/" rel="next" title="agora web直播学习笔记">
+                <i class="fa fa-chevron-left"></i> agora web直播学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Claire" />
+            
+              <p class="site-author-name" itemprop="name">Claire</p>
+              <p class="site-description motion-element" itemprop="description">write & study</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">Kategorien</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是React-fiiber"><span class="nav-number">1.</span> <span class="nav-text">什么是React fiiber</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目的"><span class="nav-number">2.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fiber的描述"><span class="nav-number">3.</span> <span class="nav-text">fiber的描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分属性介绍"><span class="nav-number">4.</span> <span class="nav-text">部分属性介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#type和key"><span class="nav-number">5.</span> <span class="nav-text">type和key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pendingProps-和-memoizedProps"><span class="nav-number">6.</span> <span class="nav-text">pendingProps 和 memoizedProps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pendingWorkPriority"><span class="nav-number">7.</span> <span class="nav-text">pendingWorkPriority</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#alternate"><span class="nav-number">8.</span> <span class="nav-text">alternate</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#work-in-progress和current-tree"><span class="nav-number">8.1.</span> <span class="nav-text">work-in-progress和current tree</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Side-effects"><span class="nav-number">9.</span> <span class="nav-text">Side-effects</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Effects-list"><span class="nav-number">10.</span> <span class="nav-text">Effects list</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度过程"><span class="nav-number">11.</span> <span class="nav-text">调度过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法概括"><span class="nav-number">12.</span> <span class="nav-text">算法概括</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#render阶段"><span class="nav-number">12.1.</span> <span class="nav-text">render阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#render具体过程"><span class="nav-number">12.1.1.</span> <span class="nav-text">render具体过程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#commit阶段"><span class="nav-number">12.2.</span> <span class="nav-text">commit阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#commit具体过程"><span class="nav-number">12.2.1.</span> <span class="nav-text">commit具体过程</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Claire</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
